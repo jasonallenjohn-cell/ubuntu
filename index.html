@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ubuntu Land Trust · Common Ground Initiative — 28 Athabaska Avenue</title>
+<meta name="description" content="Unlocking privately owned land for permanent affordable housing across Canada. The Common Ground Initiative — 28 Athabaska Avenue, 516 homes, North York, Toronto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ead6;--paper-pure:#f7efdb;--ink:#161210;--ink-soft:#3a2d22;--rule:#d8c9a6;--rule-strong:#1f1612;
+    --navy:#1f1612;--navy-deep:#120b07;--gold:#c89344;--gold-warm:#e0ad53;--gold-cool:#b8893a;--gold-tint:#ecd49a;
+    --terra:#8a3b1f;--soil:#4a2d18;--moss:#4a4e2b;--royal:#5063d6;--maxw:1180px;--pad:40px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss01","ss02"}
+  a{color:inherit}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  .shell{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  h1,h2,h3,h4{margin:0;font-family:'Newsreader',serif;font-weight:400;letter-spacing:-.02em}
+  section{padding:96px 0;border-top:.5px solid var(--rule)}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(243,234,214,.9);backdrop-filter:blur(12px);border-bottom:.5px solid var(--rule)}
+  .nav .in{max-width:var(--maxw);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{font-family:'Newsreader',serif;font-weight:600;font-size:17px;letter-spacing:-.02em}
+  .brand small{font-weight:400;color:var(--ink-soft)}
+  .nav nav{display:flex;gap:22px;flex-wrap:wrap}
+  .nav nav a{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+  .nav nav a:hover{color:var(--gold-cool)}
+
+  /* hero */
+  .hero{background:var(--navy);color:var(--paper);border-top:none;padding:120px 0 100px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-160px;top:-160px;width:560px;height:560px;border:1px solid rgba(200,147,68,.18);border-radius:50%}
+  .hero::before{content:"";position:absolute;right:-60px;bottom:-220px;width:420px;height:420px;border:1px solid rgba(200,147,68,.12);border-radius:50%}
+  .hero .ey{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-warm)}
+  .hero h1{color:var(--paper);font-weight:300;font-size:76px;line-height:.98;letter-spacing:-.03em;margin:20px 0 0;max-width:16ch}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero p.lead{font-size:22px;font-weight:300;color:rgba(247,239,219,.82);max-width:56ch;margin:26px 0 0}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .btn{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 20px;text-decoration:none;border:1px solid var(--gold);color:var(--ink);background:var(--gold)}
+  .btn.ghost{background:transparent;color:var(--gold-warm)}
+  .btn:hover{background:var(--gold-warm);color:var(--ink)}
+  .btn.ghost:hover{background:rgba(200,147,68,.12);color:var(--gold-warm)}
+
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-cool)}
+  h2.big{font-size:46px;line-height:1.04;font-weight:400;letter-spacing:-.025em;margin-top:16px;max-width:20ch}
+  h2.big em{font-style:italic;color:var(--gold-cool)}
+  .sub{font-size:18px;color:var(--ink-soft);max-width:62ch;margin-top:18px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+  /* stat strip */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:.5px solid var(--rule-strong);margin-top:8px}
+  .stats .s{padding:26px;border-right:.5px solid var(--rule-strong)}
+  .stats .s:last-child{border-right:none}
+  .stats .v{font-family:'Newsreader',serif;font-weight:300;font-size:46px;line-height:1;color:var(--ink)}
+  .stats .v.gold{color:var(--gold-cool)}
+  .stats .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+
+  /* party cards */
+  .party{border:.5px solid var(--rule-strong);background:var(--paper-pure);padding:26px;border-top:3px solid var(--accent,var(--gold))}
+  .party.lo{--accent:var(--gold)}.party.nfp{--accent:var(--moss)}.party.gov{--accent:var(--terra)}.party.res{--accent:var(--royal)}
+  .party .role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .party h3{font-size:23px;margin:6px 0 14px;font-weight:500}
+  .party p{font-size:15px;color:var(--ink-soft);margin:0 0 14px;line-height:1.5}
+  .party .big{font-family:'Newsreader',serif;font-size:30px;color:var(--ink)}
+  .party .big small{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+
+  /* flow */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:.5px solid var(--rule-strong)}
+  .flow .ph{padding:26px;border-right:.5px solid var(--rule-strong);background:var(--navy);color:var(--paper)}
+  .flow .ph:last-child{border-right:none}
+  .flow .ph .t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-warm)}
+  .flow .ph h4{color:var(--paper);font-weight:500;font-size:20px;margin:8px 0 12px}
+  .flow .ph ul{margin:0;padding-left:18px}
+  .flow .ph li{font-size:14px;color:rgba(247,239,219,.84);margin-bottom:6px;line-height:1.45}
+
+  /* documents */
+  .docs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .doc{display:flex;justify-content:space-between;align-items:center;gap:20px;border:.5px solid var(--rule-strong);background:var(--paper-pure);padding:22px;text-decoration:none;transition:background .12s,transform .12s}
+  .doc:hover{background:#efe4c8;transform:translateY(-2px)}
+  .doc h4{font-size:20px;font-weight:500}
+  .doc p{font-size:13.5px;color:var(--ink-soft);margin:5px 0 0;line-height:1.45}
+  .doc .go{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--navy);padding:9px 13px;white-space:nowrap}
+  .doc:hover .go{background:var(--gold);color:var(--ink)}
+  .doc.wide{grid-column:1 / -1;border-color:var(--gold)}
+
+  .project-facts dt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .project-facts dd{margin:0 0 14px;font-size:16px}
+
+  /* footer */
+  footer{background:var(--navy);color:var(--paper);padding:72px 0 40px}
+  footer .top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  footer .wm{font-family:'Newsreader',serif;font-weight:600;font-size:24px;line-height:1.1}
+  footer .wm small{display:block;font-weight:400;font-size:14px;color:rgba(247,239,219,.7)}
+  footer .wm em{display:block;font-style:italic;font-size:13px;color:var(--gold-warm);font-weight:400;margin-top:4px}
+  footer .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-warm);max-width:30ch;text-align:right}
+  footer .disc{margin-top:48px;padding-top:24px;border-top:.5px solid rgba(247,239,219,.2);font-size:12.5px;color:rgba(247,239,219,.6);max-width:100ch}
+
+  @media (max-width:900px){
+    .hero h1{font-size:48px}h2.big{font-size:34px}
+    .grid2,.grid4,.grid3,.stats,.flow,.docs{grid-template-columns:1fr}
+    .stats .s,.flow .ph{border-right:none;border-bottom:.5px solid var(--rule-strong)}
+    section{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="in">
+    <span class="brand">Ubuntu Land Trust <small>&amp; Developments</small></span>
+    <nav>
+      <a href="#model">The model</a>
+      <a href="#project">The project</a>
+      <a href="#numbers">The numbers</a>
+      <a href="#documents">Documents</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="shell">
+    <span class="ey">Common Ground Initiative · Canada</span>
+    <h1>Unlocking land for <em>permanent affordable housing.</em></h1>
+    <p class="lead">
+      A structure that turns stalled, privately-held land into homes — the landowner keeps most of
+      their value and stays in the upside, a non-profit owns and operates the building, and 30% of
+      homes are permanently affordable. Our first project: <strong>28 Athabaska Avenue</strong>,
+      516 homes in North York, Toronto.
+    </p>
+    <div class="cta">
+      <a class="btn" href="docs/UBUNTU-ATHABASKA-LANDOWNER-ONEPAGER.html">For the landowner →</a>
+      <a class="btn ghost" href="docs/UBUNTU-ATHABASKA-HOW-IT-WORKS.html">How it works →</a>
+      <a class="btn ghost" href="docs/UBUNTU-ATHABASKA-PROFORMA-MODEL.xlsx" download>Download the model ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section id="opportunity">
+  <div class="shell grid2">
+    <div>
+      <span class="eyebrow">The opportunity</span>
+      <h2 class="big">Land sits. Mandate waits. We make the <em>deal move.</em></h2>
+    </div>
+    <div>
+      <p class="sub" style="margin-top:6px">
+        Across Canada, private landowners hold thousands of entitled sites they'd like to build but
+        can't — capital is too expensive. Non-profits have the mission and the operating capacity, but
+        not the equity to put land underneath the housing.
+      </p>
+      <p class="sub">
+        <strong>Ubuntu Land Trust is the connector.</strong> We bring the landowner, a non-profit
+        operator, and the federal capital stack into a single deal — project by project. We don't bank
+        land; we structure, underwrite, and coordinate. The buildings stay with the non-profit; the land
+        transfers to them at Year 20.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE MODEL: four parties -->
+<section id="model">
+  <div class="shell">
+    <span class="eyebrow">The model</span>
+    <h2 class="big">One site. <em>Everyone</em> moves forward.</h2>
+    <p class="sub">Four parties, lined up around the same building, each better off.</p>
+    <div class="grid4" style="margin-top:40px">
+      <div class="party lo">
+        <div class="role">The landowner</div>
+        <h3>Keeps the value, skips the risk</h3>
+        <p>Contributes the land on a long-term lease — no cash, no construction risk. Takes a large Day-1 cash draw and a 60% share of cash flow.</p>
+        <div class="big">~$105.9M<small>20-yr return vs. ~$39M selling</small></div>
+      </div>
+      <div class="party nfp">
+        <div class="role">The non-profit operator</div>
+        <h3>Owns the building from Day 1</h3>
+        <p>No capital down. 100% ownership of the building, 40% of cash flow, and buys the land outright at Year 20.</p>
+        <div class="big">~$218.7M<small>incl. ~$187M net equity at Year 20</small></div>
+      </div>
+      <div class="party gov">
+        <div class="role">Governments</div>
+        <h3>Fund it; earn it back</h3>
+        <p>40% Build Canada Homes forgivable, 50% CMHC-insured, 5% municipal. A fiscal return through construction, payroll and tax.</p>
+        <div class="big">Self-funding<small>not a net subsidy</small></div>
+      </div>
+      <div class="party res">
+        <div class="role">Residents</div>
+        <h3>Homes they can afford</h3>
+        <p>30% of units held at 80% of median market rent, secured permanently once the non-profit owns land and building.</p>
+        <div class="big">155 homes<small>at 80% MMR, permanent</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FLOW -->
+<section id="flow">
+  <div class="shell">
+    <span class="eyebrow">How it flows</span>
+    <h2 class="big">Twenty years, <em>three moves.</em></h2>
+    <div class="flow" style="margin-top:40px">
+      <div class="ph">
+        <div class="t">Day 1 · Close</div>
+        <h4>Structure &amp; build</h4>
+        <ul>
+          <li>Landowner leases the land in; draws $24.6M cash.</li>
+          <li>BCH + CMHC + City fund the $328M build.</li>
+          <li>Non-profit takes 100% ownership of the building.</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <div class="t">Years 1–20 · Operate</div>
+        <h4>Run &amp; share</h4>
+        <ul>
+          <li>516 homes operate; 155 held at 80% of MMR.</li>
+          <li>One $164M CMHC mortgage, covered 1.14×.</li>
+          <li>Net cash flow split 60% landowner / 40% non-profit.</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <div class="t">Year 20 · Hand-off</div>
+        <h4>Permanent &amp; owned</h4>
+        <ul>
+          <li>Non-profit buys the land; landowner's clean exit.</li>
+          <li>Non-profit owns land + building (~$187M equity).</li>
+          <li>Affordability locked in for the long term.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROJECT -->
+<section id="project">
+  <div class="shell grid2">
+    <div>
+      <span class="eyebrow">The project</span>
+      <h2 class="big">28 Athabaska Avenue</h2>
+      <p class="sub">A proposed 43-storey, 516-home purpose-built rental community in North York, Toronto — entitled and design-advanced through Site Plan Approval, ready for a capital structure.</p>
+    </div>
+    <div>
+      <dl class="project-facts" style="margin:0">
+        <dt>Location</dt><dd>18–28 Athabaska Avenue, North York, Toronto</dd>
+        <dt>Program</dt><dd>516 dwelling units · 43 storeys · 5-storey podium + tower</dd>
+        <dt>Affordability</dt><dd>155 units (30%) at 80% of median market rent</dd>
+        <dt>Status</dt><dd>SPA / ZBA submission stage (2022–2023)</dd>
+        <dt>Structure</dt><dd>Common Ground Initiative land-lease model</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- THE NUMBERS -->
+<section id="numbers">
+  <div class="shell">
+    <span class="eyebrow">The numbers</span>
+    <h2 class="big">A deal that <em>pencils.</em></h2>
+    <p class="sub">Illustrative — based on the architectural program, with land value, costs, rents and financing as modelling assumptions to be confirmed.</p>
+    <div class="stats" style="margin-top:40px">
+      <div class="s"><div class="v num">516</div><div class="k">Homes · 43 storeys</div></div>
+      <div class="s"><div class="v num gold">$328M</div><div class="k">Total development cost</div></div>
+      <div class="s"><div class="v num">$9.03M</div><div class="k">Stabilized NOI</div></div>
+      <div class="s"><div class="v num gold">1.14×</div><div class="k">DSCR · CMHC MLI Select</div></div>
+    </div>
+    <div class="stats">
+      <div class="s"><div class="v num">155</div><div class="k">Affordable @ 80% MMR</div></div>
+      <div class="s"><div class="v num gold">$24.6M</div><div class="k">Landowner Day-1 cash</div></div>
+      <div class="s"><div class="v num">$105.9M</div><div class="k">Landowner 20-yr return</div></div>
+      <div class="s"><div class="v num gold">50%</div><div class="k">Loan-to-cost</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section id="documents">
+  <div class="shell">
+    <span class="eyebrow">Documents</span>
+    <h2 class="big">The full <em>package.</em></h2>
+    <p class="sub">Everything behind the deal — for the landowner, the lender, and the underwriter.</p>
+    <div class="docs" style="margin-top:40px">
+      <a class="doc" href="docs/UBUNTU-ATHABASKA-HOW-IT-WORKS.html">
+        <div><h4>How It Works — For Everyone</h4><p>The whole solution on one page: what each party contributes and receives.</p></div>
+        <span class="go">Open →</span>
+      </a>
+      <a class="doc" href="docs/UBUNTU-ATHABASKA-LANDOWNER-ONEPAGER.html">
+        <div><h4>Landowner One-Pager</h4><p>Your financial picture: $24.6M Day-1, 60% of cash flow, ~$105.9M over 20 years.</p></div>
+        <span class="go">Open →</span>
+      </a>
+      <a class="doc" href="docs/UBUNTU-ATHABASKA-LENDER-ONEPAGER.html">
+        <div><h4>Lender One-Pager</h4><p>CMHC MLI Select snapshot: 1.14× DSCR, 50% loan-to-cost, the $164M ask.</p></div>
+        <span class="go">Open →</span>
+      </a>
+      <a class="doc" href="docs/UBUNTU-ATHABASKA-LANDOWNER-PACKAGE.html">
+        <div><h4>Landowner Package</h4><p>Long-form: the asset, the model, the land-value split, capital stack, sensitivity.</p></div>
+        <span class="go">Open →</span>
+      </a>
+      <a class="doc" href="docs/UBUNTU-ATHABASKA-PROFORMA.html">
+        <div><h4>Development Pro Forma</h4><p>Sources &amp; uses, operating statement, debt coverage, returns, DSCR sensitivity.</p></div>
+        <span class="go">Open →</span>
+      </a>
+      <a class="doc wide" href="docs/UBUNTU-ATHABASKA-PROFORMA-MODEL.xlsx" download>
+        <div><h4>The Full Model — Spreadsheet (XLSX)</h4><p>Branded, formula-driven workbook. Edit the assumptions and every tab recalculates.</p></div>
+        <span class="go">Download ↓</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="shell">
+    <div class="top">
+      <div class="wm">Ubuntu Land Trust<small>&amp; Developments</small><em>"I am because we are"</em></div>
+      <div class="tag">Unlocking land for affordable housing at scale across Canada.</div>
+    </div>
+    <p class="disc">
+      Illustrative materials prepared by Ubuntu Land Trust &amp; Developments for discussion. The 28 Athabaska
+      Avenue program is drawn from the project's Site Plan Approval / ZBA architectural set. Land value,
+      construction costs, rents, operating expenses, cap rate and financing terms are modelling assumptions —
+      not a valuation, an appraisal, an offer, or financial advice. All figures are subject to a formal
+      appraisal, a quantity-surveyor budget, third-party financing approvals (CMHC MLI Select, Build Canada
+      Homes, City of Toronto), and definitive legal documentation. Actual results will differ.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

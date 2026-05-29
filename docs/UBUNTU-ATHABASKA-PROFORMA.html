@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ubuntu LTD · Development Pro Forma — 18–28 Athabaska Avenue · Common Ground Initiative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#f3ead6;--paper-pure:#f5ecd6;--ink:#161210;--ink-soft:#3a2d22;--rule:#1f1612;
+    --navy:#1f1612;--navy-deep:#120b07;--navy-soft:#3a2a1e;
+    --gold:#c89344;--gold-warm:#e0ad53;--gold-cool:#b8893a;--gold-tint:#ecd49a;
+    --royal:#5063d6;--purple:#3d2553;--terra:#8a3b1f;--terra-deep:#6e2e12;
+    --soil:#4a2d18;--soil-warm:#8a5a32;--moss:#4a4e2b;--stone:#cdc1a8;--stone-2:#b39a78;--stone-3:#8a6f50;
+    --maxw:1180px;--pad:48px;
+  }
+  html,body{background:var(--paper);color:var(--ink);margin:0;padding:0}
+  body{font-family:'Newsreader',Georgia,serif;font-optical-sizing:auto;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss01","ss02","ss03"}
+  *{box-sizing:border-box}
+  ::selection{background:var(--gold-tint);color:var(--ink)}
+  a{color:inherit}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .mono-sm{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .num{font-feature-settings:"tnum","lnum";font-variant-numeric:tabular-nums}
+  .shell{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  section{position:relative;padding:84px 0;border-top:.5px solid var(--rule)}
+  .sec-num{position:absolute;left:var(--pad);top:24px;color:var(--ink-soft)}
+  .sec-num + .sec-name{position:absolute;right:var(--pad);top:24px;color:var(--ink-soft)}
+  h1,h2,h3,h4{margin:0;font-weight:400;font-family:'Newsreader',serif;letter-spacing:-.01em}
+  h1{font-size:88px;line-height:.95;letter-spacing:-.025em;font-weight:300}
+  h2{font-size:50px;line-height:1.02;letter-spacing:-.02em;font-weight:400}
+  h2 em{font-style:italic;color:var(--gold);font-weight:400}
+  h3{font-size:26px;line-height:1.15;letter-spacing:-.01em;font-weight:500}
+  h4{font-size:18px;line-height:1.3;font-weight:500}
+  p{margin:0 0 1em}
+  .lead{font-size:23px;line-height:1.45;max-width:54ch;font-weight:300}
+  .small{font-size:14px;color:var(--ink-soft)}
+  .label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .grid-12{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .kv{display:grid;grid-template-columns:170px 1fr;column-gap:16px;row-gap:8px;font-size:14px}
+  .kv dt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);align-self:center}
+  .kv dd{margin:0;font-feature-settings:"tnum"}
+  .pill{display:inline-block;padding:4px 10px;border:.5px solid var(--rule);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+  .pill.gold{border-color:var(--gold);color:var(--gold-cool)}
+  .pill.moss{border-color:var(--moss);color:var(--moss)}
+  .wm{font-family:'Newsreader',serif;font-weight:500;letter-spacing:-.025em;line-height:.92;display:inline-flex;flex-direction:column;align-items:flex-start;gap:.22em}
+  .wm > span:first-child{font-weight:500}
+  .wm .b{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.2em;letter-spacing:.22em;line-height:1;text-transform:uppercase;white-space:nowrap}
+  .cover{padding:0;border-top:none;min-height:calc(100vh - 50px);display:flex;flex-direction:column;justify-content:space-between;background:var(--navy);color:var(--paper)}
+  .cover .shell{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding-top:64px;padding-bottom:48px}
+  .cover h1{color:var(--paper);font-weight:300;font-size:96px}
+  .cover .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:.5px solid rgba(255,255,255,.18);padding-top:20px}
+  .cover .meta dt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
+  .cover .meta dd{margin:0;font-size:14px;font-feature-settings:"tnum"}
+  .corner{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .corner.tl{top:20px;left:var(--pad)}.corner.tr{top:20px;right:var(--pad)}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(245,239,226,.86);backdrop-filter:blur(12px);border-bottom:.5px solid var(--rule)}
+  .topbar-inner{max-width:var(--maxw);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .topbar nav{display:flex;gap:18px;flex-wrap:wrap}
+  .topbar nav a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+  .topbar nav a:hover{color:var(--gold-cool)}
+  .stat{border:.5px solid var(--rule);background:var(--paper-pure);padding:22px;min-height:152px;display:flex;flex-direction:column;justify-content:flex-end}
+  .stat .v{font-family:'Newsreader',serif;font-weight:300;font-size:50px;line-height:1;font-feature-settings:"tnum"}
+  .stat .v.gold{color:var(--gold-cool)}.stat .v.moss{color:var(--moss)}
+  .stat .k{margin-top:10px}.stat .sub{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+  table.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px}
+  table.tbl th,table.tbl td{text-align:right;padding:10px 14px;border-bottom:.5px solid rgba(22,18,16,.16);font-feature-settings:"tnum"}
+  table.tbl th:first-child,table.tbl td:first-child{text-align:left;font-feature-settings:normal}
+  table.tbl thead th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border-bottom:.5px solid var(--rule)}
+  table.tbl tbody tr:last-child td{border-bottom:.5px solid var(--rule)}
+  table.tbl tr.total td{font-weight:600;background:var(--paper-pure)}
+  table.tbl tr.sub td{color:var(--ink-soft)}
+  table.tbl td.pos{color:var(--moss)}table.tbl td.neg{color:var(--terra)}
+  .note{border-left:2px solid var(--gold);padding:4px 0 4px 18px;margin:10px 0;font-size:14px;color:var(--ink-soft)}
+  .callout{border:.5px solid var(--rule);background:var(--paper-pure);padding:24px}
+  .callout.dark{background:var(--navy);color:var(--paper);border-color:transparent}
+  .callout.dark .label{color:rgba(255,255,255,.55)}
+  .stackbar{display:flex;width:100%;height:84px;border:.5px solid var(--rule);overflow:hidden}
+  .stackbar .seg{display:flex;flex-direction:column;justify-content:center;padding:0 16px;color:var(--paper);font-family:'JetBrains Mono',monospace}
+  .stackbar .seg .pc{font-size:22px;font-weight:600}.stackbar .seg .nm{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.92;margin-top:4px}
+  .seg.bch{background:var(--gold);color:var(--ink)}.seg.cmhc{background:var(--navy)}.seg.city{background:var(--terra)}.seg.land{background:var(--royal)}
+  /* value-gap bar */
+  .gapbar{display:flex;width:100%;height:64px;border:.5px solid var(--rule);overflow:hidden;margin-top:8px}
+  .gapbar .g{display:flex;align-items:center;padding:0 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+  .gapbar .mortg{background:var(--navy);color:var(--paper)}.gapbar .gap{background:var(--gold-tint);color:var(--ink)}
+  body > footer{padding:64px var(--pad);background:var(--navy);color:var(--paper);border-top:.5px solid var(--rule)}
+  body > footer a{color:var(--gold-warm)}
+  body > footer .colophon{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:.5px solid rgba(255,255,255,.2);padding-top:24px;font-size:13px}
+  @media (max-width:1000px){
+    h1,.cover h1{font-size:58px}h2{font-size:36px}
+    .grid-12,.grid-4,.grid-2{grid-template-columns:repeat(2,1fr)}
+    .cover .meta{grid-template-columns:1fr 1fr}
+    .stackbar{height:auto;flex-direction:column}.stackbar .seg{padding:14px 16px}
+  }
+  @media print{
+    .topbar{display:none}body{font-size:12px}
+    section{padding:34px 0;break-inside:avoid}.cover{min-height:auto;padding:48px 0}
+    h1,.cover h1{font-size:48px}h2{font-size:28px}a{color:inherit;text-decoration:none}
+    @page{margin:14mm}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mono-sm">Ubuntu LTD · Development Pro Forma · 18–28 Athabaska Ave</span>
+    <nav>
+      <a href="#verdict">Verdict</a>
+      <a href="#sources">Sources &amp; uses</a>
+      <a href="#budget">Budget</a>
+      <a href="#operating">Operating</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#returns">Returns</a>
+      <a href="#sensitivity">Sensitivity</a>
+      <a href="#assumptions">Assumptions</a>
+    </nav>
+    <span class="mono-sm">Illustrative · v0.1</span>
+  </div>
+</header>
+
+<!-- COVER -->
+<section class="cover">
+  <span class="corner tl">Common Ground Initiative</span>
+  <span class="corner tr">Confidential · Internal underwriting</span>
+  <div class="shell">
+    <div style="padding-top:40px">
+      <span class="wm" style="font-size:30px;color:var(--paper)"><span>Ubuntu</span><span class="b">Land Trust &amp; Developments</span></span>
+      <div style="height:60px"></div>
+      <span class="mono" style="color:var(--gold-warm)">Development Pro Forma · 18–28 Athabaska Ave</span>
+      <h1 style="font-weight:300;letter-spacing:-.025em;margin-top:18px">Does it<br><em style="font-style:italic;color:var(--gold)">pencil?</em></h1>
+      <div style="height:28px"></div>
+      <p class="lead" style="color:rgba(255,255,255,.82)">
+        516 homes on a $328M budget, carrying just a $164M mortgage. NOI of
+        <em style="color:var(--gold-warm);font-style:italic">$9.03M</em> covers debt at a
+        <em style="color:var(--gold-warm);font-style:italic">1.14× DSCR</em> — feasible, because the
+        40% forgivable loan bridges the gap between affordable rents and Toronto build costs.
+      </p>
+    </div>
+    <div class="meta">
+      <dl><dt>Total cost</dt><dd>~$328.0M · ~$636k/unit</dd></dl>
+      <dl><dt>Stabilized NOI</dt><dd>~$9.03M</dd></dl>
+      <dl><dt>DSCR</dt><dd>1.14× on CMHC mortgage</dd></dl>
+      <dl><dt>Status</dt><dd>Illustrative — assumptions to confirm</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- 01 VERDICT -->
+<section id="verdict">
+  <span class="sec-num mono">01</span><span class="sec-name mono">The verdict</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 5">
+        <span class="mono" style="color:var(--gold-cool)">01 — The verdict</span>
+        <h2 style="margin-top:24px">It works —<br>because of the<br><em>forgivable loan.</em></h2>
+        <p class="small" style="max-width:40ch;margin-top:16px">
+          On affordable rents, the building is worth about <strong>$213M</strong>
+          on a market basis — well under its <strong>$328M</strong> cost. The
+          deal pencils only because the Build Canada Homes forgivable loan, the
+          City contribution, and the discounted land equity together fund the
+          <strong>$115M gap</strong> that rents alone can't finance.
+        </p>
+      </div>
+      <div style="grid-column:span 7">
+        <div class="grid-4">
+          <div class="stat"><span class="v moss">1.14×</span><span class="k mono-sm">DSCR</span><span class="sub">Above 1.10 MLI floor</span></div>
+          <div class="stat"><span class="v">77%</span><span class="k mono-sm">Loan-to-value</span><span class="sub">$164M / $213M value</span></div>
+          <div class="stat"><span class="v gold">$9.03M</span><span class="k mono-sm">Stabilized NOI</span><span class="sub">30% affordable · 39% OpEx</span></div>
+          <div class="stat"><span class="v">~7%</span><span class="k mono-sm">Cash-on-cash</span><span class="sub">On landowner equity</span></div>
+        </div>
+        <div class="callout dark" style="margin-top:24px">
+          <span class="label">Read in one line</span>
+          <p style="margin:0;font-size:18px;line-height:1.45">
+            The only debt is a <strong style="color:var(--gold-warm)">$164M CMHC-insured mortgage</strong>,
+            comfortably covered at <strong style="color:var(--gold-warm)">1.14×</strong> and 77% LTV.
+            The <strong style="color:var(--gold-warm)">$131.2M forgivable</strong> Build Canada Homes loan
+            carries no debt service — that is what turns a structurally
+            under-water affordable building into a financeable one.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SOURCES & USES -->
+<section id="sources">
+  <span class="sec-num mono">02</span><span class="sec-name mono">Sources &amp; uses</span>
+  <div class="shell">
+    <h2 style="max-width:18ch">Where the money<br>comes from,<br>where it <em>goes.</em></h2>
+    <span class="label" style="margin-top:32px">Sources · total capitalization ~$328,000,000</span>
+    <div class="stackbar">
+      <div class="seg bch" style="width:40%"><span class="pc">40%</span><span class="nm">Build Canada Homes</span></div>
+      <div class="seg cmhc" style="width:50%"><span class="pc">50%</span><span class="nm">CMHC MLI mortgage</span></div>
+      <div class="seg city" style="width:5%"><span class="pc">5%</span><span class="nm">City</span></div>
+      <div class="seg land" style="width:5%"><span class="pc">5%</span><span class="nm">Land</span></div>
+    </div>
+    <div class="grid-2" style="margin-top:32px">
+      <div>
+        <span class="label">Sources of funds</span>
+        <table class="tbl">
+          <thead><tr><th>Source</th><th>Type</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Build Canada Homes</td><td>Forgivable · no payments</td><td>$131,200,000</td></tr>
+            <tr><td>CMHC MLI Select</td><td>Insured mortgage</td><td>$164,000,000</td></tr>
+            <tr><td>City of Toronto</td><td>Municipal contribution</td><td>$16,400,000</td></tr>
+            <tr><td>Landowner</td><td>Retained land equity</td><td>$16,400,000</td></tr>
+            <tr class="total"><td>Total sources</td><td>—</td><td>$328,000,000</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Of the cash sources ($311.6M), $24.6M pays the landowner's cash land draw and $287.0M funds construction &amp; soft costs. The landowner's $16.4M is contributed as land, not cash.</p>
+      </div>
+      <div>
+        <span class="label">Uses of funds</span>
+        <table class="tbl">
+          <thead><tr><th>Use</th><th>Basis</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Land (full value)</td><td>410,000 SF × $100</td><td>$41,000,000</td></tr>
+            <tr><td>Hard construction</td><td>~$454 / GFA SF</td><td>$186,000,000</td></tr>
+            <tr><td>Soft costs</td><td>fees · DCs · HST · design</td><td>$60,000,000</td></tr>
+            <tr><td>Construction financing</td><td>interest &amp; carry</td><td>$26,000,000</td></tr>
+            <tr><td>Contingency</td><td>~5%</td><td>$15,000,000</td></tr>
+            <tr class="total"><td>Total uses</td><td>~$636k / unit</td><td>$328,000,000</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Hard cost of ~$454/SF reflects a 43-storey concrete tower with three underground parking levels.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BUDGET DETAIL -->
+<section id="budget">
+  <span class="sec-num mono">03</span><span class="sec-name mono">Development budget</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 4">
+        <span class="mono" style="color:var(--gold-cool)">03 — Budget</span>
+        <h2 style="margin-top:24px">$636k<br>a <em>home.</em></h2>
+        <p class="small" style="max-width:36ch;margin-top:16px">
+          All-in cost per unit, land included. High for rental — which is exactly
+          why deeply affordable housing needs non-debt capital to be built at all.
+        </p>
+      </div>
+      <div style="grid-column:span 8">
+        <table class="tbl">
+          <thead><tr><th>Cost component</th><th>Total</th><th>Per unit</th><th>Per GFA SF</th><th>% of cost</th></tr></thead>
+          <tbody>
+            <tr><td>Land</td><td>$41,000,000</td><td>$79,457</td><td>$100.00</td><td>12.5%</td></tr>
+            <tr><td>Hard construction</td><td>$186,000,000</td><td>$360,465</td><td>$453.66</td><td>56.7%</td></tr>
+            <tr><td>Soft costs</td><td>$60,000,000</td><td>$116,279</td><td>$146.34</td><td>18.3%</td></tr>
+            <tr><td>Construction financing</td><td>$26,000,000</td><td>$50,388</td><td>$63.41</td><td>7.9%</td></tr>
+            <tr><td>Contingency</td><td>$15,000,000</td><td>$29,070</td><td>$36.59</td><td>4.6%</td></tr>
+            <tr class="total"><td>Total development cost</td><td>$328,000,000</td><td>$635,659</td><td>$800.00</td><td>100%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 OPERATING -->
+<section id="operating">
+  <span class="sec-num mono">04</span><span class="sec-name mono">Stabilized operating pro forma</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 4">
+        <span class="mono" style="color:var(--gold-cool)">04 — Operations (Year 1 stabilized)</span>
+        <h2 style="margin-top:24px">$9.03M<br>of <em>NOI.</em></h2>
+        <p class="small" style="max-width:36ch;margin-top:16px">
+          <strong>30% of units (155) are set at 80% of median market rent</strong>
+          per CMHC MLI Select; the other 70% sit at market ($2,550). That blends to
+          ~$2,397/unit, at 3% vacancy and a 39% operating-expense ratio.
+        </p>
+      </div>
+      <div style="grid-column:span 8">
+        <table class="tbl">
+          <thead><tr><th>Line</th><th>Basis</th><th>Annual</th></tr></thead>
+          <tbody>
+            <tr><td>Market rent · 361 units (70%)</td><td>$2,550 × 12</td><td>$11,046,600</td></tr>
+            <tr><td>Affordable rent · 155 units (30%)</td><td>80% MMR · $2,040 × 12</td><td>$3,794,400</td></tr>
+            <tr><td>Parking, locker &amp; ancillary</td><td>—</td><td>$459,200</td></tr>
+            <tr class="sub"><td>Gross potential income</td><td>—</td><td>$15,300,200</td></tr>
+            <tr><td>Vacancy &amp; credit loss</td><td>3%</td><td class="neg">($459,006)</td></tr>
+            <tr class="sub"><td>Effective gross income</td><td>—</td><td>$14,841,194</td></tr>
+            <tr><td>Realty taxes</td><td>—</td><td class="neg">($1,780,000)</td></tr>
+            <tr><td>Utilities</td><td>—</td><td class="neg">($1,460,000)</td></tr>
+            <tr><td>Repairs &amp; maintenance</td><td>—</td><td class="neg">($980,000)</td></tr>
+            <tr><td>Property management</td><td>4% EGI</td><td class="neg">($595,000)</td></tr>
+            <tr><td>Insurance</td><td>—</td><td class="neg">($445,000)</td></tr>
+            <tr><td>Replacement reserve</td><td>$500/unit</td><td class="neg">($258,000)</td></tr>
+            <tr><td>General &amp; administrative</td><td>—</td><td class="neg">($290,000)</td></tr>
+            <tr class="sub"><td>Total operating expenses</td><td>39% of EGI</td><td>($5,808,000)</td></tr>
+            <tr class="total"><td>Net operating income</td><td>—</td><td>$9,033,194</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 COVERAGE -->
+<section id="coverage">
+  <span class="sec-num mono">05</span><span class="sec-name mono">Financing &amp; coverage</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 5">
+        <span class="mono" style="color:var(--gold-cool)">05 — Debt coverage &amp; the value gap</span>
+        <h2 style="margin-top:24px">One mortgage.<br>Covered <em>1.14×.</em></h2>
+        <p class="small" style="max-width:42ch;margin-top:16px">
+          The only amortizing debt is the $164M CMHC MLI Select mortgage. On
+          affordable rents the building is worth ~$213M, so the mortgage sits at
+          77% loan-to-value. The remaining $115M of cost — above what rents can
+          finance — is carried by capital that expects no debt service.
+        </p>
+      </div>
+      <div style="grid-column:span 7">
+        <table class="tbl">
+          <thead><tr><th>Coverage metric</th><th>Basis</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Net operating income</td><td>stabilized</td><td>$9,033,194</td></tr>
+            <tr><td>Mortgage (CMHC MLI Select)</td><td>50% of cost</td><td>$164,000,000</td></tr>
+            <tr><td>Rate / amortization</td><td>illustrative</td><td>4.25% / 50 yr</td></tr>
+            <tr><td>Annual debt service</td><td>—</td><td>$7,919,400</td></tr>
+            <tr class="total"><td>Debt-service coverage</td><td>NOI ÷ DS</td><td>1.14×</td></tr>
+            <tr><td>Cash flow after debt</td><td>NOI − DS</td><td class="pos">$1,113,794</td></tr>
+            <tr><td>Stabilized value</td><td>4.25% cap rate</td><td>$212,500,000</td></tr>
+            <tr><td>Loan-to-value</td><td>mortgage ÷ value</td><td>77%</td></tr>
+          </tbody>
+        </table>
+        <span class="label" style="margin-top:28px">Cost = financeable value + the gap public capital fills</span>
+        <div class="gapbar">
+          <div class="g mortg" style="width:65%">$213M · rent-financeable value</div>
+          <div class="g gap" style="width:35%">$115M · forgivable + city + land</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 RETURNS -->
+<section id="returns">
+  <span class="sec-num mono">06</span><span class="sec-name mono">Who gets what</span>
+  <div class="shell">
+    <h2 style="max-width:18ch">Three partners,<br>three <em>returns.</em></h2>
+    <div class="grid-4" style="margin-top:40px">
+      <div class="callout">
+        <span class="label">Landowner</span>
+        <h4 style="font-size:28px;font-weight:300;font-feature-settings:'tnum'">$24.6M + ~7%</h4>
+        <p class="small" style="margin-top:8px">$24.6M cash at closing, plus ~7% cash-on-cash on the $16.4M retained equity from the $1.13M annual cash flow after debt — then the Year-20 land purchase.</p>
+      </div>
+      <div class="callout">
+        <span class="label">Non-profit operator</span>
+        <h4 style="font-size:28px;font-weight:300">516 homes</h4>
+        <p class="small" style="margin-top:8px">Owns the buildings from day one with no equity outlay; acquires the land fee-simple at Year 20 via mortgage paydown plus remaining equity.</p>
+      </div>
+      <div class="callout">
+        <span class="label">Governments</span>
+        <h4 style="font-size:28px;font-weight:300;font-feature-settings:'tnum'">122%</h4>
+        <p class="small" style="margin-top:8px">Program-level fiscal return by Year 20 via construction, payroll and corporate tax — a self-funding mechanism, not a net subsidy.</p>
+      </div>
+      <div class="callout">
+        <span class="label">Residents</span>
+        <h4 style="font-size:28px;font-weight:300">Permanent<br>affordability</h4>
+        <p class="small" style="margin-top:8px">516 deeply and mid-affordable homes, secured permanently once the non-profit owns land and building outright.</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top:24px">
+      The forgivable Build Canada Homes loan and the City contribution seek no
+      cash return — their "return" is the housing and the fiscal multiplier. That
+      is what leaves the thin post-debt cash flow available to the landowner's
+      at-risk equity.
+    </p>
+  </div>
+</section>
+
+<!-- 07 SENSITIVITY -->
+<section id="sensitivity">
+  <span class="sec-num mono">07</span><span class="sec-name mono">Sensitivity</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 4">
+        <span class="mono" style="color:var(--gold-cool)">07 — What breaks it</span>
+        <h2 style="margin-top:24px">Rents and<br>the <em>rate.</em></h2>
+        <p class="small" style="max-width:36ch;margin-top:16px">
+          DSCR is the binding constraint. With 30% of units held at 80% of median
+          market rent, the project needs an MMR of about <strong>$2,500+</strong> to
+          clear the 1.10× MLI Select floor at the base 4.25% rate. Below that — or a
+          rate above ~4.5% — coverage slips under the floor.
+        </p>
+      </div>
+      <div style="grid-column:span 8">
+        <span class="label">DSCR by median market rent × mortgage rate (30% @ 80% MMR · 50-yr amort)</span>
+        <table class="tbl">
+          <thead><tr><th>Median market rent</th><th>NOI</th><th>@ 4.00%</th><th>@ 4.25%</th><th>@ 4.75%</th></tr></thead>
+          <tbody>
+            <tr><td>$2,400</td><td>$8,186,000</td><td class="neg">1.08×</td><td class="neg">1.03×</td><td class="neg">0.95×</td></tr>
+            <tr><td>$2,500</td><td>$8,751,000</td><td>1.15×</td><td>1.10×</td><td class="neg">1.02×</td></tr>
+            <tr class="total"><td>$2,550 <span class="mono-sm">(base)</span></td><td>$9,033,194</td><td>1.19×</td><td>1.14×</td><td class="neg">1.05×</td></tr>
+            <tr><td>$2,600</td><td>$9,315,000</td><td>1.23×</td><td>1.18×</td><td class="neg">1.08×</td></tr>
+            <tr><td>$2,700</td><td>$9,880,000</td><td>1.30×</td><td>1.25×</td><td>1.15×</td></tr>
+          </tbody>
+        </table>
+        <p class="note">
+          Red = below the 1.10× coverage floor. The base case clears at $2,400 and
+          4.25%; the deal has limited headroom, so confirming achievable affordable
+          rents and the locked MLI Select rate is the priority underwriting step.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 ASSUMPTIONS -->
+<section id="assumptions">
+  <span class="sec-num mono">08</span><span class="sec-name mono">Assumptions &amp; disclaimer</span>
+  <div class="shell">
+    <div class="grid-2">
+      <div>
+        <h3 style="margin-bottom:18px">Key assumptions</h3>
+        <dl class="kv">
+          <dt>Program</dt><dd>516 units · 43 storeys · ~410,000 SF GFA (est.)</dd>
+          <dt>Land value</dt><dd>$100 / buildable SF → $41.0M ($24.6M cash draw + $16.4M equity)</dd>
+          <dt>Hard cost</dt><dd>~$454 / GFA SF — confirm with QS / cost consultant</dd>
+          <dt>Rents</dt><dd>MMR $2,550; 30% of units (155) at 80% MMR ($2,040), 70% at market — blended ~$2,397</dd>
+          <dt>Vacancy</dt><dd>3%</dd>
+          <dt>OpEx ratio</dt><dd>39% of EGI (~$11,256 / unit)</dd>
+          <dt>Cap rate</dt><dd>4.25%</dd>
+          <dt>Mortgage</dt><dd>$164M · CMHC MLI Select · 4.25% · 50-yr amortization</dd>
+          <dt>Forgivable loan</dt><dd>$131.2M Build Canada Homes — no debt service</dd>
+        </dl>
+      </div>
+      <div>
+        <h3 style="margin-bottom:18px">To firm up the pro forma</h3>
+        <ul class="small" style="line-height:1.7;padding-left:18px">
+          <li>Quantity-surveyor hard-cost estimate and full soft-cost schedule.</li>
+          <li>Affordable-rent schedule by unit type and the MLI Select affordability tier.</li>
+          <li>Locked CMHC MLI Select term sheet — rate, amortization, premium, DSCR floor.</li>
+          <li>Build Canada Homes forgivable-loan confirmation and conditions.</li>
+          <li>City of Toronto contribution mechanism (DC/fee relief, Open Door, or grant).</li>
+          <li>Property-tax treatment for affordable housing (potential rebate / exemption).</li>
+          <li>Construction-period interest and lease-up assumptions.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:32px;border-color:var(--terra)">
+      <span class="label" style="color:var(--terra)">Important — illustrative only</span>
+      <p class="small" style="margin:0;max-width:100ch">
+        This pro forma is an illustrative underwriting model prepared by Ubuntu
+        Land Trust &amp; Developments for internal discussion. Construction costs,
+        rents, operating expenses, cap rate and financing terms are estimates and
+        modelling assumptions — not a valuation, an appraisal, an offer, or
+        financial advice. All figures are subject to a quantity-surveyor budget,
+        a verified rent schedule, third-party financing approvals (CMHC MLI Select,
+        Build Canada Homes, City of Toronto), and definitive legal documentation.
+        Actual results will differ.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px">
+      <span class="wm" style="font-size:30px;color:var(--paper)"><span>Ubuntu</span><span class="b">Land Trust &amp; Developments</span></span>
+      <span class="mono-sm" style="color:rgba(255,255,255,.6)">Unlocking land for affordable housing at scale across Canada.</span>
+    </div>
+    <div class="colophon">
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Document</div><div style="margin-top:6px">Development Pro Forma · v0.1 · Illustrative</div></div>
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Project</div><div style="margin-top:6px">18–28 Athabaska Ave · CGI</div></div>
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Contact</div><div style="margin-top:6px"><a href="#">capital@ubuntultd.ca</a></div></div>
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Status</div><div style="margin-top:6px">Internal underwriting · Confidential</div></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

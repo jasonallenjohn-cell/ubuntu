@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>28 Athabaska Avenue — How Common Ground Works for Everyone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ead6;--paper-pure:#f5ecd6;--ink:#161210;--ink-soft:#3a2d22;--rule:#d8c9a6;--rule-strong:#1f1612;
+    --navy:#1f1612;--gold:#c89344;--gold-warm:#e0ad53;--gold-cool:#b8893a;--gold-tint:#ecd49a;
+    --terra:#8a3b1f;--soil:#4a2d18;--moss:#4a4e2b;--royal:#5063d6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#e7dcc0;color:var(--ink)}
+  body{font-family:'Newsreader',Georgia,serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","ss02";padding:28px 16px}
+  .sheet{max-width:960px;margin:0 auto;background:var(--paper);border:.5px solid var(--rule-strong);box-shadow:0 18px 50px rgba(18,11,7,.22)}
+  h1,h2,h3{margin:0;font-weight:400;font-family:'Newsreader',serif;letter-spacing:-.01em}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+
+  .band{background:var(--navy);color:var(--paper);padding:30px 36px 28px;position:relative;overflow:hidden}
+  .band::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border:1px solid rgba(200,147,68,.22);border-radius:50%}
+  .band .ey{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-warm)}
+  .band h1{font-size:40px;font-weight:300;letter-spacing:-.02em;margin:8px 0 6px;color:var(--paper)}
+  .band h1 em{font-style:italic;color:var(--gold)}
+  .band .sub{font-size:14px;color:rgba(245,239,226,.8);max-width:74ch}
+
+  .body{padding:26px 36px 8px}
+  .intro{font-size:15px;line-height:1.55;max-width:96ch;margin:0 0 22px}
+  .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border-bottom:2px solid var(--gold);padding-bottom:8px;margin:24px 0 16px;display:block}
+
+  /* party ledger */
+  .ledger{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .party{border:.5px solid var(--rule-strong);background:var(--paper-pure);padding:18px;border-top:3px solid var(--accent,var(--gold))}
+  .party.lo{--accent:var(--gold)}.party.nfp{--accent:var(--moss)}.party.gov{--accent:var(--terra)}.party.res{--accent:var(--royal)}
+  .party .role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .party h3{font-size:21px;margin:4px 0 12px;font-weight:500}
+  .party .io{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;font-size:12.5px}
+  .party .io .tag{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink-soft);padding:3px 6px;border-radius:3px;height:fit-content;align-self:start;margin-top:2px}
+  .party .io .tag.out{background:var(--accent);color:var(--ink)}
+  .party .headline{margin-top:12px;padding-top:12px;border-top:.5px solid var(--rule);font-family:'Newsreader',serif;font-size:26px;color:var(--ink)}
+  .party .headline small{display:block;font-size:11px;color:var(--ink-soft);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+  /* flow timeline */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:.5px solid var(--rule-strong)}
+  .flow .ph{padding:18px;border-right:.5px solid var(--rule-strong);background:var(--navy);color:var(--paper)}
+  .flow .ph:last-child{border-right:none}
+  .flow .ph .t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-warm)}
+  .flow .ph h4{margin:6px 0 8px;font-size:16px;font-weight:500;color:var(--paper)}
+  .flow .ph ul{margin:0;padding-left:16px}
+  .flow .ph li{font-size:12px;line-height:1.45;color:rgba(245,239,226,.86);margin-bottom:4px}
+
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+  .why .r{border-left:2px solid var(--moss);padding:8px 0 8px 14px;margin:6px 0;font-size:12.5px}
+  .why .r b{display:block;margin-bottom:1px}
+  .why .r span{color:var(--ink-soft)}
+
+  .foot{background:var(--navy);color:var(--paper);padding:22px 36px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:26px}
+  .foot .e{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-warm)}
+  .foot p{margin:6px 0 0;font-size:13px;color:rgba(245,239,226,.9);max-width:62ch}
+  .wm{font-family:'Newsreader',serif;font-weight:600;font-size:19px;text-align:right;line-height:1.1}
+  .wm small{display:block;font-weight:400;font-size:12px;color:rgba(245,239,226,.75)}
+  .wm em{display:block;font-style:italic;font-size:11px;color:var(--gold-warm);font-weight:400;margin-top:2px}
+
+  @media (max-width:780px){.ledger,.flow,.why{grid-template-columns:1fr}.flow .ph{border-right:none;border-bottom:.5px solid var(--rule-strong)}}
+  @media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:none;max-width:none}@page{margin:10mm}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="band">
+    <span class="ey">Common Ground Initiative · The Whole Solution</span>
+    <h1>One site. <em>Everyone</em> moves forward.</h1>
+    <div class="sub">28 Athabaska Avenue · 516 homes · North York, Toronto — how the landowner, the non-profit operator, the governments, and residents each win from the same structure.</div>
+  </div>
+
+  <div class="body">
+    <p class="intro">
+      The Common Ground Initiative is not a sale and not a charity ask — it's a structure that lines up four
+      parties around a single site so each one comes out ahead. The landowner keeps most of their value and
+      stays in the upside; a non-profit owns and operates 516 homes with no capital down; governments fund it
+      with insured and forgivable capital that earns a fiscal return; and 155 households get permanently
+      affordable homes. <strong>Ubuntu Land Trust structures, underwrites, and coordinates the whole thing.</strong>
+    </p>
+
+    <span class="lbl">What each party puts in — and takes out</span>
+    <div class="ledger">
+
+      <div class="party lo">
+        <div class="role">Partner 01 · The landowner</div>
+        <h3>Keeps the value, skips the risk</h3>
+        <div class="io">
+          <span class="tag">In</span><div>The entitled land (long-term lease) — no cash, no construction risk.</div>
+          <span class="tag out">Out</span><div>$24.6M Day-1 cash · $47.0M (60% of cash flow over 20 yrs) · $34.3M Year-20 payment.</div>
+        </div>
+        <div class="headline">~$105.9M<small>total 20-year return vs. ~$39.0M from selling</small></div>
+      </div>
+
+      <div class="party nfp">
+        <div class="role">Partner 02 · The non-profit operator</div>
+        <h3>Owns the building from Day 1</h3>
+        <div class="io">
+          <span class="tag">In</span><div>$0 capital. Operating capacity, mission, and community standing.</div>
+          <span class="tag out">Out</span><div>100% building ownership Day 1 · $31.3M (40% of cash flow) · buys the land at Year 20.</div>
+        </div>
+        <div class="headline">~$218.7M<small>incl. ~$187.4M net equity owned at Year 20</small></div>
+      </div>
+
+      <div class="party gov">
+        <div class="role">Partner 03 · Governments</div>
+        <h3>Fund it; earn it back</h3>
+        <div class="io">
+          <span class="tag">In</span><div>BCH 40% forgivable ($131.2M) · CMHC-insured 50% ($164.0M) · City 5% ($16.4M).</div>
+          <span class="tag out">Out</span><div>516 homes built · 155 permanently affordable · construction, payroll &amp; corporate tax.</div>
+        </div>
+        <div class="headline">Self-funding<small>fiscal return by Year 20 — not a net subsidy</small></div>
+      </div>
+
+      <div class="party res">
+        <div class="role">Partner 04 · Residents</div>
+        <h3>Homes they can actually afford</h3>
+        <div class="io">
+          <span class="tag">In</span><div>—</div>
+          <span class="tag out">Out</span><div>155 homes at 80% of median market rent (~$2,040), secured permanently.</div>
+        </div>
+        <div class="headline">155 homes<small>at 80% MMR · permanently affordable</small></div>
+      </div>
+
+    </div>
+
+    <span class="lbl">How it flows over 20 years</span>
+    <div class="flow">
+      <div class="ph">
+        <div class="t">Day 1 · Close</div>
+        <h4>Structure &amp; build</h4>
+        <ul>
+          <li>Landowner leases the land in; draws $24.6M cash.</li>
+          <li>BCH + CMHC + City fund the $328M build.</li>
+          <li>Non-profit takes 100% ownership of the building.</li>
+          <li>Ubuntu LTD coordinates and underwrites.</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <div class="t">Years 1–20 · Operate</div>
+        <h4>Run &amp; share</h4>
+        <ul>
+          <li>516 homes operate; 155 held at 80% of MMR.</li>
+          <li>NOI ~$9.0M; one $164M CMHC mortgage at 1.14× DSCR.</li>
+          <li>Net cash flow split 60% landowner / 40% non-profit.</li>
+          <li>Mortgage pays down; equity builds.</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <div class="t">Year 20 · Hand-off</div>
+        <h4>Permanent &amp; owned</h4>
+        <ul>
+          <li>Non-profit buys the land; landowner gets $34.3M.</li>
+          <li>Non-profit owns land + building (~$187M net equity).</li>
+          <li>Affordability is locked in for the long term.</li>
+          <li>Clean exit for the landowner.</li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="lbl">Why it holds together</span>
+    <div class="why">
+      <div class="r"><b>Incentives are aligned, not traded off.</b><span>Each party's gain depends on the building getting built and run well — no one wins at another's expense.</span></div>
+      <div class="r"><b>The affordability earns the financing.</b><span>30% at 80% MMR unlocks the CMHC MLI Select terms (higher leverage, 50-yr amortization) the whole stack relies on.</span></div>
+      <div class="r"><b>No one over-extends.</b><span>Landowner deploys no cash; non-profit deploys no capital; the only amortizing debt is the insured 50% mortgage.</span></div>
+      <div class="r"><b>The land ends up where it should.</b><span>With the non-profit, permanently — backing affordable homes rather than trading hands again.</span></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>
+      <div class="e">The Common Ground Initiative</div>
+      <p>One coordinated structure — landowner, non-profit, government, and residents, each better off. Ubuntu Land Trust makes it work.</p>
+    </div>
+    <div class="wm">Ubuntu Land Trust<small>&amp; Developments</small><em>"I am because we are"</em></div>
+  </div>
+
+</div>
+</body>
+</html>
