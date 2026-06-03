@@ -122,6 +122,7 @@
       <a href="#model">The model</a>
       <a href="#project">The project</a>
       <a href="#numbers">The numbers</a>
+      <a href="#land">Land draw</a>
       <a href="#documents">Documents</a>
     </nav>
   </div>
@@ -280,6 +281,35 @@
       <div class="s"><div class="v num gold">50%</div><div class="k">Loan-to-cost</div></div>
     </div>
   </div>
+</section>
+
+<!-- LAND VALUES & DRAWS -->
+<section id="land">
+  <div class="shell">
+    <span class="eyebrow">Land values &amp; draws</span>
+    <h2 class="big">What the landowner <em>draws.</em></h2>
+    <p class="sub">The land converts to a <strong>60% first draw to the owner</strong> plus 40% deferred land equity, with a <strong>protected minimum draw of $17.0M</strong>. The Day-1 draw available across the appraisal range:</p>
+    <table class="land-tbl">
+      <thead><tr><th>Land value</th><th>$/bsf</th><th>Draw to owner&nbsp;(60%)</th><th>Deferred equity&nbsp;(40%)</th></tr></thead>
+      <tbody>
+        <tr><td>$33.6M&nbsp;· North York stress</td><td>$82</td><td class="d">$20.2M</td><td>$13.4M</td></tr>
+        <tr><td>$37.7M&nbsp;· Toronto high-rise</td><td>$92</td><td class="d">$22.6M</td><td>$15.1M</td></tr>
+        <tr class="b"><td>$41.0M&nbsp;· Ubuntu base / max</td><td>$100</td><td class="d">$24.6M</td><td>$16.4M</td></tr>
+      </tbody>
+    </table>
+    <p class="sub">The owner's draw never falls below <strong>$17.0M</strong> — the 60% draw only reaches that floor near $28.3M land value. Range is appraisal-set; land values use 410,000 buildable sf.</p>
+  </div>
+  <style>
+    #land .land-tbl{width:100%;border-collapse:collapse;font-size:16px;margin-top:36px;border:.5px solid var(--rule-strong)}
+    #land .land-tbl th,#land .land-tbl td{padding:15px 18px;text-align:right;border-bottom:.5px solid var(--rule)}
+    #land .land-tbl th:first-child,#land .land-tbl td:first-child{text-align:left}
+    #land .land-tbl thead th{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--navy)}
+    #land .land-tbl td{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+    #land .land-tbl td.d{color:var(--gold-cool);font-weight:600}
+    #land .land-tbl tr.b td{background:rgba(200,147,68,.12);font-weight:600}
+    #land .land-tbl tr:last-child td{border-bottom:none}
+    @media (max-width:680px){#land .land-tbl{font-size:13px}#land .land-tbl th,#land .land-tbl td{padding:11px 10px}}
+  </style>
 </section>
 
 <!-- DOCUMENTS -->
