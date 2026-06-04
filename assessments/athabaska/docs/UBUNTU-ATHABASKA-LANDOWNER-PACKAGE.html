@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ubuntu LTD · Landowner Package — 18–28 Athabaska Avenue · Common Ground Initiative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ====== Ubuntu LTD brand tokens (synced to Brand Guidelines v2) ====== */
+  :root{
+    --paper:#f3ead6;          /* savannah cream */
+    --paper-pure:#f5ecd6;
+    --ink:#161210;            /* near-black, warm */
+    --ink-soft:#3a2d22;
+    --rule:#1f1612;
+    --navy:#1f1612;           /* deep umber — our dark surface */
+    --navy-deep:#120b07;
+    --navy-soft:#3a2a1e;
+    --gold:#c89344;           /* savannah gold */
+    --gold-warm:#e0ad53;
+    --gold-cool:#b8893a;
+    --gold-tint:#ecd49a;
+    --sea:#2d5266;
+    --royal:#5063d6;          /* royal blue — ceremony / signature */
+    --royal-deep:#28266a;
+    --purple:#3d2553;
+    --terra:#8a3b1f;          /* fired earth */
+    --terra-deep:#6e2e12;
+    --soil:#4a2d18;           /* deep loam */
+    --soil-warm:#8a5a32;
+    --umber:#4a2d18;
+    --moss:#4a4e2b;
+    --stone:#cdc1a8;
+    --stone-2:#b39a78;
+    --stone-3:#8a6f50;
+    --maxw:1180px;
+    --pad:48px;
+  }
+  html,body{background:var(--paper);color:var(--ink);margin:0;padding:0}
+  body{
+    font-family:'Newsreader',Georgia,serif;
+    font-optical-sizing:auto;
+    font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-feature-settings:"ss01","ss02","ss03";
+  }
+  *{box-sizing:border-box}
+  ::selection{background:var(--gold-tint);color:var(--ink)}
+  a{color:inherit}
+
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .mono-sm{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .num{font-feature-settings:"tnum","lnum";font-variant-numeric:tabular-nums}
+
+  .shell{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  section{position:relative;padding:88px 0;border-top:.5px solid var(--rule)}
+  .sec-num{position:absolute;left:var(--pad);top:24px;color:var(--ink-soft)}
+  .sec-num + .sec-name{position:absolute;right:var(--pad);top:24px;color:var(--ink-soft)}
+
+  h1,h2,h3,h4{margin:0;font-weight:400;font-family:'Newsreader',serif;letter-spacing:-.01em}
+  h1{font-size:88px;line-height:.95;letter-spacing:-.025em;font-weight:300}
+  h2{font-size:52px;line-height:1.02;letter-spacing:-.02em;font-weight:400}
+  h2 em{font-style:italic;color:var(--gold);font-weight:400}
+  h3{font-size:28px;line-height:1.15;letter-spacing:-.01em;font-weight:500}
+  h4{font-size:18px;line-height:1.3;font-weight:500}
+  p{margin:0 0 1em}
+  hr{border:0;border-top:.5px solid var(--rule);margin:0}
+
+  .lead{font-size:23px;line-height:1.45;color:var(--ink);max-width:52ch;font-weight:300}
+  .small{font-size:14px;color:var(--ink-soft)}
+  .label{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+
+  .grid-12{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+
+  .kv{display:grid;grid-template-columns:160px 1fr;column-gap:16px;row-gap:8px;font-size:14px}
+  .kv dt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);align-self:center}
+  .kv dd{margin:0;font-feature-settings:"tnum"}
+
+  .pill{display:inline-block;padding:4px 10px;border:.5px solid var(--rule);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+  .pill.gold{border-color:var(--gold);color:var(--gold-cool)}
+
+  /* wordmark — stacked, sturdy, no italics (matches brand book) */
+  .wm{font-family:'Newsreader',serif;font-weight:500;letter-spacing:-.025em;line-height:.92;display:inline-flex;flex-direction:column;align-items:flex-start;gap:.22em}
+  .wm > span:first-child{font-weight:500;font-style:normal}
+  .wm .b{font-family:'JetBrains Mono',monospace;font-style:normal;font-weight:500;font-size:.2em;letter-spacing:.22em;line-height:1;text-transform:uppercase;white-space:nowrap}
+
+  /* cover */
+  .cover{padding:0;border-top:none;min-height:calc(100vh - 50px);display:flex;flex-direction:column;justify-content:space-between;background:var(--navy);color:var(--paper)}
+  .cover .shell{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding-top:64px;padding-bottom:48px}
+  .cover h1{color:var(--paper);font-weight:300;font-size:100px}
+  .cover .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:.5px solid rgba(255,255,255,.18);padding-top:20px}
+  .cover .meta dt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
+  .cover .meta dd{margin:0;font-size:14px;font-feature-settings:"tnum"}
+  .corner{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  .corner.tl{top:20px;left:var(--pad)}
+  .corner.tr{top:20px;right:var(--pad)}
+
+  /* top bar */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(245,239,226,.86);backdrop-filter:blur(12px);border-bottom:.5px solid var(--rule)}
+  .topbar-inner{max-width:var(--maxw);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .topbar nav{display:flex;gap:18px;flex-wrap:wrap}
+  .topbar nav a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+  .topbar nav a:hover{color:var(--gold-cool)}
+
+  /* stat cards */
+  .stat{border:.5px solid var(--rule);background:var(--paper-pure);padding:22px;min-height:158px;display:flex;flex-direction:column;justify-content:flex-end}
+  .stat .v{font-family:'Newsreader',serif;font-weight:300;font-size:52px;line-height:1;font-feature-settings:"tnum"}
+  .stat .v.gold{color:var(--gold-cool)}
+  .stat .k{margin-top:10px}
+  .stat .sub{font-size:12.5px;color:var(--ink-soft);margin-top:4px}
+
+  /* capital stack bar */
+  .stackbar{display:flex;width:100%;height:84px;border:.5px solid var(--rule);overflow:hidden}
+  .stackbar .seg{display:flex;flex-direction:column;justify-content:center;padding:0 16px;color:var(--paper);font-family:'JetBrains Mono',monospace}
+  .stackbar .seg .pc{font-size:22px;font-weight:600;letter-spacing:.02em}
+  .stackbar .seg .nm{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.92;margin-top:4px}
+  .seg.bch{background:var(--gold);color:var(--ink)}
+  .seg.cmhc{background:var(--navy)}
+  .seg.city{background:var(--terra)}
+  .seg.land{background:var(--royal)}
+
+  /* split bar (land draw vs equity) */
+  .splitbar{display:flex;width:100%;height:64px;border:.5px solid var(--rule);overflow:hidden;margin-top:8px}
+  .splitbar .s{display:flex;align-items:center;padding:0 18px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .splitbar .draw{background:var(--gold-tint);color:var(--ink)}
+  .splitbar .equity{background:var(--soil);color:var(--paper)}
+
+  /* legend */
+  .legend{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:.5px solid var(--rule);border-bottom:none;margin-top:24px}
+  .legend .cell{padding:18px;border-right:.5px solid var(--rule);border-bottom:.5px solid var(--rule)}
+  .legend .cell:nth-child(4n){border-right:none}
+  .legend .sw{width:22px;height:22px;border:.5px solid var(--rule);margin-bottom:12px}
+  .legend .amt{font-family:'Newsreader',serif;font-size:26px;font-weight:400;font-feature-settings:"tnum"}
+  .legend .ttl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+  .legend .dsc{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.4}
+
+  /* steps */
+  .steps{list-style:none;margin:0;padding:0;border-top:.5px solid var(--rule)}
+  .steps li{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:22px 0;border-bottom:.5px solid var(--rule);align-items:start}
+  .steps .n{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--gold-cool);padding-top:6px}
+  .steps h3{font-size:22px;margin:0 0 6px}
+  .steps p{margin:0;font-size:15px;line-height:1.5;max-width:64ch}
+
+  /* data table */
+  table.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px}
+  table.tbl th,table.tbl td{text-align:right;padding:11px 14px;border-bottom:.5px solid rgba(22,18,16,.18);font-feature-settings:"tnum"}
+  table.tbl th:first-child,table.tbl td:first-child{text-align:left;font-feature-settings:normal}
+  table.tbl thead th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border-bottom:.5px solid var(--rule)}
+  table.tbl tbody tr:last-child td{border-bottom:.5px solid var(--rule)}
+  table.tbl tr.total td{font-weight:600;background:var(--paper-pure)}
+
+  .note{border-left:2px solid var(--gold);padding:4px 0 4px 18px;margin:8px 0;font-size:14px;color:var(--ink-soft)}
+  .callout{border:.5px solid var(--rule);background:var(--paper-pure);padding:24px}
+  .callout.dark{background:var(--navy);color:var(--paper);border-color:transparent}
+  .callout.dark .label{color:rgba(255,255,255,.55)}
+
+  /* footer */
+  body > footer{padding:64px var(--pad);background:var(--navy);color:var(--paper);margin-top:0;border-top:.5px solid var(--rule)}
+  body > footer a{color:var(--gold-warm)}
+  body > footer .colophon{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:.5px solid rgba(255,255,255,.2);padding-top:24px;font-size:13px}
+
+  @media (max-width:1000px){
+    h1{font-size:60px}
+    .cover h1{font-size:64px}
+    h2{font-size:38px}
+    .grid-12,.grid-4,.grid-3,.grid-2{grid-template-columns:repeat(2,1fr)}
+    .legend{grid-template-columns:1fr 1fr}
+    .legend .cell:nth-child(2n){border-right:none}
+    .cover .meta{grid-template-columns:1fr 1fr}
+    .stackbar{height:auto;flex-direction:column}
+    .stackbar .seg{padding:14px 16px}
+  }
+
+  @media print{
+    .topbar{display:none}
+    body{font-size:12px}
+    section{padding:36px 0;break-inside:avoid}
+    .cover{min-height:auto;padding:48px 0}
+    h1,.cover h1{font-size:52px}
+    h2{font-size:30px}
+    a{color:inherit;text-decoration:none}
+    @page{margin:14mm}
+  }
+</style>
+</head>
+<body>
+
+<!-- =============== TOP BAR =============== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="mono-sm">Ubuntu LTD · Landowner Package · 18–28 Athabaska Ave</span>
+    <nav>
+      <a href="#offer">Offer</a>
+      <a href="#asset">Asset</a>
+      <a href="#model">Model</a>
+      <a href="#land">Land</a>
+      <a href="#stack">Capital stack</a>
+      <a href="#receive">What you receive</a>
+      <a href="#sensitivity">Sensitivity</a>
+      <a href="#assumptions">Assumptions</a>
+    </nav>
+    <span class="mono-sm">Illustrative · v0.1</span>
+  </div>
+</header>
+
+<!-- =============== COVER =============== -->
+<section class="cover">
+  <span class="corner tl">Common Ground Initiative</span>
+  <span class="corner tr">Confidential · For the landowner</span>
+  <div class="shell">
+    <div style="padding-top:40px">
+      <span class="wm" style="font-size:30px;color:var(--paper)"><span>Ubuntu</span><span class="b">Land Trust &amp; Developments</span></span>
+      <div style="height:64px"></div>
+      <span class="mono" style="color:var(--gold-warm)">Landowner Package · Common Ground Initiative</span>
+      <h1 style="font-weight:300;letter-spacing:-.025em;margin-top:18px">18–28<br>Athabaska<br><em style="font-style:italic;color:var(--gold)">Avenue.</em></h1>
+      <div style="height:30px"></div>
+      <p class="lead" style="color:rgba(255,255,255,.82);max-width:54ch;font-weight:300">
+        How land worth <em style="color:var(--gold-warm);font-style:italic">$41M fully approved</em>
+        becomes $24.6M in cash today and a retained stake in 516 homes — without
+        bidding against private developers and without writing a construction cheque.
+      </p>
+    </div>
+    <div class="meta">
+      <dl><dt>Site</dt><dd>18–28 Athabaska Ave, North York, ON</dd></dl>
+      <dl><dt>Program</dt><dd>516 units · 43 storeys</dd></dl>
+      <dl><dt>Structure</dt><dd>$60/SF cash draw · $40/SF equity</dd></dl>
+      <dl><dt>Status</dt><dd>Illustrative — figures to be confirmed</dd></dl>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 01 · THE OFFER AT A GLANCE =============== -->
+<section id="offer">
+  <span class="sec-num mono">01</span><span class="sec-name mono">The offer at a glance</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 5">
+        <span class="mono" style="color:var(--gold-cool)">01 — The offer</span>
+        <h2 style="margin-top:24px">Cash now.<br>Equity in the<br><em>upside.</em></h2>
+        <p class="small" style="max-width:38ch;margin-top:16px">
+          Fully approved, your land is worth about <strong>$100 per buildable
+          square foot</strong>. You draw <strong>$60/SF as cash</strong> at closing
+          and leave the remaining <strong>$40/SF</strong> in as equity — your
+          <strong>5%</strong> position in a fully financed, 516-home development.
+        </p>
+      </div>
+      <div style="grid-column:span 7">
+        <div class="grid-4">
+          <div class="stat">
+            <span class="v gold">$41.0M</span>
+            <span class="k mono-sm">Land value</span>
+            <span class="sub">410,000 buildable SF × $100</span>
+          </div>
+          <div class="stat">
+            <span class="v">$24.6M</span>
+            <span class="k mono-sm">Cash land draw</span>
+            <span class="sub">$60/SF — paid at closing</span>
+          </div>
+          <div class="stat">
+            <span class="v">$16.4M</span>
+            <span class="k mono-sm">Retained equity</span>
+            <span class="sub">$40/SF — your 5% of project</span>
+          </div>
+          <div class="stat">
+            <span class="v">516</span>
+            <span class="k mono-sm">Homes delivered</span>
+            <span class="sub">43 storeys, on your site</span>
+          </div>
+        </div>
+        <div class="callout dark" style="margin-top:24px">
+          <span class="label">The one-line version</span>
+          <p style="margin:0;font-size:19px;line-height:1.4">
+            $41M of fully-approved land becomes <strong style="color:var(--gold-warm)">$24.6M cash in hand</strong>
+            plus a <strong style="color:var(--gold-warm)">$16.4M ownership stake</strong> — financed
+            40% by Build Canada Homes (forgivable), 50% by a CMHC-insured mortgage,
+            and 5% by the City of Toronto. You do not fund construction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 02 · THE ASSET =============== -->
+<section id="asset">
+  <span class="sec-num mono">02</span><span class="sec-name mono">The asset</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 4">
+        <span class="mono" style="color:var(--gold-cool)">02 — The asset</span>
+        <h2 style="margin-top:24px">An entitled<br>site, ready<br>to <em>build.</em></h2>
+        <p class="small" style="max-width:36ch;margin-top:16px">
+          The development program is drawn from the Site Plan Approval / ZBA
+          submission set prepared by ZO1 Ltd. for the Delmar Group.
+        </p>
+      </div>
+      <div style="grid-column:span 8">
+        <dl class="kv">
+          <dt>Address</dt><dd>18–28 Athabaska Avenue, North York, Toronto, ON M2M 2T7</dd>
+          <dt>Legal</dt><dd>Pt. Lot 204 &amp; all of Lots 205–210, Registered Plan 2385 (York)</dd>
+          <dt>Context</dt><dd>~500&nbsp;m to Yonge St &amp; Centerpoint Mall; Steeles corridor</dd>
+          <dt>Program</dt><dd>Proposed 43-storey residential building, 5-storey podium + tower (L7–43)</dd>
+          <dt>Total units</dt><dd>516 dwelling units</dd>
+          <dt>Unit mix</dt><dd>Studio · 1B · 1B+Den · 2B · 2B+Den · 3B</dd>
+          <dt>Parking</dt><dd>172 spaces over 3 underground levels (121 residential · 51 visitor)</dd>
+          <dt>Bicycle</dt><dd>478 spaces (long- &amp; short-term)</dd>
+          <dt>Lockers</dt><dd>428 storage lockers</dd>
+          <dt>Buildable GFA</dt><dd>≈ 410,000 SF <span class="mono-sm">(estimate — to confirm against architect's GFA)</span></dd>
+          <dt>Approvals</dt><dd>SPA submissions 2022–2023; ZBA submission Dec 2023</dd>
+          <dt>Consultant team</dt><dd>ZO1 (architect) · Goldberg Group (planning) · NEXTRANS · Schaeffers · Studio TLA</dd>
+        </dl>
+        <p class="note" style="margin-top:24px">
+          Athabaska Avenue is a worked example of the kind of stalled, entitled,
+          privately-held site the Common Ground Initiative is built to unlock —
+          a project with full design and approvals momentum that needs a capital
+          structure to move from drawings to homes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 03 · THE MODEL =============== -->
+<section id="model">
+  <span class="sec-num mono">03</span><span class="sec-name mono">The Common Ground Initiative</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 5">
+        <span class="mono" style="color:var(--gold-cool)">03 — The model</span>
+        <h2 style="margin-top:24px">A four-step<br>land-lease<br><em>model.</em></h2>
+        <p class="small" style="max-width:42ch;margin-top:16px">
+          Ubuntu LTD is the connector — not a fund and not a landbank. We bring
+          the landowner, a non-profit operator, and the federal capital stack
+          into a single deal structure, project by project. The buildings stay
+          with the non-profit from day one; the land transfers to them at Year 20.
+        </p>
+      </div>
+      <div style="grid-column:span 7">
+        <ol class="steps">
+          <li><span class="n">01</span><div>
+            <h3>Land contribution</h3>
+            <p>You contribute the entitled Athabaska site at its fully-approved
+            value of <strong>~$100 per buildable square foot</strong>. You draw
+            <strong>$60/SF as cash</strong> at closing and retain the remaining
+            <strong>$40/SF</strong> as equity.</p>
+          </div></li>
+          <li><span class="n">02</span><div>
+            <h3>Non-profit ownership</h3>
+            <p>A non-profit operator holds <strong>full ownership of the buildings</strong>
+            and operational control from day one, keeping the homes mission-aligned
+            and permanently affordable.</p>
+          </div></li>
+          <li><span class="n">03</span><div>
+            <h3>Financial structure</h3>
+            <p>A <strong>40% Build Canada Homes forgivable loan</strong>, a
+            <strong>CMHC-insured (MLI Select) mortgage at 50%</strong>, and a
+            <strong>5% City of Toronto contribution</strong> fund construction.
+            Your retained land equity is the final 5%.</p>
+          </div></li>
+          <li><span class="n">04</span><div>
+            <h3>Year-20 land purchase</h3>
+            <p>At <strong>Year 20</strong>, twenty years of mortgage paydown together
+            with the equity remaining in the deal cover a fair price for the land —
+            a clean exit for you and a non-profit that owns both the building and the
+            ground beneath it.</p>
+          </div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 04 · YOUR LAND, VALUED =============== -->
+<section id="land">
+  <span class="sec-num mono">04</span><span class="sec-name mono">Your land, valued</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 5">
+        <span class="mono" style="color:var(--gold-cool)">04 — Land draw vs. equity</span>
+        <h2 style="margin-top:24px">$100 a foot.<br>$60 out,<br><em>$40 in.</em></h2>
+        <p class="small" style="max-width:40ch;margin-top:16px">
+          Fully approved, entitled Toronto land trades around <strong>$100 per
+          buildable square foot</strong>. Against an estimated 410,000 buildable
+          SF, that is a <strong>$41.0M</strong> land value. You take
+          <strong>$60/SF — $24.6M</strong> — as cash at closing and leave the
+          remaining <strong>$40/SF — $16.4M</strong> — in as your equity.
+        </p>
+      </div>
+      <div style="grid-column:span 7">
+        <span class="label">Land value → how it splits</span>
+        <div class="splitbar">
+          <div class="s draw" style="width:60%">$24.6M · cash draw ($60/SF)</div>
+          <div class="s equity" style="width:40%">$16.4M · equity ($40/SF)</div>
+        </div>
+        <table class="tbl">
+          <thead><tr><th>Line</th><th>Basis</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Buildable GFA (estimate)</td><td>—</td><td>410,000 SF</td></tr>
+            <tr><td>Fully-approved land value</td><td>per buildable SF</td><td>$100.00</td></tr>
+            <tr class="total"><td>Total land value</td><td>410,000 × $100</td><td>$41,000,000</td></tr>
+            <tr><td>— Cash land draw at closing</td><td>$60 / buildable SF</td><td>$24,600,000</td></tr>
+            <tr><td>— Retained equity (rolled in)</td><td>$40 / buildable SF</td><td>$16,400,000</td></tr>
+          </tbody>
+        </table>
+        <p class="note">
+          The $60/SF you draw is the cash you want out of the project; the $40/SF
+          you leave behind is your <strong>5% equity position</strong> in the total
+          capitalization (next section). Everything you don't take as cash stays
+          working for you as ownership.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 05 · THE CAPITAL STACK =============== -->
+<section id="stack">
+  <span class="sec-num mono">05</span><span class="sec-name mono">The capital stack</span>
+  <div class="shell">
+    <div class="grid-12" style="margin-bottom:8px">
+      <div style="grid-column:span 5">
+        <span class="mono" style="color:var(--gold-cool)">05 — How it's funded</span>
+        <h2 style="margin-top:24px">Who pays<br>for the<br><em>building.</em></h2>
+        <p class="small" style="max-width:40ch;margin-top:16px">
+          Your retained land equity ($16.4M) is the <strong>5%</strong> landowner
+          slice — which sets the total capitalization at about <strong>$328M</strong>
+          (≈ 516 units × ~$636k all-in, land included). Three external sources fund
+          the rest. <strong>You do not fund construction</strong> — your only
+          contribution is the land.
+        </p>
+      </div>
+      <div style="grid-column:span 7">
+        <span class="label">Total capitalization · ~$328,000,000</span>
+        <div class="stackbar">
+          <div class="seg bch" style="width:40%"><span class="pc">40%</span><span class="nm">Build Canada Homes</span></div>
+          <div class="seg cmhc" style="width:50%"><span class="pc">50%</span><span class="nm">CMHC MLI mortgage</span></div>
+          <div class="seg city" style="width:5%"><span class="pc">5%</span><span class="nm">City</span></div>
+          <div class="seg land" style="width:5%"><span class="pc">5%</span><span class="nm">Land</span></div>
+        </div>
+        <div class="legend">
+          <div class="cell">
+            <div class="sw" style="background:var(--gold)"></div>
+            <div class="amt num">$131.2M</div>
+            <div class="ttl">Build Canada Homes · 40%</div>
+            <div class="dsc">Forgivable loan — <strong>no payments</strong>, no debt service while conditions are met.</div>
+          </div>
+          <div class="cell">
+            <div class="sw" style="background:var(--navy)"></div>
+            <div class="amt num">$164.0M</div>
+            <div class="ttl">CMHC MLI · 50%</div>
+            <div class="dsc">CMHC-insured (MLI Select) first mortgage — low-cost, long-amortization debt.</div>
+          </div>
+          <div class="cell">
+            <div class="sw" style="background:var(--terra)"></div>
+            <div class="amt num">$16.4M</div>
+            <div class="ttl">City of Toronto · 5%</div>
+            <div class="dsc">Municipal contribution — fee/charge relief, Open Door–type support, or grant.</div>
+          </div>
+          <div class="cell">
+            <div class="sw" style="background:var(--royal)"></div>
+            <div class="amt num">$16.4M</div>
+            <div class="ttl">Landowner equity · 5%</div>
+            <div class="dsc"><strong>You.</strong> Funded entirely by retained land value — no cash out of pocket.</div>
+          </div>
+        </div>
+        <table class="tbl">
+          <thead><tr><th>Source</th><th>Type</th><th>Share</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Build Canada Homes</td><td>Forgivable loan</td><td>40%</td><td>$131,200,000</td></tr>
+            <tr><td>CMHC MLI Select</td><td>Insured mortgage</td><td>50%</td><td>$164,000,000</td></tr>
+            <tr><td>City of Toronto</td><td>Municipal contribution</td><td>5%</td><td>$16,400,000</td></tr>
+            <tr><td>Landowner (you)</td><td>Retained land equity</td><td>5%</td><td>$16,400,000</td></tr>
+            <tr class="total"><td>Total capitalization</td><td>—</td><td>100%</td><td>$328,000,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 06 · WHAT YOU RECEIVE =============== -->
+<section id="receive">
+  <span class="sec-num mono">06</span><span class="sec-name mono">What you receive</span>
+  <div class="shell">
+    <h2 style="max-width:20ch">Four things,<br>one signature.</h2>
+    <div class="grid-4" style="margin-top:40px">
+      <div class="callout">
+        <span class="label">01 · At closing</span>
+        <h4 style="font-size:30px;font-weight:300;font-feature-settings:'tnum'">$24.6M</h4>
+        <p class="small" style="margin-top:8px">A cash land draw ($60/SF), paid from the financing at closing. Liquidity now, not in twenty years.</p>
+      </div>
+      <div class="callout">
+        <span class="label">02 · Ownership</span>
+        <h4 style="font-size:30px;font-weight:300;font-feature-settings:'tnum'">5%</h4>
+        <p class="small" style="margin-top:8px">A $16.4M equity position ($40/SF) in the project — a structured share of net operating income over the 20-year term.</p>
+      </div>
+      <div class="callout">
+        <span class="label">03 · At Year 20</span>
+        <h4 style="font-size:30px;font-weight:300">Land<br>purchase</h4>
+        <p class="small" style="margin-top:8px">Mortgage paydown plus remaining equity fund a fair price for the land — a clean, defined exit.</p>
+      </div>
+      <div class="callout">
+        <span class="label">04 · Throughout</span>
+        <h4 style="font-size:30px;font-weight:300">Zero<br>capital calls</h4>
+        <p class="small" style="margin-top:8px">You never fund construction or cover overruns. Build Canada Homes, CMHC, and the City carry the build.</p>
+      </div>
+    </div>
+    <div class="callout dark" style="margin-top:24px">
+      <span class="label">Compared with selling the land outright</span>
+      <p style="margin:0;font-size:18px;line-height:1.45;max-width:80ch">
+        A market sale gives you a single cheque and ends your interest. The Common
+        Ground Initiative gives you <strong style="color:var(--gold-warm)">most of the value as cash now</strong>,
+        keeps you in the <strong style="color:var(--gold-warm)">long-term upside</strong> of 516 homes,
+        delivers <strong style="color:var(--gold-warm)">permanent affordable housing</strong> on your land,
+        and returns the land to a non-profit at Year 20 — all without you carrying
+        construction risk.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 07 · SENSITIVITY =============== -->
+<section id="sensitivity">
+  <span class="sec-num mono">07</span><span class="sec-name mono">Sensitivity</span>
+  <div class="shell">
+    <div class="grid-12">
+      <div style="grid-column:span 4">
+        <span class="mono" style="color:var(--gold-cool)">07 — Sensitivity</span>
+        <h2 style="margin-top:24px">If the<br>inputs <em>move.</em></h2>
+        <p class="small" style="max-width:36ch;margin-top:16px">
+          The figures still to be confirmed are buildable GFA and the fully-approved
+          land rate. The cash draw holds at $60/SF; retained equity is the balance
+          ($40/SF), which sets your 5% slice and the implied project size.
+        </p>
+      </div>
+      <div style="grid-column:span 8">
+        <span class="label">Land at $100/SF · draw $60/SF · equity $40/SF</span>
+        <table class="tbl">
+          <thead><tr><th>Buildable GFA</th><th>Land value @ $100</th><th>Cash draw @ $60</th><th>Equity @ $40</th><th>Implied project (5%)</th></tr></thead>
+          <tbody>
+            <tr><td>387,000 SF</td><td>$38,700,000</td><td>$23,220,000</td><td>$15,480,000</td><td>$309,600,000</td></tr>
+            <tr class="total"><td>410,000 SF <span class="mono-sm">(base)</span></td><td>$41,000,000</td><td>$24,600,000</td><td>$16,400,000</td><td>$328,000,000</td></tr>
+            <tr><td>430,000 SF</td><td>$43,000,000</td><td>$25,800,000</td><td>$17,200,000</td><td>$344,000,000</td></tr>
+            <tr><td>450,000 SF</td><td>$45,000,000</td><td>$27,000,000</td><td>$18,000,000</td><td>$360,000,000</td></tr>
+          </tbody>
+        </table>
+        <p class="note">
+          More buildable area scales every figure: your $60/SF cash draw and your
+          $40/SF retained stake both grow with GFA. Final figures will be set by
+          the architect's GFA certificate, a land appraisal, and the project pro forma.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== 08 · ASSUMPTIONS =============== -->
+<section id="assumptions">
+  <span class="sec-num mono">08</span><span class="sec-name mono">Assumptions &amp; next steps</span>
+  <div class="shell">
+    <div class="grid-2">
+      <div>
+        <h3 style="margin-bottom:18px">Assumptions in this package</h3>
+        <dl class="kv">
+          <dt>Buildable GFA</dt><dd>≈ 410,000 SF — estimate from 516 units × ~800 SF gross. <em>Confirm with architect.</em></dd>
+          <dt>Land value</dt><dd>~$100 / buildable SF fully approved → ~$41.0M. <em>Confirm with appraisal.</em></dd>
+          <dt>Cash land draw</dt><dd>$60 / buildable SF = $24.6M — the cash you take out at closing</dd>
+          <dt>Retained equity</dt><dd>$40 / buildable SF = $16.4M — left in as your stake</dd>
+          <dt>Capital stack</dt><dd>BCH 40% · CMHC MLI 50% · City of Toronto 5% · Landowner 5%</dd>
+          <dt>Total project cost</dt><dd>≈ $328M — set so retained equity = the 5% slice (~$636k/unit incl. land). <em>Confirm with pro forma.</em></dd>
+        </dl>
+      </div>
+      <div>
+        <h3 style="margin-bottom:18px">To firm up the numbers</h3>
+        <ol class="steps" style="border-top:none">
+          <li style="grid-template-columns:32px 1fr;padding-top:0"><span class="n">A</span><div><p>Architect's GFA certificate (replaces the 410,000 SF estimate).</p></div></li>
+          <li style="grid-template-columns:32px 1fr"><span class="n">B</span><div><p>Independent land appraisal to validate the $60 / buildable SF contribution value.</p></div></li>
+          <li style="grid-template-columns:32px 1fr"><span class="n">C</span><div><p>Project pro forma — hard + soft + financing costs — to fix the ~$328M total.</p></div></li>
+          <li style="grid-template-columns:32px 1fr"><span class="n">D</span><div><p>Confirmation of BCH, CMHC MLI Select, and City of Toronto program eligibility and terms.</p></div></li>
+          <li style="grid-template-columns:32px 1fr;border-bottom:none"><span class="n">E</span><div><p>Identify the non-profit operator partner and execute the project SPV term sheet.</p></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:32px;border-color:var(--terra)">
+      <span class="label" style="color:var(--terra)">Important — illustrative only</span>
+      <p class="small" style="margin:0;max-width:100ch">
+        This package is an illustrative summary prepared by Ubuntu Land Trust &amp;
+        Developments for discussion with the landowner. Figures for buildable area
+        and total development cost are estimates and are not a valuation, an offer,
+        or financial advice. All amounts are subject to a formal land appraisal,
+        a verified project pro forma, third-party financing approvals, and definitive
+        legal documentation. Build Canada Homes, CMHC MLI Select, and City of Toronto
+        participation are subject to each program's eligibility criteria and approval.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer>
+  <div class="shell">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px">
+      <span class="wm" style="font-size:30px;color:var(--paper)"><span>Ubuntu</span><span class="b">Land Trust &amp; Developments</span></span>
+      <span class="mono-sm" style="color:rgba(255,255,255,.6)">Unlocking land for affordable housing at scale across Canada.</span>
+    </div>
+    <div class="colophon">
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Document</div><div style="margin-top:6px">Landowner Package · v0.1 · Illustrative</div></div>
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Project</div><div style="margin-top:6px">18–28 Athabaska Ave · CGI</div></div>
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Contact</div><div style="margin-top:6px"><a href="#">capital@ubuntultd.ca</a></div></div>
+      <div><div class="mono-sm" style="color:rgba(255,255,255,.5)">Status</div><div style="margin-top:6px">For discussion · Confidential</div></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>28 Athabaska Avenue — Landowner One-Pager · Common Ground Initiative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3ead6;--paper-pure:#f5ecd6;--ink:#161210;--ink-soft:#3a2d22;--rule:#d8c9a6;--rule-strong:#1f1612;
+    --navy:#1f1612;--navy-deep:#120b07;--gold:#c89344;--gold-warm:#e0ad53;--gold-cool:#b8893a;--gold-tint:#ecd49a;
+    --terra:#8a3b1f;--soil:#4a2d18;--moss:#4a4e2b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#e7dcc0;color:var(--ink)}
+  body{font-family:'Newsreader',Georgia,serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","ss02";padding:28px 16px}
+  .sheet{max-width:940px;margin:0 auto;background:var(--paper);border:.5px solid var(--rule-strong);box-shadow:0 18px 50px rgba(18,11,7,.22)}
+  .mono{font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+  .num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  h1,h2,h3{margin:0;font-weight:400;font-family:'Newsreader',serif;letter-spacing:-.01em}
+
+  /* header band */
+  .band{background:var(--navy);color:var(--paper);padding:30px 36px 28px;position:relative;overflow:hidden}
+  .band::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border:1px solid rgba(200,147,68,.22);border-radius:50%}
+  .band .ey{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-warm)}
+  .band h1{font-size:42px;font-weight:300;letter-spacing:-.02em;margin:8px 0 6px;color:var(--paper)}
+  .band .sub{font-size:14px;color:rgba(245,239,226,.8);max-width:70ch}
+  .band .tag{display:inline-block;margin-top:16px;border:1px solid var(--gold);color:var(--gold-warm);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+
+  .body{padding:26px 36px 8px}
+  .intro{font-size:15px;line-height:1.55;max-width:96ch;margin:0 0 24px}
+  .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border-bottom:2px solid var(--gold);padding-bottom:8px;margin:26px 0 16px;display:block}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{border:.5px solid var(--rule-strong);background:var(--paper-pure);padding:18px}
+  .card .k{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .card .v{font-family:'Newsreader',serif;font-weight:400;font-size:34px;line-height:1.05;margin-top:8px}
+  .card .v.gold{color:var(--gold-cool)}
+  .card .d{font-size:11.5px;color:var(--ink-soft);margin-top:8px;line-height:1.35}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:.5px solid var(--rule-strong)}
+  .steps .st{padding:16px;border-right:.5px solid var(--rule-strong);background:var(--navy);color:var(--paper)}
+  .steps .st:last-child{border-right:none}
+  .steps .st .n{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-warm)}
+  .steps .st p{font-size:11.5px;line-height:1.4;margin:8px 0 0;color:rgba(245,239,226,.86)}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:right;padding:12px 14px;border-bottom:.5px solid var(--rule)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--navy)}
+  td.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+  tr.total td{background:var(--gold);color:var(--ink);font-weight:600;border-bottom:none;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
+  tr.total td.num{font-family:'Newsreader',serif;font-size:18px;text-transform:none;letter-spacing:0}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+  .vs .box{padding:20px;text-align:center;border:.5px solid var(--rule-strong)}
+  .vs .sell{background:var(--paper-pure)}
+  .vs .cg{background:var(--navy);color:var(--paper)}
+  .vs .box .t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .vs .cg .t{color:var(--gold-warm)}
+  .vs .box .a{font-family:'Newsreader',serif;font-size:34px;margin-top:8px}
+  .vs .sell .a{color:var(--ink-soft)}
+  .delta{text-align:center;font-size:14px;margin:14px 0 0}
+  .delta b{color:var(--gold-cool)}
+
+  .prot{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:4px}
+  .prot .p{border-left:2px solid var(--moss);padding:8px 0 8px 14px;margin:6px 0;font-size:12.5px}
+  .prot .p b{display:block;margin-bottom:1px}
+  .prot .p span{color:var(--ink-soft)}
+
+  .foot{background:var(--navy);color:var(--paper);padding:22px 36px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:26px}
+  .foot .ns .e{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold-warm)}
+  .foot .ns p{margin:6px 0 0;font-size:13px;color:rgba(245,239,226,.9)}
+  .wm{font-family:'Newsreader',serif;font-weight:600;font-size:19px;text-align:right;line-height:1.1}
+  .wm small{display:block;font-weight:400;font-size:12px;color:rgba(245,239,226,.75)}
+  .wm em{display:block;font-style:italic;font-size:11px;color:var(--gold-warm);font-weight:400;margin-top:2px}
+
+  @media (max-width:780px){.cards,.steps,.vs,.prot{grid-template-columns:1fr 1fr}.steps .st:nth-child(2n){border-right:none}}
+  @media print{body{background:#fff;padding:0}.sheet{box-shadow:none;border:none;max-width:none}@page{margin:10mm}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="band">
+    <span class="ey">Common Ground Initiative</span>
+    <h1>28 Athabaska Avenue</h1>
+    <div class="sub">A 516-unit, 43-storey purpose-built rental community under the Ubuntu Land Trust land-lease model · North York, Toronto</div>
+    <span class="tag">For the Landowner — Your Financial Picture</span>
+  </div>
+
+  <div class="body">
+    <p class="intro">
+      You keep your land working for you for the next 20 years — <strong>without selling, without deploying a
+      dollar of capital, and without taking construction risk.</strong> You contribute the land under a long-term
+      lease, Ubuntu Land Trust builds and operates a 516-home rental community, and you receive a large Day-1 cash
+      payment, 60% of the building's net cash flow every year, and a final payment in Year 20.
+    </p>
+
+    <span class="lbl">Your land at a glance</span>
+    <div class="cards">
+      <div class="card">
+        <div class="k">Appraised land value</div>
+        <div class="v">$41.0M</div>
+        <div class="d">~410,000 buildable sf @ ~$100/buildable sf (North York 2025 comps)</div>
+      </div>
+      <div class="card">
+        <div class="k">Day-1 cash draw (60%)</div>
+        <div class="v">$24.6M</div>
+        <div class="d">Paid to you at financial close</div>
+      </div>
+      <div class="card">
+        <div class="k">Total 20-year return</div>
+        <div class="v gold">$105.9M</div>
+        <div class="d">Day-1 + income + Year-20 payment</div>
+      </div>
+    </div>
+
+    <span class="lbl">How the model works</span>
+    <div class="steps">
+      <div class="st"><div class="n">STEP 1</div><p>You lease the land. Receive $24.6M on Day 1 plus a 60% income share.</p></div>
+      <div class="st"><div class="n">STEP 2</div><p>Ubuntu owns &amp; builds the 516-home community — 100% from Day 1.</p></div>
+      <div class="st"><div class="n">STEP 3</div><p>For 20 years you collect 60% of net cash flow after the mortgage.</p></div>
+      <div class="st"><div class="n">YEAR 20</div><p>You receive your final payment; the non-profit buys the land outright.</p></div>
+    </div>
+
+    <span class="lbl">Your 20-year income (60% of net cash flow)</span>
+    <table>
+      <thead><tr><th>Component</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Day-1 cash draw (60% of land value)</td><td class="num">$24,600,000</td></tr>
+        <tr><td>20-year income — your 60% share of net cash flow</td><td class="num">$46,954,973</td></tr>
+        <tr><td>Year-20 payment (retained 40% land + mortgage paydown)</td><td class="num">$34,308,517</td></tr>
+        <tr class="total"><td>Total Common Ground return</td><td class="num">$105,863,490</td></tr>
+      </tbody>
+    </table>
+
+    <span class="lbl">Common Ground vs. selling today</span>
+    <div class="vs">
+      <div class="box sell"><div class="t">Sell today (net of 5% costs)</div><div class="a num">$39.0M</div></div>
+      <div class="box cg"><div class="t">Common Ground total</div><div class="a num">$105.9M</div></div>
+    </div>
+    <p class="delta">That's <b>$66.9M more</b> than selling — plus capital-gains deferral until Year 20.</p>
+
+    <span class="lbl">Your protections</span>
+    <div class="prot">
+      <div class="p"><b>No capital required.</b><span>Zero cash deployed by you.</span></div>
+      <div class="p"><b>No construction risk.</b><span>Fixed-price modular contracts (Cube Building Systems).</span></div>
+      <div class="p"><b>CMHC-backed.</b><span>Senior lender is CMHC under MLI Select — institutional-grade.</span></div>
+      <div class="p"><b>Step-in rights.</b><span>You can cure defaults or replace the operator if needed.</span></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="ns">
+      <div class="e">Next step</div>
+      <p>Sign the Letter of Intent — 12-month exclusivity, target PSA within 6 months.</p>
+    </div>
+    <div class="wm">Ubuntu Land Trust<small>&amp; Developments</small><em>"I am because we are"</em></div>
+  </div>
+
+</div>
+</body>
+</html>
