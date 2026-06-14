@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brimley Ward 23 · Development Pro Forma</title><link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link href='https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap' rel='stylesheet'><style>
+:root{--espresso:#1f1612;--espresso2:#2a1f18;--cream:#f3ead6;--cream2:#f7efdb;--gold:#c89344;--gold2:#b07f33;--ink:#161210;--muted:#6b5d4f;--line:#e0d5bd;--creamtxt:#f7efdb;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Newsreader',Georgia,serif;color:var(--ink);background:var(--cream);line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.gold{color:var(--gold)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 26px}
+header.top{background:var(--cream);border-bottom:1px solid var(--line);padding:17px 0}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.brand{font-family:'Newsreader',serif;font-size:21px;color:var(--ink);font-weight:600;letter-spacing:.01em}
+.brand span{font-weight:300}
+.navlinks{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero{background:var(--espresso);color:var(--creamtxt);padding:62px 0 54px}
+.kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:'Newsreader',serif;font-weight:300;font-size:58px;line-height:1.04;margin:20px 0 18px;color:var(--cream);letter-spacing:-.01em}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{max-width:730px;color:#d8cdb5;font-size:18px;font-weight:300}
+.hero p b{color:var(--gold);font-weight:500}
+.stripe{display:flex;flex-wrap:wrap;border:1px solid rgba(200,147,68,.32);border-radius:2px;margin:32px 0 0;overflow:hidden}
+.stripe .cell{flex:1 1 0;min-width:150px;padding:18px 20px;border-right:1px solid rgba(200,147,68,.2)}
+.stripe .cell:last-child{border-right:0}
+.stripe .v{font-family:'Newsreader',serif;font-size:30px;color:var(--cream);font-weight:300;line-height:1}
+.stripe .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a99878;margin-top:8px}
+section{padding:42px 0;border-top:1px solid var(--line)}
+.secno{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold2);text-transform:uppercase}
+h2{font-family:'Newsreader',serif;font-size:38px;font-weight:300;color:var(--ink);margin:10px 0 16px;letter-spacing:-.012em}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--espresso);margin:24px 0 10px}
+p.lead{font-size:18px;color:#3a3128;max-width:790px;font-weight:300}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--espresso);color:var(--cream);font-family:'JetBrains Mono',monospace;font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+td{font-family:'Newsreader',serif}
+td.r,th.r{text-align:right}
+tr:nth-child(even) td{background:var(--cream2)}
+tr.tot td{font-weight:600;color:var(--espresso);background:#efe1c1;border-top:2px solid var(--gold)}
+.cards{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0}
+.card{flex:1 1 220px;background:var(--cream2);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:2px;padding:18px 20px}
+.card .who{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.card h4{font-family:'Newsreader',serif;color:var(--espresso);font-size:20px;font-weight:400;margin:6px 0 10px;font-style:italic}
+.card .big{font-family:'Newsreader',serif;font-size:27px;color:var(--gold2);font-weight:400}
+.card small{color:var(--muted);font-size:13px;font-family:'Newsreader',serif}
+.note{background:var(--cream2);border-left:3px solid var(--gold);padding:14px 18px;margin:16px 0;font-size:15px;color:#3a3128}
+.src{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.03em;color:#8a7c6a;line-height:1.6}
+.flag{color:#a23b2c;font-weight:600}
+.ok{color:#5c6e2f;font-weight:600}
+footer{background:var(--espresso);color:#bdae93;padding:34px 0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.03em;line-height:1.8;margin-top:0}
+footer .gold{color:var(--gold)}
+.arterial{display:inline-block;background:var(--gold);color:#1f1612;border-radius:2px;padding:1px 7px;font-size:9.5px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase;vertical-align:middle}
+</style></head><body>
+<header class="top"><div class="wrap"><span class="brand">Ubuntu Land Trust <span>&amp; Developments</span></span>
+<span class="navlinks">Common Ground Initiative · Arterial-grounded</span></div></header>
+
+<div class="hero"><div class="wrap">
+<span class="kick">Common Ground Initiative · Internal Underwriting · Illustrative v0.1</span>
+<h1>Does it <em>pencil?</em></h1>
+<p>30 homes on a $12.0M budget carrying a $6.0M mortgage. Stabilized NOI of <b style="color:#C9A227">$430,739</b>
+covers debt at <b style="color:#C9A227">1.49×</b> — feasible because the 40% forgivable Build Canada Homes loan bridges
+the gap between affordable rents and Toronto build costs. Every physical and market input below is grounded in Arterial.</p>
+<div class="stripe">
+ <div class="cell"><div class="v">$12.0M</div><div class="l">Total cost · $399,592/unit</div></div>
+ <div class="cell"><div class="v">$430,739</div><div class="l">Stabilized NOI</div></div>
+ <div class="cell"><div class="v">1.49×</div><div class="l">DSCR · CMHC MLI</div></div>
+ <div class="cell"><div class="v">59%</div><div class="l">Loan-to-value</div></div>
+ <div class="cell"><div class="v">9</div><div class="l">Affordable @ 80% MMR</div></div>
+</div>
+</div></div>
+<div class="wrap">
+
+<section><div class="secno">01 — The verdict</div>
+<h2>It works — because of the <em>forgivable loan.</em></h2>
+<p class="lead">On a blended affordable/market rent roll the building is worth about $10,135,037 — below its $12.0M cost.
+The deal pencils because the Build Canada Homes forgivable loan, the City contribution, and the discounted land equity
+fund the $1,852,733 gap that rents alone can't finance.</p>
+<div class="stripe">
+ <div class="cell"><div class="v">1.49×</div><div class="l">DSCR · above 1.10 MLI floor</div></div>
+ <div class="cell"><div class="v">59%</div><div class="l">LTV · $5,993,885 / $10,135,037</div></div>
+ <div class="cell"><div class="v">$430,739</div><div class="l">Stabilized NOI · 38% OpEx</div></div>
+ <div class="cell"><div class="v">$141,300</div><div class="l">Cash flow after debt</div></div>
+</div>
+<div class="note">The only amortizing debt is the $5,993,885 CMHC MLI Select mortgage, covered 1.49× at 59% LTV.
+The $4,795,108 forgivable BCH loan carries no debt service — that is what turns an affordable building into a financeable one.</div>
+</section>
+
+<section><div class="secno">02 — Sources &amp; uses</div>
+<h2>Where the money <em>comes from</em>, where it goes.</h2>
+<h3>Sources of funds</h3><table><tr><th>Source</th><th>Type</th><th class="r">Amount</th></tr><tr><td>Build Canada Homes</td><td>Forgivable · no payments</td><td class='r'>$4,795,108</td></tr><tr><td>CMHC MLI Select</td><td>Insured mortgage</td><td class='r'>$5,993,885</td></tr><tr><td>City of Toronto</td><td>Municipal contribution</td><td class='r'>$398,777</td></tr><tr><td>Landowner</td><td>Retained land equity</td><td class='r'>$800,000</td></tr><tr class='tot'><td>Total sources</td><td>—</td><td class='r'>$11,987,770</td></tr></table>
+<p class="src">Of the cash sources, $1,200,000 pays the landowner's Day-1 land draw and the balance funds construction &amp; soft costs.
+The landowner's $800,000 is contributed as land, not cash.</p>
+<h3>Uses of funds</h3><table><tr><th>Use</th><th>Basis</th><th class="r">Amount</th></tr><tr><td>Land (full value)</td><td>26,400 bsf × $76 <span class='arterial'>client appraisal</span></td><td class='r'>$2,000,000</td></tr><tr><td>Hard construction</td><td>$287.50/GFA SF <span class='arterial'>Arterial $245–330</span></td><td class='r'>$7,590,000</td></tr><tr><td>Development charges</td><td>rental, by bedroom <span class='arterial'>Arterial</span></td><td class='r'>$1,259,270</td></tr><tr><td>Soft costs</td><td>design · permits · HST · legal</td><td class='r'>$569,250</td></tr><tr><td>Financing &amp; contingency</td><td>interest, carry, ~5% contingency</td><td class='r'>$569,250</td></tr><tr class='tot'><td>Total uses</td><td>$399,592/unit</td><td class='r'>$11,987,770</td></tr></table>
+</section>
+
+<section><div class="secno">03 — Budget</div>
+<h2>$399,592 a <em>home.</em></h2>
+<p class="lead">All-in cost per unit, land included — a 6-storey wood-framed mid-rise (Arterial construction class).</p>
+<table><tr><th>Cost component</th><th class="r">Total</th><th class="r">Per unit</th><th class="r">Per GFA SF</th><th class="r">% of cost</th></tr><tr><td>Land</td><td class='r'>$2,000,000</td><td class='r'>$66,667</td><td class='r'>$75.76</td><td class='r'>16.7%</td></tr><tr><td>Hard construction</td><td class='r'>$7,590,000</td><td class='r'>$253,000</td><td class='r'>$287.50</td><td class='r'>63.3%</td></tr><tr><td>Development charges</td><td class='r'>$1,259,270</td><td class='r'>$41,976</td><td class='r'>$47.70</td><td class='r'>10.5%</td></tr><tr><td>Soft costs</td><td class='r'>$569,250</td><td class='r'>$18,975</td><td class='r'>$21.56</td><td class='r'>4.7%</td></tr><tr><td>Financing &amp; contingency</td><td class='r'>$569,250</td><td class='r'>$18,975</td><td class='r'>$21.56</td><td class='r'>4.7%</td></tr><tr class='tot'><td>Total development cost</td><td class='r'>$11,987,770</td><td class='r'>$399,592</td><td class='r'>$454.08</td><td class='r'>100%</td></tr></table>
+</section>
+
+<section><div class="secno">04 — Operations (Year 1 stabilized)</div>
+<h2>$430,739 of <em>NOI.</em></h2>
+<p class="lead">30% of units (9) are set at 80% of median market rent per CMHC MLI Select; the other 70% sit at Arterial market rents.
+Blended at 3% vacancy and a 38% operating-expense ratio.</p>
+<table><tr><th>Line</th><th>Basis</th><th class="r">Annual</th></tr><tr><td>Market rent · 21 units (70%)</td><td>market estimate (client)</td><td class='r'>$585,600</td></tr><tr><td>Affordable rent · 9 units (30%)</td><td>80% of CMHC MMR</td><td class='r'>$132,864</td></tr><tr><td>Gross potential income</td><td>—</td><td class='r'>$718,464</td></tr><tr><td>Vacancy &amp; credit loss</td><td>3%</td><td class='r'>($21,554)</td></tr><tr><td>Effective gross income</td><td>—</td><td class='r'>$696,910</td></tr><tr><td>Realty taxes</td><td>1.35% multi-res · Arterial</td><td class='r'>($137,795)</td></tr><tr><td>Utilities</td><td>~$1,200/unit</td><td class='r'>($36,000)</td></tr><tr><td>Repairs &amp; maintenance</td><td>~$900/unit</td><td class='r'>($27,000)</td></tr><tr><td>Property management</td><td>4% EGI</td><td class='r'>($27,876)</td></tr><tr><td>Insurance</td><td>~$450/unit</td><td class='r'>($13,500)</td></tr><tr><td>Replacement reserve</td><td>$500/unit</td><td class='r'>($15,000)</td></tr><tr><td>General &amp; admin</td><td>—</td><td class='r'>($9,000)</td></tr><tr><td>Total operating expenses</td><td>38% of EGI</td><td class='r'>($266,171)</td></tr><tr class='tot'><td>Net operating income</td><td>stabilized</td><td class='r'>$430,739</td></tr></table>
+</section>
+
+<section><div class="secno">05 — Debt coverage &amp; the value gap</div>
+<h2>One mortgage. Covered <em>1.49×.</em></h2>
+<p class="lead">The only amortizing debt is the $5,993,885 CMHC MLI Select mortgage. On these rents the building is worth ~$10,135,037,
+so the mortgage sits at 59% LTV. The remaining cost above what rents can finance is carried by capital that expects no debt service.</p>
+<table><tr><th>Coverage metric</th><th>Basis</th><th class="r">Value</th></tr><tr><td>Net operating income</td><td>stabilized</td><td class='r'>$430,739</td></tr><tr><td>Mortgage (CMHC MLI Select)</td><td>50% of cost</td><td class='r'>$5,993,885</td></tr><tr><td>Rate / amortization</td><td>illustrative</td><td class='r'>4.25% / 50 yr</td></tr><tr><td>Annual debt service</td><td>—</td><td class='r'>$289,439</td></tr><tr class='tot'><td>Debt-service coverage</td><td>NOI ÷ DS</td><td class='r'>1.49×</td></tr><tr><td>Cash flow after debt</td><td>NOI − DS</td><td class='r'>$141,300</td></tr><tr><td>Stabilized value</td><td>4.25% cap</td><td class='r'>$10,135,037</td></tr><tr><td>Loan-to-value</td><td>mortgage ÷ value</td><td class='r'>59%</td></tr></table>
+</section>
+
+<section><div class="secno">06 — Who gets what</div>
+<h2>Four partners, four <em>returns.</em></h2>
+
+<div class="cards">
+  <div class="card"><div class="who">Landowner</div><h4>$6.3M over 20 yrs</h4>
+    <div class="big">$1,200,000</div><small>Day-1 cash (60% of land) + $3,682,929 cash-flow share + $1,444,889 Year-20 buyout — vs $2,000,000 from selling.</small></div>
+  <div class="card"><div class="who">Non-profit operator</div><h4>30 homes, $0 down</h4>
+    <div class="big">$17.5M</div><small>100% building ownership Day 1 · $2,455,286 cash-flow share · buys land at Year 20 (net equity).</small></div>
+  <div class="card"><div class="who">Governments</div><h4>Self-funding</h4>
+    <div class="big">$4,795,108</div><small>BCH forgivable (40%) + CMHC-insured (50%) + City ($398,777). Fiscal return via construction, payroll &amp; tax.</small></div>
+  <div class="card"><div class="who">Residents</div><h4>Permanent affordability</h4>
+    <div class="big">9 homes</div><small>30% of units at 80% of median market rent, secured permanently once the non-profit owns land and building.</small></div>
+</div>
+<div class="note">The forgivable BCH loan and the City contribution seek no cash return — their "return" is the housing and the
+fiscal multiplier. That is what leaves the post-debt cash flow available to the landowner's at-risk equity.</div>
+</section>
+
+<section><div class="secno">07 — What breaks it</div>
+<h2>Rents and the <em>rate.</em></h2>
+<p class="lead">DSCR is the binding constraint. With 30% of units held at 80% of median market rent, coverage is most sensitive to the
+achievable blended market rent and the locked MLI Select rate.</p>
+<table><tr><th>Blended market rent</th><th class="r">NOI</th><th class="r">@ 4.00%</th><th class="r">@ 4.25%</th><th class="r">@ 4.75%</th></tr><tr><td>$2,124</td><td class='r'>$381,898</td><td class='r ok'>1.38×</td><td class='r ok'>1.32×</td><td class='r ok'>1.22×</td></tr><tr><td>$2,224</td><td class='r'>$406,342</td><td class='r ok'>1.46×</td><td class='r ok'>1.40×</td><td class='r ok'>1.29×</td></tr><tr><td>$2,324 (base)</td><td class='r'>$430,786</td><td class='r ok'>1.55×</td><td class='r ok'>1.49×</td><td class='r ok'>1.37×</td></tr><tr><td>$2,424</td><td class='r'>$455,230</td><td class='r ok'>1.64×</td><td class='r ok'>1.57×</td><td class='r ok'>1.45×</td></tr><tr><td>$2,524</td><td class='r'>$479,674</td><td class='r ok'>1.73×</td><td class='r ok'>1.66×</td><td class='r ok'>1.53×</td></tr></table>
+<p class="src"><span class="flag">Red</span> = below the 1.10× MLI Select floor. Confirming achievable rents and the locked rate is the priority underwriting step.</p>
+</section>
+
+<section><div class="secno">08 — Assumptions &amp; disclaimer</div>
+<h2>Key <em>assumptions.</em></h2>
+<table>
+<tr><th>Parameter</th><th>Value / source</th></tr>
+<tr><td>Program</td><td>30 units · 6 storeys · 26,400 SF GFA · 22,000 SF NRA <span class="arterial">Arterial massing</span></td></tr>
+<tr><td>Zoning</td><td>As-of-right RD (9 m / 2 storeys); 6-storey form requires rezoning/OPA <span class="arterial">Arterial zoning</span></td></tr>
+<tr><td>Land value</td><td>$2,000,000 ($76/bsf) — client appraisal; Arterial residual $2,701,239</td></tr>
+<tr><td>Hard cost</td><td>$287.50/GFA SF <span class="arterial">Arterial $245–330</span></td></tr>
+<tr><td>Development charges</td><td>$1,259,270 rental <span class="arterial">Arterial Toronto DC</span></td></tr>
+<tr><td>CMHC median market rent</td><td>Scarborough (North): 1BR $1,480 · 2BR $1,580 · 3BR $1,600 <span class="arterial">Arterial CMHC</span></td></tr>
+<tr><td>Market rent (client estimate)</td><td>1BR $1,850 · 2BR $2,500 · 3BR $3,000</td></tr>
+<tr><td>Affordable rent</td><td>30% of units at 80% MMR</td></tr>
+<tr><td>Property tax</td><td>$137,795 (1.35% multi-res) <span class="arterial">Arterial</span></td></tr>
+<tr><td>Vacancy / OpEx</td><td>3% / 38% of EGI</td></tr>
+<tr><td>Cap rate</td><td>4.25%</td></tr>
+<tr><td>Mortgage</td><td>$5,993,885 · CMHC MLI Select · 4.25% · 50-yr amortization</td></tr>
+<tr><td>Forgivable loan</td><td>$4,795,108 Build Canada Homes — no debt service</td></tr>
+</table>
+</section>
+</div>
+
+<footer><div class="wrap">
+<b class="gold">Ubuntu Land Trust &amp; Developments</b> &nbsp;·&nbsp; "I am because we are"<br><br>
+Illustrative underwriting for Brimley Ward 23 — 2008 Brimley Road, Scarborough (Ward 23), Toronto, ON M1S 2B2. Program, construction cost, development charges,
+CMHC market rents and property tax are sourced from the <span class="arterial">Arterial</span> connector
+(parcel, zoning, cost, DC, rent and tax datasets); land value is the client's appraisal. The 6-storey form
+requires rezoning/OPA. Cap rate, vacancy, operating ratios and financing terms are modelling assumptions —
+not a valuation, appraisal, offer, or financial advice. Subject to a QS budget, verified rent schedule, and
+third-party approvals (CMHC MLI Select, Build Canada Homes, City of Toronto).
+</div></footer></body></html>
