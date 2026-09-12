@@ -1,0 +1,48 @@
+{
+  "project_name": "Tollendale Village II",
+  "address": "1870 & 1902 Big Bay Point Road, Innisfil, ON L9S 2R4",
+  "land_value": 65307149,
+  "land_residual": 65307149,
+  "constr_psf": 287.5,
+  "gfa": 517287,
+  "nra": 430900,
+  "unit_mix": [
+    {
+      "label": "1 Bedroom",
+      "bedrooms": 1,
+      "count": 235,
+      "sqft": 550,
+      "cmhc_mmr": 1889,
+      "market": 2045,
+      "rental_dc": 35384,
+      "aff_count": 70
+    },
+    {
+      "label": "2 Bedroom",
+      "bedrooms": 2,
+      "count": 276,
+      "sqft": 800,
+      "cmhc_mmr": 2277,
+      "market": 2342,
+      "rental_dc": 35384,
+      "aff_count": 83
+    },
+    {
+      "label": "3 Bedroom",
+      "bedrooms": 3,
+      "count": 77,
+      "sqft": 1050,
+      "cmhc_mmr": 2459,
+      "market": 2459,
+      "rental_dc": 35384,
+      "aff_count": 23
+    }
+  ],
+  "assumptions": {
+    "cap": 0.0425,
+    "mort_rate": 0.0425,
+    "amort_yrs": 50,
+    "vac": 0.03
+  },
+  "property_tax": 2636669
+}
