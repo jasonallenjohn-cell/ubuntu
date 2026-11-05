@@ -15,6 +15,7 @@ SRC={
  "ret":"ASSUMPTION — licensed retirement home with two services: 1-bed $6,000, 2-bed $7,800/mo all-in; 92% occ.; 62% expenses incl. 5% Heal House management fee; 6.0% cap",
  "bof":"Heal House GR brief (Nov 3 2026): ~$151M Building Ontario Fund ask over ~2,000 homes = $75.5K/home",
  "suites":"ASSUMPTION — 80 wellness-stay suites, ADR $185, 72% occ., 30% NOI margin, funded by Sunray cash",
+ "hh":"Heal House: $350/mo wellness membership (85% of Tower B, 30% of Tower A residents — sponsor assumptions); outside clients $4.0M/yr at maturity = flagship clinic revenue in HealHouse_15Year_BusinessPlan_Valuation (Jun 2026), ~$100/sf on 40,000 sf, 3-yr ramp; 60% gross margin, 10% local overhead per that plan; podium rent-free",
  "condo":"ASSUMPTION — Tower C 23 storeys, ~180,000 sf (Colliers pre-consultation, Jun 2025), not approved; $1,050/sf base; Arterial income value ~$712/sf as downside",
  "stack":"BCH as a 10-year loan, payment- and interest-free to Year 10, repaid in full from a Year-10 MLI Select refinance (capped at 1.20x coverage; 85% LTV Tower A, 75% Tower B). Building Ontario Fund on Tower B paid 4% a year and repaid at a Year-20 refinance",
 }
@@ -91,17 +92,29 @@ def tower_c(psf=1050):
         rezone=rezone,land=land,cost=cost,profit_pre_land=rev-cost,profit=rev-cost-land,margin=(rev-cost-land)/rev,
         equity=0.20*(cost+land))
 
+HH=dict(fee=350, uptake_b=0.85, uptake_a=0.30, outside=4_000_000, ramp=(0.45,0.70,0.90,1.0),
+        gm=0.60, oh=0.10, podium_sf=40_000)
+def heal_house(a,b,uptake_a=None,outside=None):
+    h=HH; ua=h["uptake_a"] if uptake_a is None else uptake_a; out=h["outside"] if outside is None else outside
+    mb=round(h["uptake_b"]*b["units"]); ma=round(ua*a["units"])
+    lines={"Tower B resident memberships":mb*h["fee"]*12, "Tower A resident memberships":ma*h["fee"]*12,
+           "Outside clients — community clinic & wellness":out, "Wellness days — suite guests":b["days"]}
+    service=sum(lines.values()); margin=h["gm"]-h["oh"]
+    ebitda=service*margin+b["hh_fee"]
+    return dict(mb=mb,ma=ma,lines=lines,service=service,fee=b["hh_fee"],rev=service+b["hh_fee"],ebitda=ebitda,
+        margin=margin,rev_psf=service/h["podium_sf"],ramp=[service*r*margin+b["hh_fee"] for r in h["ramp"]],
+        outside_share=out/service)
+
 def site():
     a=tower_a(); b=tower_b(); c=tower_c()
     la=land_all(); unguar=A["unguar_ltv"]*A["appraisal"]; guar=A["price"]-unguar
     acq_eq=la-A["price"]+A["predev"]
-    hh_members_a=round(0.20*a["units"]); hh_mem_rev=hh_members_a*350*12
-    hh_rev=b["hh_fee"]+b["days"]+hh_mem_rev; hh_e=b["hh_fee"]+b["hh_days"]+0.5*hh_mem_rev
+    hh=heal_house(a,b)
     return dict(A=a,B=b,C=c,land_all=la,guar=guar,unguar=unguar,acq_eq=acq_eq,
         homes=a["units"]+b["units"]+c["units"],aff=a["aff"]+b["aff"],
         sponsor=a["sponsor"]+b["sponsor"], bof=b["bof"], bch=a["bch"]+b["bch"], city=a["city"]+b["city"],
         mli=a["mli"]+b["mli"], tdc_rent=a["tdc"]+b["tdc"], sunray=b["s_cost"], condo_eq=c["equity"],
-        hh_members_a=hh_members_a, hh_rev=hh_rev, hh_e=hh_e)
+        hh=hh, hh_rev=hh["rev"], hh_e=hh["ebitda"])
 
 if __name__=="__main__":
     s=site()

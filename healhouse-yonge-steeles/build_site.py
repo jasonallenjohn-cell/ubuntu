@@ -73,7 +73,7 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <tr><td>Tower A — Year-10 cash · sponsor multiple</td><td class="n">{M(a['surplus'])} · {a['mult']:.1f}x</td></tr>
 <tr><td>Tower B — Year-10 cash · sponsor multiple</td><td class="n">{M(b['surplus'])} · {b['mult']:.1f}x</td></tr>
 <tr><td>Tower C — condo profit at ${c['psf']:,}/sf</td><td class="n">{M(c['profit'])} · {P(c['margin'])}</td></tr>
-<tr><td>Heal House — fees, wellness days, memberships</td><td class="n">{M(s['hh_e'])} EBITDA/yr</td></tr>
+<tr><td>Heal House — members, outside clients, fees</td><td class="n">{M(s['hh_e'])} EBITDA/yr</td></tr>
 </tbody></table></div>
 <p><b>BCH gets all {M(s['bch'])} back at Year 10.</b> The Fund is paid 4% a year and repaid at Year 20. Heal House then owns Tower A ({M(a['equity10'])} equity) and Tower B ({M(b['equity10'])} equity).</p>
 </div></div></div>
@@ -103,12 +103,13 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <tr><td>Repays the Building Ontario Fund</td><td class='n'>({M(b['bof'])})</td></tr>
 </tbody><tfoot><tr><td>Left over after the Fund</td><td class='n'>{M(b['bof_cover20'])}</td></tr></tfoot></table></div>
 </div><div>
-<span class="eyebrow">04 · Heal House income on the site</span>
+<span class="eyebrow">04 · Heal House — both towers plus outside clients</span>
 <div class="scroll"><table><tbody>
-<tr><td>Management fee — 5% of Tower B revenue</td><td class="n">{M(b['hh_fee'])}</td></tr>
-<tr><td>Wellness days — 25% of suite guests × $150 (50% margin)</td><td class="n">{M(b['hh_days'])}</td></tr>
-<tr><td>Tower A memberships — {N(s['hh_members_a'])} × $350/mo (50% margin)</td><td class="n">{M(0.5*s['hh_members_a']*350*12)}</td></tr>
+{''.join(f"<tr><td>{k}{' — '+N(s['hh']['mb'])+' × $350/mo' if 'Tower B' in k else (' — '+N(s['hh']['ma'])+' × $350/mo' if 'Tower A' in k else '')}</td><td class='n'>{M(v)}</td></tr>" for k,v in s['hh']['lines'].items())}
+<tr><td>Cost of services and local overhead ({P(1-s['hh']['margin'])})</td><td class="n">({M(s['hh']['service']*(1-s['hh']['margin']))})</td></tr>
+<tr><td>Management fee — 5% of Tower B revenue</td><td class="n">{M(s['hh']['fee'])}</td></tr>
 </tbody><tfoot><tr><td>Heal House EBITDA · podium rent-free</td><td class="n">{M(s['hh_e'])}</td></tr></tfoot></table></div>
+<p>Revenue of {M(s['hh']['rev'])}, {P(s['hh']['outside_share'])} of services from outside clients. Ramp: {' → '.join(M(x) for x in s['hh']['ramp'])} EBITDA over four years. Worth <b>{M(8*s['hh_e'])}–{M(12*s['hh_e'])}</b> to Heal House at 8–12x.</p>
 <span class="eyebrow">05 · If it runs leaner</span>
 <p>At 65% expenses and 90% occupancy, NOI is {M(m.tower_b(opex_ratio=0.65,occ=0.90)['noi'])}, coverage {m.tower_b(opex_ratio=0.65,occ=0.90)['dscr']:.2f}x, and the Year-10 refinance still repays BCH in full with {M(m.tower_b(opex_ratio=0.65,occ=0.90)['surplus'])} to spare.</p>
 <span class="eyebrow">06 · Why BCH and the Fund back it</span>
@@ -125,7 +126,7 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <li>BCH modelled interest-free to Year 10; at 4.5% it is still repaid with {M(b['room45'])} to spare. The Fund's {P(A['bof_pref'])} return and terms are placeholders.</li>
 </ul>
 </div></div></div>
-{foot('Expert care, tailored to you — in a tranquil, nurturing space where healing can flourish.', 'Sources: '+m.SRC['ret']+' · '+m.SRC['bof']+' · '+m.SRC['suites']+'. Illustrative scenario for discussion.')}
+{foot('Expert care, tailored to you — in a tranquil, nurturing space where healing can flourish.', 'Sources: '+m.SRC['ret']+' · '+m.SRC['hh']+' · '+m.SRC['bof']+' · '+m.SRC['suites']+'. Illustrative scenario for discussion.')}
 <div class="pb"></div>
 {hdr('page 3 · Towers A and C')}
 <div class="in">
