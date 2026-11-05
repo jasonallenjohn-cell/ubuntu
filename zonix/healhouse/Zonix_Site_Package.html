@@ -1,0 +1,286 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zonix Health Community</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>/* Heal House — Brand v3.0 tokens
+   Source: Heal House Brand Guidelines, Sezin Arslan / Heal House Marketing Team.
+   Committed light identity: paint body background and every colour explicitly.
+   Style components through these tokens; never hardcode a hex in a component. */
+
+:root{
+  /* ground + surface */
+  --cream:#FDFDF6;          /* primary background · reversed type on dark grounds */
+  --cream-2:#E5DFD2;        /* secondary surface · table footers */
+  --sage-pale:#E0E2C6;      /* calming green, light · quiet panels */
+  --sage:#7E8463;           /* calming green, deep · footer ground */
+
+  /* accents */
+  --olive:#7A8B43;          /* PRIMARY ACCENT · rules, borders, solid buttons */
+  --olive-deep:#5F6C33;     /* eyebrows, section numbers, links, italic accent word */
+  --olive-gray:#A6A998;
+  --olive-pale:#DADDCF;     /* section tints · table headers */
+  --brown:#6A4C32;          /* grounding accent · pill buttons · pending states */
+  --brown-deep:#4A3522;
+  --dark-cream:#FFF9C4;     /* pale highlight, sparingly · fill-in cells */
+  --warm-gray:#9E9E9E;
+
+  /* type */
+  --ink:#34301F;            /* warm near-black · body */
+  --ink-soft:#5C5647;       /* secondary body text */
+  --ink-faint:#8C8676;      /* captions, labels, muted nav */
+
+  /* lines */
+  --line:rgba(52,48,31,.14);
+  --line-soft:rgba(52,48,31,.08);
+
+  /* families — always keep the fallback stacks */
+  --display:'Belleza',Georgia,serif;
+  --text:'Montserrat',-apple-system,'Segoe UI',Arial,sans-serif;  /* stand-in for Proxima Nova */
+  --editorial:'Lora',Georgia,serif;
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--text);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--display);
+  font-weight:400;
+  color:var(--ink);
+  margin:0;
+  letter-spacing:.01em;
+  text-wrap:balance;
+}
+h1{font-size:92px;line-height:1.0}
+h2{font-size:58px;line-height:1.02}
+h3{font-size:31px;line-height:1.1}
+h4{font-size:22px;line-height:1.2}
+@media(max-width:1000px){h1{font-size:60px}h2{font-size:38px}h3{font-size:26px}}
+
+/* the signature device — one Lora-italic word per heading */
+h1 em,h2 em,h3 em{
+  font-family:var(--editorial);
+  font-style:italic;
+  color:var(--olive-deep);
+}
+
+p{margin:0 0 18px;max-width:760px;color:var(--ink-soft)}
+p strong{color:var(--ink);font-weight:600}
+
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--olive-deep);display:block}
+.label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);display:block}
+.lead{font-family:var(--editorial);font-size:29px;line-height:1.42;color:var(--ink-soft)}
+
+::selection{background:var(--olive);color:var(--cream)}
+:focus-visible{outline:2px solid var(--olive-deep);outline-offset:3px}
+
+/* layout */
+.wrap{max-width:1180px;margin:0 auto;padding:0 64px}
+@media(max-width:1000px){.wrap{padding:0 28px}}
+section{padding:104px 0;border-top:1px solid var(--line-soft)}
+.card{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:32px 34px}
+.callout{border:1px solid var(--olive);background:rgba(122,139,67,.07);
+  border-radius:14px;padding:26px 30px}
+.quote{border-left:2px solid var(--olive);padding-left:32px;
+  font-family:var(--editorial);font-style:italic;font-size:34px;line-height:1.35;color:var(--ink)}
+
+/* tables */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--cream)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);text-align:left;padding:16px 18px;
+  background:var(--olive-pale);border-bottom:1px solid var(--line)}
+td{padding:15px 18px;border-bottom:1px solid var(--line-soft);color:var(--ink-soft);
+  vertical-align:top}
+.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tfoot td{border-top:2px solid var(--olive);border-bottom:0;color:var(--ink);
+  font-weight:600;background:var(--cream-2)}
+tr.pending td{background:rgba(106,76,50,.05);color:var(--brown)}
+
+/* buttons */
+.btn{font-family:var(--text);font-weight:600;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;padding:12px 22px;border-radius:8px;display:inline-block;
+  text-decoration:none;cursor:pointer}
+.btn-solid{background:var(--olive);color:var(--cream);border:1px solid var(--olive)}
+.btn-outline{background:transparent;color:var(--olive-deep);border:1px solid var(--olive)}
+.btn-pill{background:var(--brown);color:var(--cream);border:1px solid var(--brown);
+  border-radius:30px}
+
+/* footer */
+footer{background:var(--sage);color:var(--cream);padding:72px 0 56px}
+footer .tag{font-family:var(--editorial);font-style:italic;font-size:24px;color:var(--cream)}
+
+@media print{
+  @page{size:Letter;margin:14mm 15mm 16mm}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  footer{background:var(--sage) !important}
+}
+
+/* one-pager scale: brand type stepped down to fit a single Letter page */
+body{font-size:10.5px;line-height:1.45}
+.page{max-width:8.5in;margin:0 auto;background:var(--cream)}
+.in{padding:0 .5in}
+header.mh{display:flex;justify-content:space-between;align-items:center;padding:.26in .5in .1in;border-bottom:1px solid var(--line-soft)}
+.stamp{font-size:8.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--brown);border:1px solid var(--brown);border-radius:30px;padding:5px 11px}
+h1{font-size:30px;line-height:1.08;margin:10px 0 5px}
+h2{font-size:16px;line-height:1.1;margin:0 0 6px}
+.sub{font-family:var(--editorial);font-style:italic;font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;max-width:none}
+.pb{height:0} .kpis{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 12px;background:var(--sage-pale)}
+.kpis div{padding:8px 10px;border-right:1px solid var(--line)} .kpis div:last-child{border-right:0}
+.kpis b{display:block;font-family:var(--display);font-weight:400;font-size:19px;color:var(--ink);line-height:1.1}
+.kpis span{font-size:7.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.grid{display:grid;grid-template-columns:1.05fr 1fr;gap:14px}
+.eyebrow{font-size:8px;letter-spacing:.22em;margin-bottom:3px}
+table{font-size:9.5px} th{font-size:7.5px;letter-spacing:.14em;padding:5px 8px} td{padding:4px 8px;line-height:1.3}
+.scroll{border-radius:10px;margin-bottom:10px}
+.callout{padding:10px 13px;border-radius:12px;margin-bottom:10px}
+.raise{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin-top:4px}
+.raise b{font-family:var(--display);font-weight:400;font-size:20px;color:var(--ink);display:block;line-height:1.1}
+.raise small{font-size:8.5px;color:var(--ink-soft);display:block}
+ol{margin:2px 0 0;padding-left:15px;color:var(--ink-soft)} ol li{margin:0 0 3px}
+ul.c{margin:2px 0 0;padding-left:13px;color:var(--ink-soft)} ul.c li{margin:0 0 2.5px}
+p{font-size:10px;margin:0 0 6px;max-width:none}
+footer{padding:12px .5in;display:flex;gap:16px;align-items:flex-start;margin-top:8px}
+footer .src{font-size:7.2px;line-height:1.4;color:var(--cream)}
+footer .tag{font-size:12px}
+@media print{.pb{break-after:page} @page{size:Letter;margin:0} body{background:var(--cream)}}
+@media(max-width:700px){.grid,.pb{height:0} .kpis{grid-template-columns:1fr} .kpis div{border-right:0;border-bottom:1px solid var(--line)} .in,header.mh,footer{padding-left:16px;padding-right:16px}}
+ td{padding:3.2px 8px} .kpis div{padding:6px 10px} .sub{margin-bottom:8px} footer{padding:9px .5in} header.mh{padding:.22in .5in .08in}</style></head><body><div class="page">
+<header class='mh'><div style='width:150px'><svg role='img' aria-label='Heal House' id="LOGO" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="400 1110 2160 760"> <defs> </defs> <g id="Rings"> <g> <g id="HEAL"> <path fill="#CCAF87" d="M1071.92,1258.3h45.86c1.12,0,2.03.91,2.03,2.03v158.48h203.45v-158.66c0-1.12.91-2.03,2.03-2.03h45.21c1.12,0,2.03.91,2.03,2.03v372.21c0,1.12-.91,2.03-2.03,2.03h-45.18c-1.12,0-2.03-.91-2.03-2.03v-174.32h-203.48v174.32c0,1.12-.91,2.03-2.03,2.03h-45.86c-1.12,0-2.03-.91-2.03-2.03v-372.03c0-1.12.91-2.03,2.03-2.03Z"></path> <path fill="#CCAF87" d="M1473.5,1258.12h223.73c1.12,0,2.03.91,2.03,2.03v36.89c0,1.12-.91,2.03-2.03,2.03h-178.06v120.77h156.28c1.14,0,2.05.93,2.04,2.06l-.33,36.03c-.01,1.12-.92,2.03-2.04,2.03h-154.87l-1.08,134.79h181.31c1.12,0,2.03.91,2.03,2.03v35.6c0,1.12-.91,2.03-2.03,2.03h-226.99v-376.28Z"></path> <path fill="#CCAF87" d="M1979.76,1256.09h15.92c.79,0,1.51.45,1.84,1.17l176.54,374.24c.64,1.35-.35,2.9-1.84,2.9h-47.78c-.78,0-1.48-.44-1.83-1.14l-42.49-86.47h-184.22l-39.9,86.43c-.33.72-1.05,1.18-1.85,1.18h-46.73c-1.48,0-2.47-1.54-1.85-2.89l172.32-374.24c.33-.72,1.06-1.19,1.85-1.19ZM1988.15,1348.38l-71.77,159.66h147.5l-75.73-159.66Z"></path> <path fill="#CCAF87" d="M2307.28,1256.09h46.14c1.13,0,2.04.91,2.04,2.04v338.1h167.26c1.09,0,1.97.88,1.97,1.97v34.24c0,1.09-.88,1.97-1.97,1.97h-217.48v-376.27c0-1.13.91-2.04,2.04-2.04Z"></path> </g> <g id="house"> <path fill="#CCAF87" d="M1423.14,1707.7h6.12v48.78h72.76v-48.78h6.76v99.48h-6.76v-46.8h-72.76v46.8h-6.12v-99.48Z"></path> <path fill="#CCAF87" d="M1576.41,1759.52c0-7.52,1.4-14.44,4.21-20.76,2.81-6.31,6.72-11.77,11.71-16.37,5-4.6,11.01-8.19,18.04-10.8,20.02-7.41,45.16-5.52,61.36,9.38,5,4.6,8.9,10.05,11.71,16.37,2.81,6.32,4.22,13.23,4.22,20.76,0,22.18-9.43,38.77-30.91,46.58-7.03,2.55-14.76,3.83-23.19,3.83s-16.16-1.28-23.19-3.83c-7.03-2.55-13.04-6.13-18.04-10.73-4.99-4.6-8.9-10.08-11.71-16.44-2.81-6.36-4.22-10.47-4.22-18ZM1585.17,1758.1c0,6.33,1.11,12.23,3.33,17.69,2.22,5.47,5.4,10.21,9.53,14.24,4.13,4.03,9.12,7.19,15,9.49,5.87,2.3,12.46,3.45,19.76,3.45s13.89-1.15,19.76-3.45c5.87-2.3,10.87-5.47,15-9.49,4.13-4.03,7.3-8.77,9.52-14.24,2.22-5.47,3.33-11.36,3.33-17.69s-1.11-12.23-3.33-17.69c-2.22-5.47-5.4-10.21-9.52-14.24-4.13-4.03-9.13-7.19-15-9.49-5.87-2.3-12.46-3.45-19.76-3.45s-13.89,1.15-19.76,3.45c-5.87,2.3-10.87,5.47-15,9.49-4.13,4.03-7.3,8.77-9.53,14.24-2.22,5.47-3.33,11.36-3.33,17.69Z"></path> <path fill="#CCAF87" d="M1840.8,1768.43c0,5.47-.71,10.71-2.14,15.7-1.43,4.99-3.81,9.41-7.16,13.25-3.35,3.84-7.73,6.91-13.16,9.22-5.43,2.3-12.09,3.46-19.99,3.46s-14.56-1.15-19.99-3.46c-5.43-2.3-9.82-5.37-13.16-9.22-3.35-3.84-5.73-8.25-7.16-13.25-1.43-4.99-2.14-10.22-2.14-15.7v-61.05h7.52v60.84c0,3.65.38,7.54,1.15,11.66.77,4.13,2.27,7.97,4.52,11.52,2.25,3.55,5.43,6.48,9.54,8.78,4.11,2.3,12.91,3.46,19.71,3.46s14.39-1.15,18.5-3.46c4.11-2.3,7.29-5.23,9.54-8.78,2.25-3.55,3.76-7.39,4.52-11.52.77-4.13,1.15-8.01,1.15-11.66v-60.84h8.73v61.05Z"></path> <path fill="#CCAF87" d="M1910.39,1791.73c.52-.29,1.15-.13,1.51.33,2.77,3.61,6.55,6.04,10.73,7.89,8,3.54,20.35,3.36,28.65,1.25,5.99-1.52,11.73-5.07,14.57-10.56,2.61-5.04,2.43-11.37-.28-16.36-3.61-6.63-10.56-9.07-17.39-11-3.51-.99-7.14-1.99-10.87-2.98-9.34-2.49-21.45-5.97-27.3-14.32-7.34-10.48-2.27-25.03,7.77-31.57,3.4-2.22,7.32-3.89,11.76-5.02,4.43-1.13,9.08-1.7,13.95-1.7,6.27,0,12.1.89,17.44,2.78,1.06.37,4.08,1.7,7.58,4.96.59.55.51,1.51-.17,1.93l-2.72,1.69c-.5.31-1.14.2-1.54-.23-2.44-2.6-4.72-3.64-8.17-4.72-4.65-1.45-9.65-2.05-14.63-2.05-10.48,0-21.73,3.68-25.77,15.09-.73,2.06-1.08,4.26-1.15,6.44-.19,6.54,1.77,10.19,6.35,12.6,3.81,2,7.92,3.6,11.99,4.99,4.38,1.49,9.14,2.8,14.28,3.93,12.03,2.65,24.91,6.99,28.82,20.32,1.37,4.66,1.34,9.68-.12,14.3-4.72,15.01-21.03,20.29-34.79,20.29-7.57,0-14.55-1.11-20.93-3.32-5.92-2.05-11.05-5.41-15.38-10.08-.52-.56-.36-1.47.3-1.84l5.5-3.07Z"></path> <path fill="#CCAF87" d="M2043.27,1708.41h68.11v6.76s-59.53,0-59.53,0l.04,39.47h50.65v5.3h-50.69v42.36h59.52v6.16h-68.1v-100.05Z"></path> </g> <g id="left_line"> <rect fill="#CCAF87" x="1073.29" y="1765.04" width="212.28" height="4.07"></rect> </g> <g id="right_line"> <rect fill="#CCAF87" x="2266.35" y="1765.04" width="251.17" height="4.07"></rect> </g> <path fill="#CCAF87" d="M904.47,1377.98c-.09.06-.18.12-.26.18-5.81,3.89-8.32,11.14-5.99,17.73,8.07,22.91,12.2,47.67,11.57,73.49-2.67,108.29-95.71,199.69-204.03,200.52-114.97.88-208.33-92.57-207.3-207.57.98-109.31,93.48-202.29,202.78-203.8,46.75-.65,89.98,14.3,124.82,39.98,5.57,4.11,13.21,3.96,18.64-.34l.31-.25c7.97-6.31,7.77-18.48-.4-24.53-40.45-29.94-90.76-47.33-145.16-46.39-122.76,2.12-228.97,106.64-232.93,229.35-4.37,135.22,104.46,246.1,238.93,245.1,128.34-.96,233.52-105.35,235.41-233.68.43-28.92-4.34-56.67-13.41-82.39-3.32-9.43-14.68-12.99-22.96-7.39Z"></path> <path fill="#CCAF87" d="M911.22,1618.75c-46.6,61.92-120.24,102.33-203.39,103.65-142.89,2.27-261.82-112.94-263.87-255.84-1.91-133.35,96.7-244.04,224.91-261.18,7.7-1.03,13.42-7.64,13.42-15.41h0c0-9.51-8.44-16.74-17.86-15.41-140.97,19.88-249.3,141.34-248.57,287.96.79,159.54,129.8,287.87,289.34,287.87,93.79,0,177.14-44.63,230.01-113.8,6.16-8.06,2.43-19.74-7.18-22.99-.1-.03-.2-.07-.29-.1-6.05-2.03-12.68.15-16.52,5.25Z"></path> <path fill="#CCAF87" d="M703.62,1281.64c-100.82,0-182.55,81.73-182.55,182.55s81.73,182.55,182.55,182.55,182.55-81.73,182.55-182.55-81.73-182.55-182.55-182.55ZM705.13,1617.93c-84.91,0-153.74-68.83-153.74-153.74s68.83-153.74,153.74-153.74,153.74,68.83,153.74,153.74-68.83,153.74-153.74,153.74Z"></path> </g> </g> </svg></div><span class='stamp'>Draft for discussion · HH-MODEL-0004 · Nov 5 2026</span></header>
+<div class="in">
+<span class="eyebrow" style="margin-top:12px">36–48 Steeles Ave E / 37–49 Highland Park Blvd · Markham · in receivership</span>
+<h1>Three towers, one <em>healing</em> community</h1>
+<p class="sub">An approved two-tower site at Yonge &amp; Steeles, bought out of receivership: affordable and market rental, a Heal House retirement residence with wellness stays, and a boutique condo tower — anchored by the Building Ontario Fund, BCH and CMHC.</p>
+<div class="kpis">
+<div><b>1,216 homes</b><span>250 affordable · +80 suites</span></div>
+<div><b>$593.7M</b><span>Total program cost</span></div>
+<div><b>$31.0M</b><span>Building Ontario Fund</span></div>
+<div><b>$135.4M</b><span>BCH, mezz repaid Yr 10</span></div>
+<div><b>$37.7M</b><span>Sponsor equity, rental towers</span></div>
+</div>
+<div class="grid"><div>
+<span class="eyebrow">01 · The three towers</span>
+<div class="scroll"><table><thead><tr><th>Tower</th><th class="n">Homes</th><th class="n">Cost</th><th class="n">Yr-1 NOI / profit</th></tr></thead><tbody>
+<tr><td><b>A</b> · 44 storeys · affordable + market rental</td><td class="n">555 (167 aff.)</td><td class="n">$237.2M</td><td class="n">$10.8M</td></tr>
+<tr><td><b>B</b> · 40 storeys · Heal House retirement residence</td><td class="n">411 (83 aff.)</td><td class="n">$216.4M</td><td class="n">$10.8M</td></tr>
+<tr><td><b>B</b> · wellness-stay suites + Heal House podium</td><td class="n">80 keys</td><td class="n">$27.3M</td><td class="n">$1.3M</td></tr>
+<tr><td><b>C</b> · 23 storeys · boutique condo (to be approved)</td><td class="n">250</td><td class="n">$112.7M</td><td class="n">$51.3M profit</td></tr>
+</tbody><tfoot><tr><td>Total</td><td class="n">1,216</td><td class="n">$593.7M</td><td class="n"></td></tr></tfoot></table></div>
+<span class="eyebrow">02 · How the site comes together</span>
+<ol>
+<li><b>LiUNA's pension backs Nesting Ground's guarantee pool</b>, lifting the land loan from $19.5M to the full $31.0M price — an $11.5M guarantee.</li>
+<li><b>Buy from the receiver</b> and pay out the secured lenders; $8.7M of equity at purchase covers transfer tax, carry and pre-development.</li>
+<li><b>Tower A and Tower B close construction financing</b>; each tower's stack retires its share of the land loan.</li>
+<li><b>Sunray funds the wellness-stay suites</b> ($27.3M); <b>Tower C</b> follows once rezoned, sold through presales.</li>
+<li><b>At Year 10</b>, refinancing repays BCH's mezzanine and the Fund; the sponsors keep the buildings.</li>
+</ol>
+</div><div>
+<div class="callout"><span class="eyebrow">03 · What we need to raise</span>
+<div class="raise">
+<div><b>$31.0M</b><small>Building Ontario Fund — Tower B, $75.5K/home</small></div>
+<div><b>$135.4M</b><small>BCH — $73.8M contribution + $61.6M mezz</small></div>
+<div><b>$226.8M</b><small>CMHC MLI Select, Towers A + B</small></div>
+<div><b>$22.7M</b><small>City of Markham — incentives / DC relief</small></div>
+<div><b>$37.7M</b><small>Sponsor equity — $8.7M at purchase, rest at construction close</small></div>
+<div><b>$11.5M</b><small>Land-loan guarantee — LiUNA via Nesting Ground</small></div>
+<div><b>$27.3M</b><small>Sunray — wellness-stay suites</small></div>
+<div><b>$22.5M</b><small>Tower C equity (20% of cost), later phase</small></div>
+</div></div>
+<span class="eyebrow">04 · What it returns</span>
+<div class="scroll"><table><tbody>
+<tr><td>Tower A — Year-10 cash · sponsor multiple</td><td class="n">$105.4M · 8.3x</td></tr>
+<tr><td>Tower B — Year-10 cash · sponsor multiple</td><td class="n">$27.8M · 5.2x</td></tr>
+<tr><td>Tower C — condo profit at $1,050/sf</td><td class="n">$51.3M · 31%</td></tr>
+<tr><td>Heal House — fees, wellness days, memberships</td><td class="n">$2.1M EBITDA/yr</td></tr>
+</tbody></table></div>
+<p>BCH and the Fund are repaid in full at Year 10 in both rental towers. The sponsors then own Tower A ($92.5M equity) and Tower B ($60.6M equity).</p>
+</div></div></div>
+<footer><div style='width:110px;flex:none'><svg role='img' aria-label='Heal House' id="LOGO" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="400 1110 2160 760"> <defs> </defs> <g id="Rings"> <g> <g id="HEAL"> <path fill="#F6F1E8" d="M1071.92,1258.3h45.86c1.12,0,2.03.91,2.03,2.03v158.48h203.45v-158.66c0-1.12.91-2.03,2.03-2.03h45.21c1.12,0,2.03.91,2.03,2.03v372.21c0,1.12-.91,2.03-2.03,2.03h-45.18c-1.12,0-2.03-.91-2.03-2.03v-174.32h-203.48v174.32c0,1.12-.91,2.03-2.03,2.03h-45.86c-1.12,0-2.03-.91-2.03-2.03v-372.03c0-1.12.91-2.03,2.03-2.03Z"></path> <path fill="#F6F1E8" d="M1473.5,1258.12h223.73c1.12,0,2.03.91,2.03,2.03v36.89c0,1.12-.91,2.03-2.03,2.03h-178.06v120.77h156.28c1.14,0,2.05.93,2.04,2.06l-.33,36.03c-.01,1.12-.92,2.03-2.04,2.03h-154.87l-1.08,134.79h181.31c1.12,0,2.03.91,2.03,2.03v35.6c0,1.12-.91,2.03-2.03,2.03h-226.99v-376.28Z"></path> <path fill="#F6F1E8" d="M1979.76,1256.09h15.92c.79,0,1.51.45,1.84,1.17l176.54,374.24c.64,1.35-.35,2.9-1.84,2.9h-47.78c-.78,0-1.48-.44-1.83-1.14l-42.49-86.47h-184.22l-39.9,86.43c-.33.72-1.05,1.18-1.85,1.18h-46.73c-1.48,0-2.47-1.54-1.85-2.89l172.32-374.24c.33-.72,1.06-1.19,1.85-1.19ZM1988.15,1348.38l-71.77,159.66h147.5l-75.73-159.66Z"></path> <path fill="#F6F1E8" d="M2307.28,1256.09h46.14c1.13,0,2.04.91,2.04,2.04v338.1h167.26c1.09,0,1.97.88,1.97,1.97v34.24c0,1.09-.88,1.97-1.97,1.97h-217.48v-376.27c0-1.13.91-2.04,2.04-2.04Z"></path> </g> <g id="house"> <path fill="#F6F1E8" d="M1423.14,1707.7h6.12v48.78h72.76v-48.78h6.76v99.48h-6.76v-46.8h-72.76v46.8h-6.12v-99.48Z"></path> <path fill="#F6F1E8" d="M1576.41,1759.52c0-7.52,1.4-14.44,4.21-20.76,2.81-6.31,6.72-11.77,11.71-16.37,5-4.6,11.01-8.19,18.04-10.8,20.02-7.41,45.16-5.52,61.36,9.38,5,4.6,8.9,10.05,11.71,16.37,2.81,6.32,4.22,13.23,4.22,20.76,0,22.18-9.43,38.77-30.91,46.58-7.03,2.55-14.76,3.83-23.19,3.83s-16.16-1.28-23.19-3.83c-7.03-2.55-13.04-6.13-18.04-10.73-4.99-4.6-8.9-10.08-11.71-16.44-2.81-6.36-4.22-10.47-4.22-18ZM1585.17,1758.1c0,6.33,1.11,12.23,3.33,17.69,2.22,5.47,5.4,10.21,9.53,14.24,4.13,4.03,9.12,7.19,15,9.49,5.87,2.3,12.46,3.45,19.76,3.45s13.89-1.15,19.76-3.45c5.87-2.3,10.87-5.47,15-9.49,4.13-4.03,7.3-8.77,9.52-14.24,2.22-5.47,3.33-11.36,3.33-17.69s-1.11-12.23-3.33-17.69c-2.22-5.47-5.4-10.21-9.52-14.24-4.13-4.03-9.13-7.19-15-9.49-5.87-2.3-12.46-3.45-19.76-3.45s-13.89,1.15-19.76,3.45c-5.87,2.3-10.87,5.47-15,9.49-4.13,4.03-7.3,8.77-9.53,14.24-2.22,5.47-3.33,11.36-3.33,17.69Z"></path> <path fill="#F6F1E8" d="M1840.8,1768.43c0,5.47-.71,10.71-2.14,15.7-1.43,4.99-3.81,9.41-7.16,13.25-3.35,3.84-7.73,6.91-13.16,9.22-5.43,2.3-12.09,3.46-19.99,3.46s-14.56-1.15-19.99-3.46c-5.43-2.3-9.82-5.37-13.16-9.22-3.35-3.84-5.73-8.25-7.16-13.25-1.43-4.99-2.14-10.22-2.14-15.7v-61.05h7.52v60.84c0,3.65.38,7.54,1.15,11.66.77,4.13,2.27,7.97,4.52,11.52,2.25,3.55,5.43,6.48,9.54,8.78,4.11,2.3,12.91,3.46,19.71,3.46s14.39-1.15,18.5-3.46c4.11-2.3,7.29-5.23,9.54-8.78,2.25-3.55,3.76-7.39,4.52-11.52.77-4.13,1.15-8.01,1.15-11.66v-60.84h8.73v61.05Z"></path> <path fill="#F6F1E8" d="M1910.39,1791.73c.52-.29,1.15-.13,1.51.33,2.77,3.61,6.55,6.04,10.73,7.89,8,3.54,20.35,3.36,28.65,1.25,5.99-1.52,11.73-5.07,14.57-10.56,2.61-5.04,2.43-11.37-.28-16.36-3.61-6.63-10.56-9.07-17.39-11-3.51-.99-7.14-1.99-10.87-2.98-9.34-2.49-21.45-5.97-27.3-14.32-7.34-10.48-2.27-25.03,7.77-31.57,3.4-2.22,7.32-3.89,11.76-5.02,4.43-1.13,9.08-1.7,13.95-1.7,6.27,0,12.1.89,17.44,2.78,1.06.37,4.08,1.7,7.58,4.96.59.55.51,1.51-.17,1.93l-2.72,1.69c-.5.31-1.14.2-1.54-.23-2.44-2.6-4.72-3.64-8.17-4.72-4.65-1.45-9.65-2.05-14.63-2.05-10.48,0-21.73,3.68-25.77,15.09-.73,2.06-1.08,4.26-1.15,6.44-.19,6.54,1.77,10.19,6.35,12.6,3.81,2,7.92,3.6,11.99,4.99,4.38,1.49,9.14,2.8,14.28,3.93,12.03,2.65,24.91,6.99,28.82,20.32,1.37,4.66,1.34,9.68-.12,14.3-4.72,15.01-21.03,20.29-34.79,20.29-7.57,0-14.55-1.11-20.93-3.32-5.92-2.05-11.05-5.41-15.38-10.08-.52-.56-.36-1.47.3-1.84l5.5-3.07Z"></path> <path fill="#F6F1E8" d="M2043.27,1708.41h68.11v6.76s-59.53,0-59.53,0l.04,39.47h50.65v5.3h-50.69v42.36h59.52v6.16h-68.1v-100.05Z"></path> </g> <g id="left_line"> <rect fill="#F6F1E8" x="1073.29" y="1765.04" width="212.28" height="4.07"></rect> </g> <g id="right_line"> <rect fill="#F6F1E8" x="2266.35" y="1765.04" width="251.17" height="4.07"></rect> </g> <path fill="#F6F1E8" d="M904.47,1377.98c-.09.06-.18.12-.26.18-5.81,3.89-8.32,11.14-5.99,17.73,8.07,22.91,12.2,47.67,11.57,73.49-2.67,108.29-95.71,199.69-204.03,200.52-114.97.88-208.33-92.57-207.3-207.57.98-109.31,93.48-202.29,202.78-203.8,46.75-.65,89.98,14.3,124.82,39.98,5.57,4.11,13.21,3.96,18.64-.34l.31-.25c7.97-6.31,7.77-18.48-.4-24.53-40.45-29.94-90.76-47.33-145.16-46.39-122.76,2.12-228.97,106.64-232.93,229.35-4.37,135.22,104.46,246.1,238.93,245.1,128.34-.96,233.52-105.35,235.41-233.68.43-28.92-4.34-56.67-13.41-82.39-3.32-9.43-14.68-12.99-22.96-7.39Z"></path> <path fill="#F6F1E8" d="M911.22,1618.75c-46.6,61.92-120.24,102.33-203.39,103.65-142.89,2.27-261.82-112.94-263.87-255.84-1.91-133.35,96.7-244.04,224.91-261.18,7.7-1.03,13.42-7.64,13.42-15.41h0c0-9.51-8.44-16.74-17.86-15.41-140.97,19.88-249.3,141.34-248.57,287.96.79,159.54,129.8,287.87,289.34,287.87,93.79,0,177.14-44.63,230.01-113.8,6.16-8.06,2.43-19.74-7.18-22.99-.1-.03-.2-.07-.29-.1-6.05-2.03-12.68.15-16.52,5.25Z"></path> <path fill="#F6F1E8" d="M703.62,1281.64c-100.82,0-182.55,81.73-182.55,182.55s81.73,182.55,182.55,182.55,182.55-81.73,182.55-182.55-81.73-182.55-182.55-182.55ZM705.13,1617.93c-84.91,0-153.74-68.83-153.74-153.74s68.83-153.74,153.74-153.74,153.74,68.83,153.74,153.74-68.83,153.74-153.74,153.74Z"></path> </g> </g> </svg></div><div><div class='tag'>A sanctuary for healing.</div><div class='src'>Sources: Approved 40/44-storey scheme, 858,648 sf (Colliers brochure, Jun 2026); split between towers by storeys — unverified vs stamped set · Arterial hard cost: $370/sf (40–60 storeys), $340/sf (20–40 storeys), Markham (Nov 4–5 2026) · Arterial comps, Yonge/Steeles leasing: 1BR $2,338 (5), 2BR $2,963 (4); 3BR $3,500 adj. from 1 comp · CMHC Markham zone avg rents 1BR $1,720 · 2BR $1,850 · 3BR $1,834 via Arterial · Markham multi-res tax 0.8397% (Arterial, 2025) · ESTIMATE — no Arterial Markham/York DC data; affordable homes assumed DC-exempt · ASSUMPTION — licensed retirement home with two services: 1-bed $6,000, 2-bed $7,800/mo all-in; 92% occ.; 62% expenses incl. 5% Heal House management fee; 6.0% cap · Heal House GR brief (Nov 3 2026): ~$151M Building Ontario Fund ask over ~2,000 homes = $75.5K/home · ASSUMPTION — 80 wellness-stay suites, ADR $185, 72% occ., 30% NOI margin, funded by Sunray cash · ASSUMPTION — Tower C 23 storeys, ~180,000 sf (Colliers pre-consultation, Jun 2025), not approved; $1,050/sf base; Arterial income value ~$712/sf as downside · Year-10 refinance capped at 85% LTV (Tower A) and 75% (Tower B). BCH split tranche modelled on Common Ground: 54.5% contribution vesting Yrs 1–10 vs affordable homes, 45.5% mezz payment-free to Yr 10; BCH mezz and Fund repaid by Year-10 refinance. Illustrative scenario for discussion — not a valuation, offer, commitment or financial advice. Subject to receiver and court approval, CMHC, BCH, Building Ontario Fund and City of Markham approvals, LiUNA trustee approval and legal review.</div></div></footer>
+<div class="pb"></div>
+<header class='mh'><div style='width:150px'><svg role='img' aria-label='Heal House' id="LOGO" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="400 1110 2160 760"> <defs> </defs> <g id="Rings"> <g> <g id="HEAL"> <path fill="#CCAF87" d="M1071.92,1258.3h45.86c1.12,0,2.03.91,2.03,2.03v158.48h203.45v-158.66c0-1.12.91-2.03,2.03-2.03h45.21c1.12,0,2.03.91,2.03,2.03v372.21c0,1.12-.91,2.03-2.03,2.03h-45.18c-1.12,0-2.03-.91-2.03-2.03v-174.32h-203.48v174.32c0,1.12-.91,2.03-2.03,2.03h-45.86c-1.12,0-2.03-.91-2.03-2.03v-372.03c0-1.12.91-2.03,2.03-2.03Z"></path> <path fill="#CCAF87" d="M1473.5,1258.12h223.73c1.12,0,2.03.91,2.03,2.03v36.89c0,1.12-.91,2.03-2.03,2.03h-178.06v120.77h156.28c1.14,0,2.05.93,2.04,2.06l-.33,36.03c-.01,1.12-.92,2.03-2.04,2.03h-154.87l-1.08,134.79h181.31c1.12,0,2.03.91,2.03,2.03v35.6c0,1.12-.91,2.03-2.03,2.03h-226.99v-376.28Z"></path> <path fill="#CCAF87" d="M1979.76,1256.09h15.92c.79,0,1.51.45,1.84,1.17l176.54,374.24c.64,1.35-.35,2.9-1.84,2.9h-47.78c-.78,0-1.48-.44-1.83-1.14l-42.49-86.47h-184.22l-39.9,86.43c-.33.72-1.05,1.18-1.85,1.18h-46.73c-1.48,0-2.47-1.54-1.85-2.89l172.32-374.24c.33-.72,1.06-1.19,1.85-1.19ZM1988.15,1348.38l-71.77,159.66h147.5l-75.73-159.66Z"></path> <path fill="#CCAF87" d="M2307.28,1256.09h46.14c1.13,0,2.04.91,2.04,2.04v338.1h167.26c1.09,0,1.97.88,1.97,1.97v34.24c0,1.09-.88,1.97-1.97,1.97h-217.48v-376.27c0-1.13.91-2.04,2.04-2.04Z"></path> </g> <g id="house"> <path fill="#CCAF87" d="M1423.14,1707.7h6.12v48.78h72.76v-48.78h6.76v99.48h-6.76v-46.8h-72.76v46.8h-6.12v-99.48Z"></path> <path fill="#CCAF87" d="M1576.41,1759.52c0-7.52,1.4-14.44,4.21-20.76,2.81-6.31,6.72-11.77,11.71-16.37,5-4.6,11.01-8.19,18.04-10.8,20.02-7.41,45.16-5.52,61.36,9.38,5,4.6,8.9,10.05,11.71,16.37,2.81,6.32,4.22,13.23,4.22,20.76,0,22.18-9.43,38.77-30.91,46.58-7.03,2.55-14.76,3.83-23.19,3.83s-16.16-1.28-23.19-3.83c-7.03-2.55-13.04-6.13-18.04-10.73-4.99-4.6-8.9-10.08-11.71-16.44-2.81-6.36-4.22-10.47-4.22-18ZM1585.17,1758.1c0,6.33,1.11,12.23,3.33,17.69,2.22,5.47,5.4,10.21,9.53,14.24,4.13,4.03,9.12,7.19,15,9.49,5.87,2.3,12.46,3.45,19.76,3.45s13.89-1.15,19.76-3.45c5.87-2.3,10.87-5.47,15-9.49,4.13-4.03,7.3-8.77,9.52-14.24,2.22-5.47,3.33-11.36,3.33-17.69s-1.11-12.23-3.33-17.69c-2.22-5.47-5.4-10.21-9.52-14.24-4.13-4.03-9.13-7.19-15-9.49-5.87-2.3-12.46-3.45-19.76-3.45s-13.89,1.15-19.76,3.45c-5.87,2.3-10.87,5.47-15,9.49-4.13,4.03-7.3,8.77-9.53,14.24-2.22,5.47-3.33,11.36-3.33,17.69Z"></path> <path fill="#CCAF87" d="M1840.8,1768.43c0,5.47-.71,10.71-2.14,15.7-1.43,4.99-3.81,9.41-7.16,13.25-3.35,3.84-7.73,6.91-13.16,9.22-5.43,2.3-12.09,3.46-19.99,3.46s-14.56-1.15-19.99-3.46c-5.43-2.3-9.82-5.37-13.16-9.22-3.35-3.84-5.73-8.25-7.16-13.25-1.43-4.99-2.14-10.22-2.14-15.7v-61.05h7.52v60.84c0,3.65.38,7.54,1.15,11.66.77,4.13,2.27,7.97,4.52,11.52,2.25,3.55,5.43,6.48,9.54,8.78,4.11,2.3,12.91,3.46,19.71,3.46s14.39-1.15,18.5-3.46c4.11-2.3,7.29-5.23,9.54-8.78,2.25-3.55,3.76-7.39,4.52-11.52.77-4.13,1.15-8.01,1.15-11.66v-60.84h8.73v61.05Z"></path> <path fill="#CCAF87" d="M1910.39,1791.73c.52-.29,1.15-.13,1.51.33,2.77,3.61,6.55,6.04,10.73,7.89,8,3.54,20.35,3.36,28.65,1.25,5.99-1.52,11.73-5.07,14.57-10.56,2.61-5.04,2.43-11.37-.28-16.36-3.61-6.63-10.56-9.07-17.39-11-3.51-.99-7.14-1.99-10.87-2.98-9.34-2.49-21.45-5.97-27.3-14.32-7.34-10.48-2.27-25.03,7.77-31.57,3.4-2.22,7.32-3.89,11.76-5.02,4.43-1.13,9.08-1.7,13.95-1.7,6.27,0,12.1.89,17.44,2.78,1.06.37,4.08,1.7,7.58,4.96.59.55.51,1.51-.17,1.93l-2.72,1.69c-.5.31-1.14.2-1.54-.23-2.44-2.6-4.72-3.64-8.17-4.72-4.65-1.45-9.65-2.05-14.63-2.05-10.48,0-21.73,3.68-25.77,15.09-.73,2.06-1.08,4.26-1.15,6.44-.19,6.54,1.77,10.19,6.35,12.6,3.81,2,7.92,3.6,11.99,4.99,4.38,1.49,9.14,2.8,14.28,3.93,12.03,2.65,24.91,6.99,28.82,20.32,1.37,4.66,1.34,9.68-.12,14.3-4.72,15.01-21.03,20.29-34.79,20.29-7.57,0-14.55-1.11-20.93-3.32-5.92-2.05-11.05-5.41-15.38-10.08-.52-.56-.36-1.47.3-1.84l5.5-3.07Z"></path> <path fill="#CCAF87" d="M2043.27,1708.41h68.11v6.76s-59.53,0-59.53,0l.04,39.47h50.65v5.3h-50.69v42.36h59.52v6.16h-68.1v-100.05Z"></path> </g> <g id="left_line"> <rect fill="#CCAF87" x="1073.29" y="1765.04" width="212.28" height="4.07"></rect> </g> <g id="right_line"> <rect fill="#CCAF87" x="2266.35" y="1765.04" width="251.17" height="4.07"></rect> </g> <path fill="#CCAF87" d="M904.47,1377.98c-.09.06-.18.12-.26.18-5.81,3.89-8.32,11.14-5.99,17.73,8.07,22.91,12.2,47.67,11.57,73.49-2.67,108.29-95.71,199.69-204.03,200.52-114.97.88-208.33-92.57-207.3-207.57.98-109.31,93.48-202.29,202.78-203.8,46.75-.65,89.98,14.3,124.82,39.98,5.57,4.11,13.21,3.96,18.64-.34l.31-.25c7.97-6.31,7.77-18.48-.4-24.53-40.45-29.94-90.76-47.33-145.16-46.39-122.76,2.12-228.97,106.64-232.93,229.35-4.37,135.22,104.46,246.1,238.93,245.1,128.34-.96,233.52-105.35,235.41-233.68.43-28.92-4.34-56.67-13.41-82.39-3.32-9.43-14.68-12.99-22.96-7.39Z"></path> <path fill="#CCAF87" d="M911.22,1618.75c-46.6,61.92-120.24,102.33-203.39,103.65-142.89,2.27-261.82-112.94-263.87-255.84-1.91-133.35,96.7-244.04,224.91-261.18,7.7-1.03,13.42-7.64,13.42-15.41h0c0-9.51-8.44-16.74-17.86-15.41-140.97,19.88-249.3,141.34-248.57,287.96.79,159.54,129.8,287.87,289.34,287.87,93.79,0,177.14-44.63,230.01-113.8,6.16-8.06,2.43-19.74-7.18-22.99-.1-.03-.2-.07-.29-.1-6.05-2.03-12.68.15-16.52,5.25Z"></path> <path fill="#CCAF87" d="M703.62,1281.64c-100.82,0-182.55,81.73-182.55,182.55s81.73,182.55,182.55,182.55,182.55-81.73,182.55-182.55-81.73-182.55-182.55-182.55ZM705.13,1617.93c-84.91,0-153.74-68.83-153.74-153.74s68.83-153.74,153.74-153.74,153.74,68.83,153.74,153.74-68.83,153.74-153.74,153.74Z"></path> </g> </g> </svg></div><span class='stamp'>Draft for discussion · HH-MODEL-0004 · page 2 · Tower B</span></header>
+<div class="in">
+<span class="eyebrow" style="margin-top:12px">Tower B · Heal House retirement residence · Building Ontario Fund</span>
+<h1>Retirement living, with care <em>built in</em></h1>
+<p class="sub">411 retirement suites with two services — 83 held affordable for 40 years — over a Heal House podium, with 80 wellness-stay suites for families, recovery and wellness days.</p>
+<div class="kpis">
+<div><b>$28.5M</b><span>Revenue, rent + services</span></div>
+<div><b>$10.8M</b><span>NOI after 62% expenses</span></div>
+<div><b>2.07x</b><span>Debt coverage, Yr 1</span></div>
+<div><b>$31.0M</b><span>Building Ontario Fund</span></div>
+<div><b>$27.8M</b><span>Cash at Yr-10 refi</span></div>
+</div>
+<div class="grid"><div>
+<span class="eyebrow">01 · Capital stack — Tower B residence</span>
+<div class='scroll'><table><thead><tr><th>Source</th><th class='n'>Amount</th><th class='n'>Share</th></tr></thead><tbody><tr><td>CMHC MLI Select — 4.25%, 50-yr</td><td class='n'>$108.2M</td><td class='n'>50.0%</td></tr><tr><td>Building Ontario Fund — patient capital</td><td class='n'>$31.0M</td><td class='n'>14.3%</td></tr><tr><td>BCH contribution — vests Yrs 1–10</td><td class='n'>$27.0M</td><td class='n'>12.5%</td></tr><tr><td>BCH mezz — repaid at Year 10</td><td class='n'>$22.5M</td><td class='n'>10.4%</td></tr><tr><td>City of Markham</td><td class='n'>$10.8M</td><td class='n'>5.0%</td></tr><tr><td>Sponsor equity — land + pre-development</td><td class='n'>$16.9M</td><td class='n'>7.8%</td></tr></tbody><tfoot><tr><td>Total cost</td><td class='n'>$216.4M</td><td class='n'>100%</td></tr></tfoot></table></div>
+<span class="eyebrow">02 · Year 10 — BCH and the Fund repaid</span>
+<div class='scroll'><table><tbody>
+<tr><td>Year-11 NOI · value</td><td class='n'>$14.5M · $242.3M</td></tr>
+<tr><td>New MLI Select loan at 1.20x</td><td class='n'>$181.7M</td></tr>
+<tr><td>Repays mortgage, BCH mezz, the Fund</td><td class='n'>($154.0M)</td></tr>
+</tbody><tfoot><tr><td>Cash to sponsor · sponsor return</td><td class='n'>$27.8M · 5.2x</td></tr></tfoot></table></div>
+</div><div>
+<span class="eyebrow">03 · Heal House income on the site</span>
+<div class="scroll"><table><tbody>
+<tr><td>Management fee — 5% of Tower B revenue</td><td class="n">$1.4M</td></tr>
+<tr><td>Wellness days — 25% of suite guests × $150 (50% margin)</td><td class="n">$0.4M</td></tr>
+<tr><td>Tower A memberships — 111 × $350/mo (50% margin)</td><td class="n">$0.2M</td></tr>
+</tbody><tfoot><tr><td>Heal House EBITDA · podium rent-free</td><td class="n">$2.1M</td></tr></tfoot></table></div>
+<span class="eyebrow">04 · If it runs leaner</span>
+<p>At 65% expenses and 90% occupancy, NOI is $9.7M, coverage 1.87x, and the Year-10 refinance still repays BCH and the Fund with $9.8M to spare.</p>
+<span class="eyebrow">05 · Stated openly</span>
+<ul class="c">
+<li><b>Licensed retirement home</b> under Ontario's Retirement Homes Act, like Heal House Listowel; an experienced operator or management contract until Heal House has a track record.</li>
+<li><b>Rents of $6,000 / $7,800 all-in need a Markham market study.</b> Earlier Listowel/Barrie figures (~$14,000/room) are well above market and are not used.</li>
+<li><b>BCH contribution is $325K per affordable home</b> — a hard ask for care housing; a larger Fund share would reduce it.</li>
+<li>The Fund's 4% return and Year-10 exit are placeholders; CMHC's retirement-home route to be confirmed.</li>
+</ul>
+</div></div></div>
+<footer><div style='width:110px;flex:none'><svg role='img' aria-label='Heal House' id="LOGO" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="400 1110 2160 760"> <defs> </defs> <g id="Rings"> <g> <g id="HEAL"> <path fill="#F6F1E8" d="M1071.92,1258.3h45.86c1.12,0,2.03.91,2.03,2.03v158.48h203.45v-158.66c0-1.12.91-2.03,2.03-2.03h45.21c1.12,0,2.03.91,2.03,2.03v372.21c0,1.12-.91,2.03-2.03,2.03h-45.18c-1.12,0-2.03-.91-2.03-2.03v-174.32h-203.48v174.32c0,1.12-.91,2.03-2.03,2.03h-45.86c-1.12,0-2.03-.91-2.03-2.03v-372.03c0-1.12.91-2.03,2.03-2.03Z"></path> <path fill="#F6F1E8" d="M1473.5,1258.12h223.73c1.12,0,2.03.91,2.03,2.03v36.89c0,1.12-.91,2.03-2.03,2.03h-178.06v120.77h156.28c1.14,0,2.05.93,2.04,2.06l-.33,36.03c-.01,1.12-.92,2.03-2.04,2.03h-154.87l-1.08,134.79h181.31c1.12,0,2.03.91,2.03,2.03v35.6c0,1.12-.91,2.03-2.03,2.03h-226.99v-376.28Z"></path> <path fill="#F6F1E8" d="M1979.76,1256.09h15.92c.79,0,1.51.45,1.84,1.17l176.54,374.24c.64,1.35-.35,2.9-1.84,2.9h-47.78c-.78,0-1.48-.44-1.83-1.14l-42.49-86.47h-184.22l-39.9,86.43c-.33.72-1.05,1.18-1.85,1.18h-46.73c-1.48,0-2.47-1.54-1.85-2.89l172.32-374.24c.33-.72,1.06-1.19,1.85-1.19ZM1988.15,1348.38l-71.77,159.66h147.5l-75.73-159.66Z"></path> <path fill="#F6F1E8" d="M2307.28,1256.09h46.14c1.13,0,2.04.91,2.04,2.04v338.1h167.26c1.09,0,1.97.88,1.97,1.97v34.24c0,1.09-.88,1.97-1.97,1.97h-217.48v-376.27c0-1.13.91-2.04,2.04-2.04Z"></path> </g> <g id="house"> <path fill="#F6F1E8" d="M1423.14,1707.7h6.12v48.78h72.76v-48.78h6.76v99.48h-6.76v-46.8h-72.76v46.8h-6.12v-99.48Z"></path> <path fill="#F6F1E8" d="M1576.41,1759.52c0-7.52,1.4-14.44,4.21-20.76,2.81-6.31,6.72-11.77,11.71-16.37,5-4.6,11.01-8.19,18.04-10.8,20.02-7.41,45.16-5.52,61.36,9.38,5,4.6,8.9,10.05,11.71,16.37,2.81,6.32,4.22,13.23,4.22,20.76,0,22.18-9.43,38.77-30.91,46.58-7.03,2.55-14.76,3.83-23.19,3.83s-16.16-1.28-23.19-3.83c-7.03-2.55-13.04-6.13-18.04-10.73-4.99-4.6-8.9-10.08-11.71-16.44-2.81-6.36-4.22-10.47-4.22-18ZM1585.17,1758.1c0,6.33,1.11,12.23,3.33,17.69,2.22,5.47,5.4,10.21,9.53,14.24,4.13,4.03,9.12,7.19,15,9.49,5.87,2.3,12.46,3.45,19.76,3.45s13.89-1.15,19.76-3.45c5.87-2.3,10.87-5.47,15-9.49,4.13-4.03,7.3-8.77,9.52-14.24,2.22-5.47,3.33-11.36,3.33-17.69s-1.11-12.23-3.33-17.69c-2.22-5.47-5.4-10.21-9.52-14.24-4.13-4.03-9.13-7.19-15-9.49-5.87-2.3-12.46-3.45-19.76-3.45s-13.89,1.15-19.76,3.45c-5.87,2.3-10.87,5.47-15,9.49-4.13,4.03-7.3,8.77-9.53,14.24-2.22,5.47-3.33,11.36-3.33,17.69Z"></path> <path fill="#F6F1E8" d="M1840.8,1768.43c0,5.47-.71,10.71-2.14,15.7-1.43,4.99-3.81,9.41-7.16,13.25-3.35,3.84-7.73,6.91-13.16,9.22-5.43,2.3-12.09,3.46-19.99,3.46s-14.56-1.15-19.99-3.46c-5.43-2.3-9.82-5.37-13.16-9.22-3.35-3.84-5.73-8.25-7.16-13.25-1.43-4.99-2.14-10.22-2.14-15.7v-61.05h7.52v60.84c0,3.65.38,7.54,1.15,11.66.77,4.13,2.27,7.97,4.52,11.52,2.25,3.55,5.43,6.48,9.54,8.78,4.11,2.3,12.91,3.46,19.71,3.46s14.39-1.15,18.5-3.46c4.11-2.3,7.29-5.23,9.54-8.78,2.25-3.55,3.76-7.39,4.52-11.52.77-4.13,1.15-8.01,1.15-11.66v-60.84h8.73v61.05Z"></path> <path fill="#F6F1E8" d="M1910.39,1791.73c.52-.29,1.15-.13,1.51.33,2.77,3.61,6.55,6.04,10.73,7.89,8,3.54,20.35,3.36,28.65,1.25,5.99-1.52,11.73-5.07,14.57-10.56,2.61-5.04,2.43-11.37-.28-16.36-3.61-6.63-10.56-9.07-17.39-11-3.51-.99-7.14-1.99-10.87-2.98-9.34-2.49-21.45-5.97-27.3-14.32-7.34-10.48-2.27-25.03,7.77-31.57,3.4-2.22,7.32-3.89,11.76-5.02,4.43-1.13,9.08-1.7,13.95-1.7,6.27,0,12.1.89,17.44,2.78,1.06.37,4.08,1.7,7.58,4.96.59.55.51,1.51-.17,1.93l-2.72,1.69c-.5.31-1.14.2-1.54-.23-2.44-2.6-4.72-3.64-8.17-4.72-4.65-1.45-9.65-2.05-14.63-2.05-10.48,0-21.73,3.68-25.77,15.09-.73,2.06-1.08,4.26-1.15,6.44-.19,6.54,1.77,10.19,6.35,12.6,3.81,2,7.92,3.6,11.99,4.99,4.38,1.49,9.14,2.8,14.28,3.93,12.03,2.65,24.91,6.99,28.82,20.32,1.37,4.66,1.34,9.68-.12,14.3-4.72,15.01-21.03,20.29-34.79,20.29-7.57,0-14.55-1.11-20.93-3.32-5.92-2.05-11.05-5.41-15.38-10.08-.52-.56-.36-1.47.3-1.84l5.5-3.07Z"></path> <path fill="#F6F1E8" d="M2043.27,1708.41h68.11v6.76s-59.53,0-59.53,0l.04,39.47h50.65v5.3h-50.69v42.36h59.52v6.16h-68.1v-100.05Z"></path> </g> <g id="left_line"> <rect fill="#F6F1E8" x="1073.29" y="1765.04" width="212.28" height="4.07"></rect> </g> <g id="right_line"> <rect fill="#F6F1E8" x="2266.35" y="1765.04" width="251.17" height="4.07"></rect> </g> <path fill="#F6F1E8" d="M904.47,1377.98c-.09.06-.18.12-.26.18-5.81,3.89-8.32,11.14-5.99,17.73,8.07,22.91,12.2,47.67,11.57,73.49-2.67,108.29-95.71,199.69-204.03,200.52-114.97.88-208.33-92.57-207.3-207.57.98-109.31,93.48-202.29,202.78-203.8,46.75-.65,89.98,14.3,124.82,39.98,5.57,4.11,13.21,3.96,18.64-.34l.31-.25c7.97-6.31,7.77-18.48-.4-24.53-40.45-29.94-90.76-47.33-145.16-46.39-122.76,2.12-228.97,106.64-232.93,229.35-4.37,135.22,104.46,246.1,238.93,245.1,128.34-.96,233.52-105.35,235.41-233.68.43-28.92-4.34-56.67-13.41-82.39-3.32-9.43-14.68-12.99-22.96-7.39Z"></path> <path fill="#F6F1E8" d="M911.22,1618.75c-46.6,61.92-120.24,102.33-203.39,103.65-142.89,2.27-261.82-112.94-263.87-255.84-1.91-133.35,96.7-244.04,224.91-261.18,7.7-1.03,13.42-7.64,13.42-15.41h0c0-9.51-8.44-16.74-17.86-15.41-140.97,19.88-249.3,141.34-248.57,287.96.79,159.54,129.8,287.87,289.34,287.87,93.79,0,177.14-44.63,230.01-113.8,6.16-8.06,2.43-19.74-7.18-22.99-.1-.03-.2-.07-.29-.1-6.05-2.03-12.68.15-16.52,5.25Z"></path> <path fill="#F6F1E8" d="M703.62,1281.64c-100.82,0-182.55,81.73-182.55,182.55s81.73,182.55,182.55,182.55,182.55-81.73,182.55-182.55-81.73-182.55-182.55-182.55ZM705.13,1617.93c-84.91,0-153.74-68.83-153.74-153.74s68.83-153.74,153.74-153.74,153.74,68.83,153.74,153.74-68.83,153.74-153.74,153.74Z"></path> </g> </g> </svg></div><div><div class='tag'>Expert care, tailored to you — in a tranquil, nurturing space where healing can flourish.</div><div class='src'>Sources: ASSUMPTION — licensed retirement home with two services: 1-bed $6,000, 2-bed $7,800/mo all-in; 92% occ.; 62% expenses incl. 5% Heal House management fee; 6.0% cap · Heal House GR brief (Nov 3 2026): ~$151M Building Ontario Fund ask over ~2,000 homes = $75.5K/home · ASSUMPTION — 80 wellness-stay suites, ADR $185, 72% occ., 30% NOI margin, funded by Sunray cash. Illustrative scenario for discussion.</div></div></footer>
+<div class="pb"></div>
+<header class='mh'><div style='width:150px'><svg role='img' aria-label='Heal House' id="LOGO" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="400 1110 2160 760"> <defs> </defs> <g id="Rings"> <g> <g id="HEAL"> <path fill="#CCAF87" d="M1071.92,1258.3h45.86c1.12,0,2.03.91,2.03,2.03v158.48h203.45v-158.66c0-1.12.91-2.03,2.03-2.03h45.21c1.12,0,2.03.91,2.03,2.03v372.21c0,1.12-.91,2.03-2.03,2.03h-45.18c-1.12,0-2.03-.91-2.03-2.03v-174.32h-203.48v174.32c0,1.12-.91,2.03-2.03,2.03h-45.86c-1.12,0-2.03-.91-2.03-2.03v-372.03c0-1.12.91-2.03,2.03-2.03Z"></path> <path fill="#CCAF87" d="M1473.5,1258.12h223.73c1.12,0,2.03.91,2.03,2.03v36.89c0,1.12-.91,2.03-2.03,2.03h-178.06v120.77h156.28c1.14,0,2.05.93,2.04,2.06l-.33,36.03c-.01,1.12-.92,2.03-2.04,2.03h-154.87l-1.08,134.79h181.31c1.12,0,2.03.91,2.03,2.03v35.6c0,1.12-.91,2.03-2.03,2.03h-226.99v-376.28Z"></path> <path fill="#CCAF87" d="M1979.76,1256.09h15.92c.79,0,1.51.45,1.84,1.17l176.54,374.24c.64,1.35-.35,2.9-1.84,2.9h-47.78c-.78,0-1.48-.44-1.83-1.14l-42.49-86.47h-184.22l-39.9,86.43c-.33.72-1.05,1.18-1.85,1.18h-46.73c-1.48,0-2.47-1.54-1.85-2.89l172.32-374.24c.33-.72,1.06-1.19,1.85-1.19ZM1988.15,1348.38l-71.77,159.66h147.5l-75.73-159.66Z"></path> <path fill="#CCAF87" d="M2307.28,1256.09h46.14c1.13,0,2.04.91,2.04,2.04v338.1h167.26c1.09,0,1.97.88,1.97,1.97v34.24c0,1.09-.88,1.97-1.97,1.97h-217.48v-376.27c0-1.13.91-2.04,2.04-2.04Z"></path> </g> <g id="house"> <path fill="#CCAF87" d="M1423.14,1707.7h6.12v48.78h72.76v-48.78h6.76v99.48h-6.76v-46.8h-72.76v46.8h-6.12v-99.48Z"></path> <path fill="#CCAF87" d="M1576.41,1759.52c0-7.52,1.4-14.44,4.21-20.76,2.81-6.31,6.72-11.77,11.71-16.37,5-4.6,11.01-8.19,18.04-10.8,20.02-7.41,45.16-5.52,61.36,9.38,5,4.6,8.9,10.05,11.71,16.37,2.81,6.32,4.22,13.23,4.22,20.76,0,22.18-9.43,38.77-30.91,46.58-7.03,2.55-14.76,3.83-23.19,3.83s-16.16-1.28-23.19-3.83c-7.03-2.55-13.04-6.13-18.04-10.73-4.99-4.6-8.9-10.08-11.71-16.44-2.81-6.36-4.22-10.47-4.22-18ZM1585.17,1758.1c0,6.33,1.11,12.23,3.33,17.69,2.22,5.47,5.4,10.21,9.53,14.24,4.13,4.03,9.12,7.19,15,9.49,5.87,2.3,12.46,3.45,19.76,3.45s13.89-1.15,19.76-3.45c5.87-2.3,10.87-5.47,15-9.49,4.13-4.03,7.3-8.77,9.52-14.24,2.22-5.47,3.33-11.36,3.33-17.69s-1.11-12.23-3.33-17.69c-2.22-5.47-5.4-10.21-9.52-14.24-4.13-4.03-9.13-7.19-15-9.49-5.87-2.3-12.46-3.45-19.76-3.45s-13.89,1.15-19.76,3.45c-5.87,2.3-10.87,5.47-15,9.49-4.13,4.03-7.3,8.77-9.53,14.24-2.22,5.47-3.33,11.36-3.33,17.69Z"></path> <path fill="#CCAF87" d="M1840.8,1768.43c0,5.47-.71,10.71-2.14,15.7-1.43,4.99-3.81,9.41-7.16,13.25-3.35,3.84-7.73,6.91-13.16,9.22-5.43,2.3-12.09,3.46-19.99,3.46s-14.56-1.15-19.99-3.46c-5.43-2.3-9.82-5.37-13.16-9.22-3.35-3.84-5.73-8.25-7.16-13.25-1.43-4.99-2.14-10.22-2.14-15.7v-61.05h7.52v60.84c0,3.65.38,7.54,1.15,11.66.77,4.13,2.27,7.97,4.52,11.52,2.25,3.55,5.43,6.48,9.54,8.78,4.11,2.3,12.91,3.46,19.71,3.46s14.39-1.15,18.5-3.46c4.11-2.3,7.29-5.23,9.54-8.78,2.25-3.55,3.76-7.39,4.52-11.52.77-4.13,1.15-8.01,1.15-11.66v-60.84h8.73v61.05Z"></path> <path fill="#CCAF87" d="M1910.39,1791.73c.52-.29,1.15-.13,1.51.33,2.77,3.61,6.55,6.04,10.73,7.89,8,3.54,20.35,3.36,28.65,1.25,5.99-1.52,11.73-5.07,14.57-10.56,2.61-5.04,2.43-11.37-.28-16.36-3.61-6.63-10.56-9.07-17.39-11-3.51-.99-7.14-1.99-10.87-2.98-9.34-2.49-21.45-5.97-27.3-14.32-7.34-10.48-2.27-25.03,7.77-31.57,3.4-2.22,7.32-3.89,11.76-5.02,4.43-1.13,9.08-1.7,13.95-1.7,6.27,0,12.1.89,17.44,2.78,1.06.37,4.08,1.7,7.58,4.96.59.55.51,1.51-.17,1.93l-2.72,1.69c-.5.31-1.14.2-1.54-.23-2.44-2.6-4.72-3.64-8.17-4.72-4.65-1.45-9.65-2.05-14.63-2.05-10.48,0-21.73,3.68-25.77,15.09-.73,2.06-1.08,4.26-1.15,6.44-.19,6.54,1.77,10.19,6.35,12.6,3.81,2,7.92,3.6,11.99,4.99,4.38,1.49,9.14,2.8,14.28,3.93,12.03,2.65,24.91,6.99,28.82,20.32,1.37,4.66,1.34,9.68-.12,14.3-4.72,15.01-21.03,20.29-34.79,20.29-7.57,0-14.55-1.11-20.93-3.32-5.92-2.05-11.05-5.41-15.38-10.08-.52-.56-.36-1.47.3-1.84l5.5-3.07Z"></path> <path fill="#CCAF87" d="M2043.27,1708.41h68.11v6.76s-59.53,0-59.53,0l.04,39.47h50.65v5.3h-50.69v42.36h59.52v6.16h-68.1v-100.05Z"></path> </g> <g id="left_line"> <rect fill="#CCAF87" x="1073.29" y="1765.04" width="212.28" height="4.07"></rect> </g> <g id="right_line"> <rect fill="#CCAF87" x="2266.35" y="1765.04" width="251.17" height="4.07"></rect> </g> <path fill="#CCAF87" d="M904.47,1377.98c-.09.06-.18.12-.26.18-5.81,3.89-8.32,11.14-5.99,17.73,8.07,22.91,12.2,47.67,11.57,73.49-2.67,108.29-95.71,199.69-204.03,200.52-114.97.88-208.33-92.57-207.3-207.57.98-109.31,93.48-202.29,202.78-203.8,46.75-.65,89.98,14.3,124.82,39.98,5.57,4.11,13.21,3.96,18.64-.34l.31-.25c7.97-6.31,7.77-18.48-.4-24.53-40.45-29.94-90.76-47.33-145.16-46.39-122.76,2.12-228.97,106.64-232.93,229.35-4.37,135.22,104.46,246.1,238.93,245.1,128.34-.96,233.52-105.35,235.41-233.68.43-28.92-4.34-56.67-13.41-82.39-3.32-9.43-14.68-12.99-22.96-7.39Z"></path> <path fill="#CCAF87" d="M911.22,1618.75c-46.6,61.92-120.24,102.33-203.39,103.65-142.89,2.27-261.82-112.94-263.87-255.84-1.91-133.35,96.7-244.04,224.91-261.18,7.7-1.03,13.42-7.64,13.42-15.41h0c0-9.51-8.44-16.74-17.86-15.41-140.97,19.88-249.3,141.34-248.57,287.96.79,159.54,129.8,287.87,289.34,287.87,93.79,0,177.14-44.63,230.01-113.8,6.16-8.06,2.43-19.74-7.18-22.99-.1-.03-.2-.07-.29-.1-6.05-2.03-12.68.15-16.52,5.25Z"></path> <path fill="#CCAF87" d="M703.62,1281.64c-100.82,0-182.55,81.73-182.55,182.55s81.73,182.55,182.55,182.55,182.55-81.73,182.55-182.55-81.73-182.55-182.55-182.55ZM705.13,1617.93c-84.91,0-153.74-68.83-153.74-153.74s68.83-153.74,153.74-153.74,153.74,68.83,153.74,153.74-68.83,153.74-153.74,153.74Z"></path> </g> </g> </svg></div><span class='stamp'>Draft for discussion · HH-MODEL-0004 · page 3 · Towers A and C</span></header>
+<div class="in">
+<span class="eyebrow" style="margin-top:12px">Tower A · affordable + market rental · Tower C · boutique condo</span>
+<h1>Homes for every <em>stage</em> of life</h1>
+<p class="sub">Tower A carries the affordable and market rental on the existing approval. Tower C adds a boutique condo tower once rezoned — the condo profit is the program's upside.</p>
+<div class="grid"><div>
+<span class="eyebrow">01 · Tower A — 555 rental homes, 167 affordable</span>
+<div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+<div><b>$10.8M</b><span>Stabilized NOI</span></div><div><b>1.88x</b><span>Coverage, Yr 1</span></div><div><b>$253.2M</b><span>Value at 4.25%</span></div></div>
+<div class='scroll'><table><thead><tr><th>Source</th><th class='n'>Amount</th><th class='n'>Share</th></tr></thead><tbody><tr><td>CMHC MLI Select — 4.25%, 50-yr</td><td class='n'>$118.6M</td><td class='n'>50.0%</td></tr><tr><td>BCH contribution — vests Yrs 1–10</td><td class='n'>$46.9M</td><td class='n'>19.8%</td></tr><tr><td>BCH mezz — repaid at Year 10</td><td class='n'>$39.1M</td><td class='n'>16.5%</td></tr><tr><td>City of Markham</td><td class='n'>$11.9M</td><td class='n'>5.0%</td></tr><tr><td>Sponsor equity — land + pre-development</td><td class='n'>$20.8M</td><td class='n'>8.8%</td></tr></tbody><tfoot><tr><td>Total cost</td><td class='n'>$237.2M</td><td class='n'>100%</td></tr></tfoot></table></div>
+<span class="eyebrow">02 · Tower A at Year 10</span>
+<div class='scroll'><table><tbody>
+<tr><td>Year-11 NOI · value</td><td class='n'>$14.8M · $347.1M</td></tr>
+<tr><td>New MLI Select loan at 1.20x</td><td class='n'>$254.6M</td></tr>
+<tr><td>Repays mortgage, BCH mezz</td><td class='n'>($149.2M)</td></tr>
+</tbody><tfoot><tr><td>Cash to sponsor · sponsor return</td><td class='n'>$105.4M · 8.3x</td></tr></tfoot></table></div>
+</div><div>
+<span class="eyebrow">03 · Tower C — 250 boutique condos</span>
+<div class="scroll"><table><tbody>
+<tr><td>Sales — 156,200 sf at $1,050/sf</td><td class="n">$164.0M</td></tr>
+<tr><td>Construction — 180,000 sf at $340/sf</td><td class="n">($61.2M)</td></tr>
+<tr><td>Soft costs, financing, rezoning</td><td class="n">($14.2M)</td></tr>
+<tr><td>Development charges (estimate)</td><td class="n">($21.2M)</td></tr>
+<tr><td>Sales and marketing (6%)</td><td class="n">($9.8M)</td></tr>
+<tr><td>Land for the added density ($35/sf)</td><td class="n">($6.3M)</td></tr>
+</tbody><tfoot><tr><td>Profit · margin on sales</td><td class="n">$51.3M · 31%</td></tr></tfoot></table></div>
+<span class="eyebrow">04 · Condo pricing decides it</span>
+<div class="scroll"><table><thead><tr><th>Sale price</th><th class="n">Profit</th><th class="n">Margin</th></tr></thead><tbody>
+<tr><td>$712/sf — Arterial income value</td><td class='n'>$1.6M</td><td class='n'>1%</td></tr><tr><td>$900/sf</td><td class='n'>$29.2M</td><td class='n'>21%</td></tr><tr><td>$1,050/sf</td><td class='n'>$51.3M</td><td class='n'>31%</td></tr><tr><td>$1,200/sf</td><td class='n'>$73.3M</td><td class='n'>39%</td></tr>
+</tbody></table></div>
+<span class="eyebrow">05 · Stated openly</span>
+<ul class="c">
+<li><b>Tower C is not approved.</b> Markham staff raised concerns about the 49/44/24-storey version; rezoning takes 12–24 months.</li>
+<li><b>GTA condo presales are weak;</b> lenders want 60–70% presold. Below ~$900/sf the tower is better held as rental.</li>
+<li>Tower A's Year-10 cash relies on the BCH contribution ($281K per affordable home); Tower A can also run under Ubuntu's Common Ground structure.</li>
+<li>Development charges are estimates; tower floor areas are split by storeys pending stamped drawings.</li>
+</ul>
+</div></div></div>
+<footer><div style='width:110px;flex:none'><svg role='img' aria-label='Heal House' id="LOGO" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="400 1110 2160 760"> <defs> </defs> <g id="Rings"> <g> <g id="HEAL"> <path fill="#F6F1E8" d="M1071.92,1258.3h45.86c1.12,0,2.03.91,2.03,2.03v158.48h203.45v-158.66c0-1.12.91-2.03,2.03-2.03h45.21c1.12,0,2.03.91,2.03,2.03v372.21c0,1.12-.91,2.03-2.03,2.03h-45.18c-1.12,0-2.03-.91-2.03-2.03v-174.32h-203.48v174.32c0,1.12-.91,2.03-2.03,2.03h-45.86c-1.12,0-2.03-.91-2.03-2.03v-372.03c0-1.12.91-2.03,2.03-2.03Z"></path> <path fill="#F6F1E8" d="M1473.5,1258.12h223.73c1.12,0,2.03.91,2.03,2.03v36.89c0,1.12-.91,2.03-2.03,2.03h-178.06v120.77h156.28c1.14,0,2.05.93,2.04,2.06l-.33,36.03c-.01,1.12-.92,2.03-2.04,2.03h-154.87l-1.08,134.79h181.31c1.12,0,2.03.91,2.03,2.03v35.6c0,1.12-.91,2.03-2.03,2.03h-226.99v-376.28Z"></path> <path fill="#F6F1E8" d="M1979.76,1256.09h15.92c.79,0,1.51.45,1.84,1.17l176.54,374.24c.64,1.35-.35,2.9-1.84,2.9h-47.78c-.78,0-1.48-.44-1.83-1.14l-42.49-86.47h-184.22l-39.9,86.43c-.33.72-1.05,1.18-1.85,1.18h-46.73c-1.48,0-2.47-1.54-1.85-2.89l172.32-374.24c.33-.72,1.06-1.19,1.85-1.19ZM1988.15,1348.38l-71.77,159.66h147.5l-75.73-159.66Z"></path> <path fill="#F6F1E8" d="M2307.28,1256.09h46.14c1.13,0,2.04.91,2.04,2.04v338.1h167.26c1.09,0,1.97.88,1.97,1.97v34.24c0,1.09-.88,1.97-1.97,1.97h-217.48v-376.27c0-1.13.91-2.04,2.04-2.04Z"></path> </g> <g id="house"> <path fill="#F6F1E8" d="M1423.14,1707.7h6.12v48.78h72.76v-48.78h6.76v99.48h-6.76v-46.8h-72.76v46.8h-6.12v-99.48Z"></path> <path fill="#F6F1E8" d="M1576.41,1759.52c0-7.52,1.4-14.44,4.21-20.76,2.81-6.31,6.72-11.77,11.71-16.37,5-4.6,11.01-8.19,18.04-10.8,20.02-7.41,45.16-5.52,61.36,9.38,5,4.6,8.9,10.05,11.71,16.37,2.81,6.32,4.22,13.23,4.22,20.76,0,22.18-9.43,38.77-30.91,46.58-7.03,2.55-14.76,3.83-23.19,3.83s-16.16-1.28-23.19-3.83c-7.03-2.55-13.04-6.13-18.04-10.73-4.99-4.6-8.9-10.08-11.71-16.44-2.81-6.36-4.22-10.47-4.22-18ZM1585.17,1758.1c0,6.33,1.11,12.23,3.33,17.69,2.22,5.47,5.4,10.21,9.53,14.24,4.13,4.03,9.12,7.19,15,9.49,5.87,2.3,12.46,3.45,19.76,3.45s13.89-1.15,19.76-3.45c5.87-2.3,10.87-5.47,15-9.49,4.13-4.03,7.3-8.77,9.52-14.24,2.22-5.47,3.33-11.36,3.33-17.69s-1.11-12.23-3.33-17.69c-2.22-5.47-5.4-10.21-9.52-14.24-4.13-4.03-9.13-7.19-15-9.49-5.87-2.3-12.46-3.45-19.76-3.45s-13.89,1.15-19.76,3.45c-5.87,2.3-10.87,5.47-15,9.49-4.13,4.03-7.3,8.77-9.53,14.24-2.22,5.47-3.33,11.36-3.33,17.69Z"></path> <path fill="#F6F1E8" d="M1840.8,1768.43c0,5.47-.71,10.71-2.14,15.7-1.43,4.99-3.81,9.41-7.16,13.25-3.35,3.84-7.73,6.91-13.16,9.22-5.43,2.3-12.09,3.46-19.99,3.46s-14.56-1.15-19.99-3.46c-5.43-2.3-9.82-5.37-13.16-9.22-3.35-3.84-5.73-8.25-7.16-13.25-1.43-4.99-2.14-10.22-2.14-15.7v-61.05h7.52v60.84c0,3.65.38,7.54,1.15,11.66.77,4.13,2.27,7.97,4.52,11.52,2.25,3.55,5.43,6.48,9.54,8.78,4.11,2.3,12.91,3.46,19.71,3.46s14.39-1.15,18.5-3.46c4.11-2.3,7.29-5.23,9.54-8.78,2.25-3.55,3.76-7.39,4.52-11.52.77-4.13,1.15-8.01,1.15-11.66v-60.84h8.73v61.05Z"></path> <path fill="#F6F1E8" d="M1910.39,1791.73c.52-.29,1.15-.13,1.51.33,2.77,3.61,6.55,6.04,10.73,7.89,8,3.54,20.35,3.36,28.65,1.25,5.99-1.52,11.73-5.07,14.57-10.56,2.61-5.04,2.43-11.37-.28-16.36-3.61-6.63-10.56-9.07-17.39-11-3.51-.99-7.14-1.99-10.87-2.98-9.34-2.49-21.45-5.97-27.3-14.32-7.34-10.48-2.27-25.03,7.77-31.57,3.4-2.22,7.32-3.89,11.76-5.02,4.43-1.13,9.08-1.7,13.95-1.7,6.27,0,12.1.89,17.44,2.78,1.06.37,4.08,1.7,7.58,4.96.59.55.51,1.51-.17,1.93l-2.72,1.69c-.5.31-1.14.2-1.54-.23-2.44-2.6-4.72-3.64-8.17-4.72-4.65-1.45-9.65-2.05-14.63-2.05-10.48,0-21.73,3.68-25.77,15.09-.73,2.06-1.08,4.26-1.15,6.44-.19,6.54,1.77,10.19,6.35,12.6,3.81,2,7.92,3.6,11.99,4.99,4.38,1.49,9.14,2.8,14.28,3.93,12.03,2.65,24.91,6.99,28.82,20.32,1.37,4.66,1.34,9.68-.12,14.3-4.72,15.01-21.03,20.29-34.79,20.29-7.57,0-14.55-1.11-20.93-3.32-5.92-2.05-11.05-5.41-15.38-10.08-.52-.56-.36-1.47.3-1.84l5.5-3.07Z"></path> <path fill="#F6F1E8" d="M2043.27,1708.41h68.11v6.76s-59.53,0-59.53,0l.04,39.47h50.65v5.3h-50.69v42.36h59.52v6.16h-68.1v-100.05Z"></path> </g> <g id="left_line"> <rect fill="#F6F1E8" x="1073.29" y="1765.04" width="212.28" height="4.07"></rect> </g> <g id="right_line"> <rect fill="#F6F1E8" x="2266.35" y="1765.04" width="251.17" height="4.07"></rect> </g> <path fill="#F6F1E8" d="M904.47,1377.98c-.09.06-.18.12-.26.18-5.81,3.89-8.32,11.14-5.99,17.73,8.07,22.91,12.2,47.67,11.57,73.49-2.67,108.29-95.71,199.69-204.03,200.52-114.97.88-208.33-92.57-207.3-207.57.98-109.31,93.48-202.29,202.78-203.8,46.75-.65,89.98,14.3,124.82,39.98,5.57,4.11,13.21,3.96,18.64-.34l.31-.25c7.97-6.31,7.77-18.48-.4-24.53-40.45-29.94-90.76-47.33-145.16-46.39-122.76,2.12-228.97,106.64-232.93,229.35-4.37,135.22,104.46,246.1,238.93,245.1,128.34-.96,233.52-105.35,235.41-233.68.43-28.92-4.34-56.67-13.41-82.39-3.32-9.43-14.68-12.99-22.96-7.39Z"></path> <path fill="#F6F1E8" d="M911.22,1618.75c-46.6,61.92-120.24,102.33-203.39,103.65-142.89,2.27-261.82-112.94-263.87-255.84-1.91-133.35,96.7-244.04,224.91-261.18,7.7-1.03,13.42-7.64,13.42-15.41h0c0-9.51-8.44-16.74-17.86-15.41-140.97,19.88-249.3,141.34-248.57,287.96.79,159.54,129.8,287.87,289.34,287.87,93.79,0,177.14-44.63,230.01-113.8,6.16-8.06,2.43-19.74-7.18-22.99-.1-.03-.2-.07-.29-.1-6.05-2.03-12.68.15-16.52,5.25Z"></path> <path fill="#F6F1E8" d="M703.62,1281.64c-100.82,0-182.55,81.73-182.55,182.55s81.73,182.55,182.55,182.55,182.55-81.73,182.55-182.55-81.73-182.55-182.55-182.55ZM705.13,1617.93c-84.91,0-153.74-68.83-153.74-153.74s68.83-153.74,153.74-153.74,153.74,68.83,153.74,153.74-68.83,153.74-153.74,153.74Z"></path> </g> </g> </svg></div><div><div class='tag'>Heal the whole person.</div><div class='src'>Sources: Arterial hard cost: $370/sf (40–60 storeys), $340/sf (20–40 storeys), Markham (Nov 4–5 2026) · Arterial comps, Yonge/Steeles leasing: 1BR $2,338 (5), 2BR $2,963 (4); 3BR $3,500 adj. from 1 comp · CMHC Markham zone avg rents 1BR $1,720 · 2BR $1,850 · 3BR $1,834 via Arterial · ASSUMPTION — Tower C 23 storeys, ~180,000 sf (Colliers pre-consultation, Jun 2025), not approved; $1,050/sf base; Arterial income value ~$712/sf as downside · ESTIMATE — no Arterial Markham/York DC data; affordable homes assumed DC-exempt. Illustrative scenario for discussion — not a valuation, offer, or financial advice.</div></div></footer>
+</div></body></html>
