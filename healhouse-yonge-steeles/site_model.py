@@ -4,9 +4,9 @@ BCH 10-year loan (repaid in full at Year 10) + Building Ontario Fund (Tower B, t
 import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _ltt import ltt
 
-GFA=858_648; SHARE_A=44/84; SHARE_B=40/84
+GFA=801_556; SHARE_A=44/84; SHARE_B=40/84   # OLT Interim Decision (Oct 17 2023) para 9: 74,467 m2
 SRC={
- "gfa":"Approved 40/44-storey scheme, 858,648 sf (Colliers brochure, Jun 2026); split between towers by storeys — unverified vs stamped set",
+ "gfa":"Approved 44/40-storey scheme: 74,467 m2 / ~801,556 sf GFA, 1,060 units, 510 parking (OLT Interim Decision Oct 17 2023, para 9; final order May 7 2024). Colliers brochure states 858,648 sf. GFA split between towers by storeys; unit counts scaled to GFA",
  "cost":"Arterial hard cost: $370/sf (40–60 storeys), $340/sf (20–40 storeys), Markham (Nov 4–5 2026)",
  "rents":"Arterial comps, Yonge/Steeles leasing: 1BR $2,338 (5), 2BR $2,963 (4); 3BR $3,500 adj. from 1 comp",
  "cmhc":"CMHC Markham zone avg rents 1BR $1,720 · 2BR $1,850 · 3BR $1,834 via Arterial",
@@ -49,7 +49,8 @@ def stack(tdc, egi, opex, sponsor, bof, aff, cap, g_rev=0.03, g_opex=0.025, refi
 
 def tower_a():
     gfa=GFA*SHARE_A
-    mix=[("1 Bed",222,560,1720,2338,55000),("2 Bed",261,760,1850,2963,70000),("3 Bed",72,960,1834,3500,75000)]
+    k=gfa/449_768
+    mix=[("1 Bed",round(222*k),560,1720,2338,55000),("2 Bed",round(261*k),760,1850,2963,70000),("3 Bed",round(72*k),960,1834,3500,75000)]
     units=sum(m[1] for m in mix); gpi=aff=dc=0
     for _,k,sf,mmr,mkt,d in mix:
         a=round(k*0.30); aff+=a; gpi+=((k-a)*mkt+a*round(mmr*A["aff_factor"]))*12; dc+=(k-a)*d
@@ -61,8 +62,9 @@ def tower_a():
 
 def tower_b(rent=(6000,7800), opex_ratio=0.62, occ=0.92):
     gfa=GFA*SHARE_B; pod=40000; suites_sf=48000; sen_gfa=gfa-pod-suites_sf
-    mix=[("1 Bed",288,600,55000),("2 Bed",123,820,70000)]
-    units=411; aff=0; gpi=0; dc=0
+    k=sen_gfa/320_880
+    mix=[("1 Bed",round(288*k),600,55000),("2 Bed",round(123*k),820,70000)]
+    units=sum(x[1] for x in mix); aff=0; gpi=0; dc=0
     for (lab,k,sf,d),rr in zip(mix,rent):
         a=round(k*0.20); aff+=a; gpi+=((k-a)*rr+a*rr*A["aff_factor"])*12; dc+=(k-a)*d
     egi=gpi*occ; opex=opex_ratio*egi
