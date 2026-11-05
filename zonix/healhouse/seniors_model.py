@@ -58,3 +58,38 @@ if __name__=="__main__":
     d=run()
     for k,v in d.items():
         if isinstance(v,(int,float)): print(f"{k:12s} {v:,.2f}")
+
+# ---------------- Hybrid: Common Ground-style BCH tranche, Heal House owns, BCH out at Year 10
+H=dict(mli_share=0.50, city_share=0.05, grant_share=0.545, mezz_accrual=0.0, bof_pref=0.04,
+       growth=0.03, opex_g=0.025, refi_dscr=1.20, refi_rate=0.0425)
+SRC["hybrid"]=("ASSUMPTION — Common Ground-style BCH split tranche (54.5% contribution vesting Yrs 1–10 vs affordable homes; "
+  "45.5% mezz, payment-free to Yr 10) with Heal House as owner; BCH mezz and Fund repaid from a Year-10 MLI Select refinance; Fund paid a 4% current return")
+def hybrid(mezz_accrual=None):
+    d=run(); h=dict(H)
+    if mezz_accrual is not None: h["mezz_accrual"]=mezz_accrual
+    tdc=d["tdc"]; mli=h["mli_share"]*tdc; city=h["city_share"]*tdc; bof=d["bof"]
+    sponsor=d["land_res"]+A["predev"]; bch=tdc-mli-city-bof-sponsor
+    grant=h["grant_share"]*bch; mezz=bch-grant
+    r=A["rate"]/12; n=A["amort"]*12; const=12*r/(1-(1+r)**-n); ads=mli*const
+    bal=lambda P,m: P*((1+r)**n-(1+r)**m)/((1+r)**n-1)
+    egi,opex=d["egi"],d["opex"]; rows=[]; to_sponsor=0
+    for y in range(1,11):
+        noi=egi*(1+h["growth"])**(y-1)-opex*(1+h["opex_g"])**(y-1)
+        cf=noi-ads; pref=min(cf,h["bof_pref"]*bof); sp=cf-pref; to_sponsor+=sp
+        rows.append(dict(y=y,noi=noi,cf=cf,pref=pref,sp=sp))
+    noi11=egi*(1+h["growth"])**10-opex*(1+h["opex_g"])**10
+    val10=noi11/A["cap"]; refi=min(noi11/h["refi_dscr"]/const, A["max_ltv"]*val10)
+    mezz10=mezz*(1+h["mezz_accrual"])**10; mli10=bal(mli,120)
+    payoff=mli10+mezz10+bof; surplus=refi-payoff
+    dscr_after=noi11/(refi*const)
+    # sponsor IRR: -sponsor at t0, CF yrs 1-10 (ops start t=4 after 3.5-yr build -> years 5..14), surplus at t=14
+    flows={0:-sponsor}
+    for i,x in enumerate(rows): flows[5+i]=x["sp"]
+    flows[14]+=max(surplus,0)
+    lo,hi=-0.5,1.0
+    for _ in range(200):
+        m=(lo+hi)/2; v=sum(c/(1+m)**t for t,c in flows.items()); lo,hi=(m,hi) if v>0 else (lo,m)
+    return dict(d=d,tdc=tdc,mli=mli,city=city,bof=bof,sponsor=sponsor,bch=bch,grant=grant,mezz=mezz,ads=ads,
+        dscr=d["noi"]/ads,ltv=mli/d["value"],rows=rows,to_sponsor=to_sponsor,noi11=noi11,val10=val10,refi=refi,
+        mezz10=mezz10,mli10=mli10,payoff=payoff,surplus=surplus,dscr_after=dscr_after,irr=m,
+        mult=(to_sponsor+max(surplus,0))/sponsor,grant_per_aff=grant/d["aff"],ltv_refi=refi/val10)
