@@ -93,3 +93,34 @@ def hybrid(mezz_accrual=None):
         dscr=d["noi"]/ads,ltv=mli/d["value"],rows=rows,to_sponsor=to_sponsor,noi11=noi11,val10=val10,refi=refi,
         mezz10=mezz10,mli10=mli10,payoff=payoff,surplus=surplus,dscr_after=dscr_after,irr=m,
         mult=(to_sponsor+max(surplus,0))/sponsor,grant_per_aff=grant/d["aff"],ltv_refi=refi/val10)
+
+# ---------------- Retirement-home variant: two services (licensed under Ontario's Retirement Homes Act)
+RET=dict(rent={1:6000,2:7800}, occ=0.92, opex_ratio=0.62, fitout_psf=40, ffe_suite=15000, cap=0.06, refi_ltv=0.75)
+SRC["ret"]=("ASSUMPTION — licensed retirement home, two services: 1-bed $6,000/mo, 2-bed $7,800/mo all-in (rent + services), "
+  "92% occupancy, 62% expense ratio (staffing, food, care, 5% Heal House management fee), 6.0% cap rate, Year-10 refinance capped at 75% LTV. "
+  "Listowel/Barrie comparison (Jan 2026) used ~$14,000/mo per room and a 77% expense ratio")
+def run_ret(rent=None, opex_ratio=None, occ=None):
+    d=run(); r=dict(RET)
+    if rent: r["rent"]=rent
+    if opex_ratio is not None: r["opex_ratio"]=opex_ratio
+    if occ is not None: r["occ"]=occ
+    gpi=0
+    for _,n,sf,mmr,mkt,dc in MIX:
+        b=1 if sf<700 else 2; k=round(n*A["aff"])
+        gpi+=((n-k)*r["rent"][b]+k*r["rent"][b]*A["aff_factor"])*12
+    egi=gpi*r["occ"]; opex=r["opex_ratio"]*egi; noi=egi-opex
+    extra=(r["fitout_psf"]*(d["sen_gfa"])+r["ffe_suite"]*d["units"])*(1+A["soft"])
+    d.update(gpi=gpi,egi=egi,opex=opex,noi=noi,tdc=d["tdc"]+extra,value=noi/r["cap"],ret_extra=extra,ret=r)
+    d["value_gap"]=d["value"]-d["tdc"]; d["cost_per"]=d["tdc"]/d["units"]
+    return d
+def hybrid_ret(**kw):
+    """Same hybrid stack, on the retirement-home P&L."""
+    global run
+    base_run=run; dr=run_ret(**kw)
+    run=lambda: dict(dr)
+    try:
+        cap0=A["cap"]; A["cap"]=dr["ret"]["cap"]; og=H["opex_g"]; H["opex_g"]=H["growth"]; lt=A["max_ltv"]; A["max_ltv"]=dr["ret"]["refi_ltv"]
+        h=hybrid()   # operating business: expenses grow with revenue (constant margin)
+    finally:
+        A["cap"]=cap0; H["opex_g"]=og; A["max_ltv"]=lt; run=base_run
+    return h
