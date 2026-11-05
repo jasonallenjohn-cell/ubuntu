@@ -11,7 +11,8 @@ SRC = {
  "dc": "ESTIMATE — Arterial has no Markham/York DC data; needs municipal quote",
  "land": "Working value $30M (desktop opinion, Nov 4 2026); bid $31M",
  "hotel": "ASSUMPTION — 80 short-stay keys, ADR $185, 72% occ., 30% NOI margin",
- "podium": "ASSUMPTION — 40,000 sf Heal House clinic/wellness at $32/sf net",
+ "podium": "ASSUMPTION — 40,000 sf Heal House podium is building amenity space: no rent; building carries ~$5/sf operating cost",
+ "hh": "Heal House: $350/mo membership, 85% uptake (sponsor assumption); 60% gross margin per HealHouse_15Year_BusinessPlan_Valuation (Jun 2026); 10% local overhead",
  "stack": "Common Ground July 2026: MLI Select 50% / BCH 40% (54.5% contribution, 45.5% mezz) / City 5% / land equity 5%. Per instruction, assumes MLI Select + BCH fund commercial space",
 }
 
@@ -23,7 +24,9 @@ A = dict(constr=370, soft=0.15, cap_res=0.0425, cap_com=0.06, cap_hot=0.075,
 TOWER_A = [  # label, beds, count, sqft, cmhc, market, dc
  ("1 Bed",1,284,560,1720,2338,55000),("2 Bed",2,334,760,1850,2963,70000),("3 Bed",3,92,960,1834,3500,75000)]
 SENIORS = [("55+ 1 Bed",1,175,600,1720,2338,55000),("55+ 2 Bed",2,75,820,1850,2963,70000)]
-PODIUM = dict(sf=40000, rent=32, vac=0.05, nonrec=0.03, ti=100, dc_psf=25)
+PODIUM = dict(sf=40000, rent=32, vac=0.05, nonrec=0.03, ti=100, dc_psf=25, amenity=True, opex_psf=5)
+HH = dict(fee=350, uptake=0.85, cogs=0.40, local_oh=0.10, low_seniors=0.85, low_towerA=0.20,
+          day_capture=0.25, day_price=150)   # wellness days sold to short-stay guests
 HOTEL  = dict(keys=80, sf=48000, adr=185, occ=0.72, other=0.10, margin=0.30, ffe=40000, dc_psf=25)
 SENIORS_GFA = 195000
 ACQ = dict(price=31_000_000, appraisal=30_000_000, legal=500_000, months=18, loan_rate=0.065,
@@ -49,10 +52,23 @@ def res_block(mix, extra_opex=0):
     dc=sum(u[2]*u[6] for u in mix)
     return dict(units=units,nra=nra,aff=aff,gpi=gpi,egi=egi,opex=op_ex_tax+tax,tax=tax,noi=noi,dc=dc)
 
+def heal_house(ta,sn,h_rev):
+    h=HH; units=ta["units"]+sn["units"]
+    def pnl(m):
+        rev=m*h["fee"]*12; e=rev*(1-h["cogs"]-h["local_oh"]); return dict(members=m,rev=rev,ebitda=e)
+    base=pnl(round(h["uptake"]*units))
+    low=pnl(round(h["low_seniors"]*sn["units"])+round(h["low_towerA"]*ta["units"]))
+    nights=HOTEL["keys"]*365*HOTEL["occ"]; day_rev=nights*h["day_capture"]*h["day_price"]
+    day_e=day_rev*(1-h["cogs"]-h["local_oh"])
+    port_m=round(h["uptake"]*2000); port=pnl(port_m)
+    return dict(base=base,low=low,day_rev=day_rev,day_e=day_e,total_rev=base["rev"]+day_rev,
+        total_e=base["ebitda"]+day_e,port=port,ti=PODIUM["sf"]*PODIUM["ti"],
+        noi_per_senior=sn["noi"]/sn["units"])
+
 def run():
     ta=res_block(TOWER_A); sn=res_block(SENIORS, extra_opex=1200)
     ta_gfa=A["gfa"]-PODIUM["sf"]-HOTEL["sf"]-SENIORS_GFA
-    p=PODIUM; p_noi=p["sf"]*p["rent"]*(1-p["vac"]-p["nonrec"])
+    p=PODIUM; p_noi=-p["sf"]*p["opex_psf"] if p["amenity"] else p["sf"]*p["rent"]*(1-p["vac"]-p["nonrec"])
     h=HOTEL; h_rev=h["keys"]*h["adr"]*365*h["occ"]*(1+h["other"]); h_noi=h_rev*h["margin"]
     noi=ta["noi"]+sn["noi"]+p_noi+h_noi
     value=(ta["noi"]+sn["noi"])/A["cap_res"]+p_noi/A["cap_com"]+h_noi/A["cap_hot"]
@@ -104,7 +120,7 @@ def run():
       ads=ads,dscr=noi/ads,ltv=mli/value,buyout=buyout,dscr10=dscr10,lo_cf=lo_cf,rows=rows,mezz_resid=bal_m,
       ltt=l,carry=carry,unguar=unguar,guar_top=guar_top,eq_at_acq=eq_at_acq,land_gap=land_gap,peak=peak,perm=perm,
       unrecognized=unrecognized,cmhc_nw=cmhc_nw,cmhc_liq=cmhc_liq,irr=irr,back=back,mult=back/perm,
-      res_units=res_units,aff=aff,grant_per_aff=grant/aff,np_cf=cum_np,cf1=rows[0]["cf"])
+      hh=heal_house(ta,sn,h_rev), res_units=res_units,aff=aff,grant_per_aff=grant/aff,np_cf=cum_np,cf1=rows[0]["cf"])
 
 if __name__=="__main__":
     d=run()
