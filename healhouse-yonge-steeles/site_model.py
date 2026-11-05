@@ -1,8 +1,8 @@
-"""Zonix — full site: Tower A rental, Tower B Heal House retirement + wellness stays, Tower C boutique condo.
-One model drives every figure in the package. Stack per tower: CMHC MLI Select + BCH split tranche (Year-10 payout)
-+ Building Ontario Fund (seniors) + City + sponsor equity."""
+"""Heal House at Yonge & Steeles — full site: Tower A rental, Tower B Heal House retirement + wellness stays,
+Tower C boutique condo. One model drives every figure in the package. Stack per tower: CMHC MLI Select +
+BCH 10-year loan (repaid in full at Year 10) + Building Ontario Fund (Tower B, to Year 20) + City + sponsor equity."""
 import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from model import ltt
+from _ltt import ltt
 
 GFA=858_648; SHARE_A=44/84; SHARE_B=40/84
 SRC={
@@ -16,7 +16,7 @@ SRC={
  "bof":"Heal House GR brief (Nov 3 2026): ~$151M Building Ontario Fund ask over ~2,000 homes = $75.5K/home",
  "suites":"ASSUMPTION — 80 wellness-stay suites, ADR $185, 72% occ., 30% NOI margin, funded by Sunray cash",
  "condo":"ASSUMPTION — Tower C 23 storeys, ~180,000 sf (Colliers pre-consultation, Jun 2025), not approved; $1,050/sf base; Arterial income value ~$712/sf as downside",
- "stack":"Year-10 refinance capped at 85% LTV (Tower A) and 75% (Tower B). BCH split tranche modelled on Common Ground: 54.5% contribution vesting Yrs 1–10 vs affordable homes, 45.5% mezz payment-free to Yr 10; BCH mezz and Fund repaid by Year-10 refinance",
+ "stack":"BCH as a 10-year loan, payment- and interest-free to Year 10, repaid in full from a Year-10 MLI Select refinance (capped at 1.20x coverage; 85% LTV Tower A, 75% Tower B). Building Ontario Fund on Tower B paid 4% a year and repaid at a Year-20 refinance",
 }
 A=dict(rate=0.0425, amort=50, soft=0.15, aff_factor=0.80, tax=0.008397, mli_share=0.50, city_share=0.05,
        grant_share=0.545, refi_dscr=1.20, bof_pref=0.04, predev=4_000_000,
@@ -27,18 +27,24 @@ bal=lambda P,m: P*((1+r)**n-(1+r)**m)/((1+r)**n-1)
 def land_all():
     return A["price"]+ltt(A["price"])+A["legal"]+A["price"]*A["loan_rate"]*A["months"]/12+A["tax_ins_yr"]*A["months"]/12
 
-def stack(tdc, egi, opex, sponsor, bof, aff, cap, g_rev=0.03, g_opex=0.025, refi_ltv=0.95):
+def stack(tdc, egi, opex, sponsor, bof, aff, cap, g_rev=0.03, g_opex=0.025, refi_ltv=0.95, bof_to_yr20=False, bch_rate=0.0):
     mli=A["mli_share"]*tdc; city=A["city_share"]*tdc; bch=tdc-mli-city-bof-sponsor
-    grant=A["grant_share"]*bch; mezz=bch-grant; ads=mli*CONST; noi=egi-opex
-    cf=[]; to_sp=0
+    ads=mli*CONST; noi=egi-opex; to_sp=0
     for y in range(1,11):
-        ny=egi*(1+g_rev)**(y-1)-opex*(1+g_opex)**(y-1); c=ny-ads; pref=min(max(c,0),A["bof_pref"]*bof)
-        cf.append(c); to_sp+=c-pref
+        ny=egi*(1+g_rev)**(y-1)-opex*(1+g_opex)**(y-1); c=ny-ads; pref=min(max(c,0),A["bof_pref"]*bof); to_sp+=c-pref
     noi11=egi*(1+g_rev)**10-opex*(1+g_opex)**10; val10=noi11/cap
-    refi=min(noi11/A["refi_dscr"]/CONST, refi_ltv*val10); payoff=bal(mli,120)+mezz+bof; surplus=refi-payoff
-    return dict(tdc=tdc,mli=mli,city=city,bch=bch,grant=grant,mezz=mezz,bof=bof,sponsor=sponsor,noi=noi,ads=ads,
-        dscr=noi/ads,value=noi/cap,noi11=noi11,val10=val10,refi=refi,mli10=bal(mli,120),payoff=payoff,surplus=surplus,
-        to_sp=to_sp,mult=(to_sp+max(surplus,0))/sponsor,grant_per_aff=grant/aff if aff else 0,equity10=val10-refi)
+    refi=min(noi11/A["refi_dscr"]/CONST, refi_ltv*val10); mli10=bal(mli,120)
+    bch10=bch*(1+bch_rate)**10; bch10_45=bch*1.045**10
+    payoff=mli10+bch10+(0 if bof_to_yr20 else bof); surplus=refi-payoff
+    out=dict(tdc=tdc,mli=mli,city=city,bch=bch,bof=bof,sponsor=sponsor,noi=noi,ads=ads,dscr=noi/ads,value=noi/cap,
+        noi11=noi11,val10=val10,refi=refi,mli10=mli10,bch10=bch10,payoff=payoff,surplus=surplus,
+        room45=refi-mli10-bch10_45-(0 if bof_to_yr20 else bof),to_sp=to_sp,
+        mult=(to_sp+max(surplus,0))/sponsor,equity10=val10-refi,bof_to_yr20=bof_to_yr20)
+    if bof_to_yr20:
+        noi21=egi*(1+g_rev)**20-opex*(1+g_opex)**20; val20=noi21/cap
+        refi20=min(noi21/A["refi_dscr"]/CONST, refi_ltv*val20); free20=refi20-bal(refi,120)
+        out.update(cf11=noi11-refi*CONST, bof_pay=A["bof_pref"]*bof, val20=val20, free20=free20, bof_cover20=free20-bof)
+    return out
 
 def tower_a():
     gfa=GFA*SHARE_A
@@ -62,8 +68,11 @@ def tower_b(rent=(6000,7800), opex_ratio=0.62, occ=0.92):
     land_b=land_all()*SHARE_B; land_res=land_b*(sen_gfa+pod)/gfa; land_suites=land_b-land_res
     hard=370*(sen_gfa+pod)+100*pod+40*sen_gfa+15000*units
     tdc=land_res+hard+dc+A["soft"]*hard+A["predev"]*SHARE_B
-    bof=75_500*units
-    s=stack(tdc,egi,opex,land_res+A["predev"]*SHARE_B,bof,aff,0.06,0.03,0.03,0.75)
+    sponsor=land_res+A["predev"]*SHARE_B; bof_base=75_500*units
+    gap=tdc*(1-A["mli_share"]-A["city_share"])-sponsor-bof_base
+    bof=bof_base+0.545*gap        # Fund takes the long-term share so BCH is fully repaid at Year 10
+    s=stack(tdc,egi,opex,sponsor,bof,aff,0.06,0.03,0.03,0.75,bof_to_yr20=True)
+    s["bof_base"]=bof_base
     # wellness-stay suites (Sunray) and Heal House income
     keys=80; s_rev=keys*185*365*0.72*1.10; s_noi=0.30*s_rev
     s_cost=land_suites+(370*suites_sf+keys*40000)*(1+A["soft"])+25*suites_sf

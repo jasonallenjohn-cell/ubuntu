@@ -4,14 +4,14 @@ import site_model as m
 s=m.site(); a,b,c=s["A"],s["B"],s["C"]; A=m.A
 B='/root/.claude/skills/synced/f8734239-31ba-4ced-bc8b-cbf00346c7d5_28a6848d-eac9-43f7-925d-965e3f535b85/heal-house-brand/assets/'
 svg=lambda k: open(B+f'healhouse-logo-{k}.svg').read().replace('<svg ',"<svg role='img' aria-label='Heal House' ",1)
-css=re.search(r'<style>(.*?)</style>',open('Zonix_HealHouse_OnePager.html').read(),re.S).group(1)
+css=open('page.css').read()
 M=lambda x:(f"(${-x/1e6:,.1f}M)" if x<0 else f"${x/1e6:,.1f}M"); N=lambda x:f"{x:,.0f}"; P=lambda x,k=0:f"{x*100:.{k}f}%"; K=lambda x:(f"${x/1e3:,.1f}K" if x<1e5 else f"${x/1e3:,.0f}K")
 total=s['tdc_rent']+s['sunray']+c['cost']+c['land']
-def hdr(pg): return f"<header class='mh'><div style='width:150px'>{svg('gold')}</div><span class='stamp'>Draft for discussion · HH-MODEL-0004 · {pg}</span></header>"
+def hdr(pg): return f"<header class='mh'><div style='width:150px'>{svg('gold')}</div><span class='stamp'>Draft for discussion · HH-MODEL-0005 · {pg}</span></header>"
 def foot(tag,src): return f"<footer><div style='width:110px;flex:none'>{svg('cream')}</div><div><div class='tag'>{tag}</div><div class='src'>{src}</div></div></footer>"
 def stack_tbl(t,bof_label=True):
-    rows=[("CMHC MLI Select — 4.25%, 50-yr",t['mli']),("Building Ontario Fund — patient capital",t['bof']) if t['bof'] else None,
-          ("BCH contribution — vests Yrs 1–10",t['grant']),("BCH mezz — repaid at Year 10",t['mezz']),
+    rows=[("CMHC MLI Select — 4.25%, 50-yr",t['mli']),("Building Ontario Fund — 4% a year, repaid at Year 20",t['bof']) if t['bof'] else None,
+          ("BCH — 10-year loan, repaid in full at Year 10",t['bch']),
           ("City of Markham",t['city']),("Sponsor equity — land + pre-development",t['sponsor'])]
     rows=[r for r in rows if r]
     body="".join(f"<tr><td>{l}</td><td class='n'>{M(v)}</td><td class='n'>{P(v/t['tdc'],1)}</td></tr>" for l,v in rows)
@@ -20,23 +20,24 @@ def yr10(t):
     return f"""<div class='scroll'><table><tbody>
 <tr><td>Year-11 NOI · value</td><td class='n'>{M(t['noi11'])} · {M(t['val10'])}</td></tr>
 <tr><td>New MLI Select loan at {A['refi_dscr']:.2f}x</td><td class='n'>{M(t['refi'])}</td></tr>
-<tr><td>Repays mortgage, BCH mezz{', the Fund' if t['bof'] else ''}</td><td class='n'>({M(t['payoff'])})</td></tr>
+<tr><td>Repays first mortgage</td><td class='n'>({M(t['mli10'])})</td></tr>
+<tr><td><b>Repays BCH in full</b></td><td class='n'>({M(t['bch10'])})</td></tr>
 </tbody><tfoot><tr><td>Cash to sponsor · sponsor return</td><td class='n'>{M(t['surplus'])} · {t['mult']:.1f}x</td></tr></tfoot></table></div>"""
 srcline=' · '.join(m.SRC[k] for k in m.SRC)
 html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zonix Health Community</title>
+<title>Heal House Yonge Steeles</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap">
 <style>{css} td{{padding:3.2px 8px}} .kpis div{{padding:6px 10px}} .sub{{margin-bottom:8px}} footer{{padding:9px .5in}} header.mh{{padding:.22in .5in .08in}}</style></head><body><div class="page">
 {hdr('Nov 5 2026')}
 <div class="in">
 <span class="eyebrow" style="margin-top:12px">36–48 Steeles Ave E / 37–49 Highland Park Blvd · Markham · in receivership</span>
 <h1>Three towers, one <em>healing</em> community</h1>
-<p class="sub">An approved two-tower site at Yonge &amp; Steeles, bought out of receivership: affordable and market rental, a Heal House retirement residence with wellness stays, and a boutique condo tower — anchored by the Building Ontario Fund, BCH and CMHC.</p>
+<p class="sub">An approved two-tower site at Yonge &amp; Steeles, bought out of receivership: affordable and market rental, a Heal House retirement residence with wellness stays, and a boutique condo tower — anchored by the Building Ontario Fund, BCH and CMHC. Heal House buys the site from the court-appointed receiver.</p>
 <div class="kpis">
 <div><b>{N(s['homes'])} homes</b><span>{N(s['aff'])} affordable · +{b['keys']} suites</span></div>
 <div><b>{M(total)}</b><span>Total program cost</span></div>
 <div><b>{M(s['bof'])}</b><span>Building Ontario Fund</span></div>
-<div><b>{M(s['bch'])}</b><span>BCH, mezz repaid Yr 10</span></div>
+<div><b>{M(s['bch'])}</b><span>BCH, all repaid by Yr 10</span></div>
 <div><b>{M(s['sponsor'])}</b><span>Sponsor equity, rental towers</span></div>
 </div>
 <div class="grid"><div>
@@ -50,16 +51,16 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <span class="eyebrow">02 · How the site comes together</span>
 <ol>
 <li><b>LiUNA's pension backs Nesting Ground's guarantee pool</b>, lifting the land loan from {M(s['unguar'])} to the full {M(A['price'])} price — an {M(s['guar'])} guarantee.</li>
-<li><b>Buy from the receiver</b> and pay out the secured lenders; {M(s['acq_eq'])} of equity at purchase covers transfer tax, carry and pre-development.</li>
+<li><b>Heal House buys from the court-appointed receiver</b> and pays out the secured lenders; {M(s['acq_eq'])} of equity at purchase covers transfer tax, carry and pre-development.</li>
 <li><b>Tower A and Tower B close construction financing</b>; each tower's stack retires its share of the land loan.</li>
 <li><b>Sunray funds the wellness-stay suites</b> ({M(s['sunray'])}); <b>Tower C</b> follows once rezoned, sold through presales.</li>
-<li><b>At Year 10</b>, refinancing repays BCH's mezzanine and the Fund; the sponsors keep the buildings.</li>
+<li><b>At Year 10</b>, refinancing repays every BCH dollar; the Fund stays in Tower B to Year 20; Heal House keeps the buildings.</li>
 </ol>
 </div><div>
 <div class="callout"><span class="eyebrow">03 · What we need to raise</span>
 <div class="raise">
-<div><b>{M(s['bof'])}</b><small>Building Ontario Fund — Tower B, {K(75500)}/home</small></div>
-<div><b>{M(s['bch'])}</b><small>BCH — {M(a['grant']+b['grant'])} contribution + {M(a['mezz']+b['mezz'])} mezz</small></div>
+<div><b>{M(s['bof'])}</b><small>Building Ontario Fund — Tower B, {K(b['bof']/b['units'])}/home, to Year 20</small></div>
+<div><b>{M(s['bch'])}</b><small>BCH — 10-year loan, repaid in full at Year 10</small></div>
 <div><b>{M(s['mli'])}</b><small>CMHC MLI Select, Towers A + B</small></div>
 <div><b>{M(s['city'])}</b><small>City of Markham — incentives / DC relief</small></div>
 <div><b>{M(s['sponsor'])}</b><small>Sponsor equity — {M(s['acq_eq'])} at purchase, rest at construction close</small></div>
@@ -74,7 +75,7 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <tr><td>Tower C — condo profit at ${c['psf']:,}/sf</td><td class="n">{M(c['profit'])} · {P(c['margin'])}</td></tr>
 <tr><td>Heal House — fees, wellness days, memberships</td><td class="n">{M(s['hh_e'])} EBITDA/yr</td></tr>
 </tbody></table></div>
-<p>BCH and the Fund are repaid in full at Year 10 in both rental towers. The sponsors then own Tower A ({M(a['equity10'])} equity) and Tower B ({M(b['equity10'])} equity).</p>
+<p><b>BCH gets all {M(s['bch'])} back at Year 10.</b> The Fund is paid 4% a year and repaid at Year 20. Heal House then owns Tower A ({M(a['equity10'])} equity) and Tower B ({M(b['equity10'])} equity).</p>
 </div></div></div>
 {foot('A sanctuary for healing.', 'Sources: '+srcline+'. Illustrative scenario for discussion — not a valuation, offer, commitment or financial advice. Subject to receiver and court approval, CMHC, BCH, Building Ontario Fund and City of Markham approvals, LiUNA trustee approval and legal review.')}
 <div class="pb"></div>
@@ -87,35 +88,41 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <div><b>{M(b['egi'])}</b><span>Revenue, rent + services</span></div>
 <div><b>{M(b['noi'])}</b><span>NOI after {P(m.tower_b.__defaults__[1])} expenses</span></div>
 <div><b>{b['dscr']:.2f}x</b><span>Debt coverage, Yr 1</span></div>
-<div><b>{M(b['bof'])}</b><span>Building Ontario Fund</span></div>
-<div><b>{M(b['surplus'])}</b><span>Cash at Yr-10 refi</span></div>
+<div><b>{M(b['bof'])}</b><span>Building Ontario Fund · to Yr 20</span></div>
+<div><b>{M(b['bch'])}</b><span>BCH · all back at Yr 10</span></div>
 </div>
 <div class="grid"><div>
 <span class="eyebrow">01 · Capital stack — Tower B residence</span>
 {stack_tbl(b)}
-<span class="eyebrow">02 · Year 10 — BCH and the Fund repaid</span>
+<span class="eyebrow">02 · Year 10 — BCH repaid in full</span>
 {yr10(b)}
+<span class="eyebrow">03 · Year 20 — the Fund repaid</span>
+<div class='scroll'><table><tbody>
+<tr><td>Fund paid 4% a year from Year-11 cash flow of {M(b['cf11'])}</td><td class='n'>{M(b['bof_pay'])}/yr</td></tr>
+<tr><td>Year-20 refinance frees, after the Year-10 loan</td><td class='n'>{M(b['free20'])}</td></tr>
+<tr><td>Repays the Building Ontario Fund</td><td class='n'>({M(b['bof'])})</td></tr>
+</tbody><tfoot><tr><td>Left over after the Fund</td><td class='n'>{M(b['bof_cover20'])}</td></tr></tfoot></table></div>
 </div><div>
-<span class="eyebrow">03 · Heal House income on the site</span>
+<span class="eyebrow">04 · Heal House income on the site</span>
 <div class="scroll"><table><tbody>
 <tr><td>Management fee — 5% of Tower B revenue</td><td class="n">{M(b['hh_fee'])}</td></tr>
 <tr><td>Wellness days — 25% of suite guests × $150 (50% margin)</td><td class="n">{M(b['hh_days'])}</td></tr>
 <tr><td>Tower A memberships — {N(s['hh_members_a'])} × $350/mo (50% margin)</td><td class="n">{M(0.5*s['hh_members_a']*350*12)}</td></tr>
 </tbody><tfoot><tr><td>Heal House EBITDA · podium rent-free</td><td class="n">{M(s['hh_e'])}</td></tr></tfoot></table></div>
-<span class="eyebrow">04 · If it runs leaner</span>
-<p>At 65% expenses and 90% occupancy, NOI is {M(m.tower_b(opex_ratio=0.65,occ=0.90)['noi'])}, coverage {m.tower_b(opex_ratio=0.65,occ=0.90)['dscr']:.2f}x, and the Year-10 refinance still repays BCH and the Fund with {M(m.tower_b(opex_ratio=0.65,occ=0.90)['surplus'])} to spare.</p>
-<span class="eyebrow">05 · Why BCH and the Fund back it</span>
+<span class="eyebrow">05 · If it runs leaner</span>
+<p>At 65% expenses and 90% occupancy, NOI is {M(m.tower_b(opex_ratio=0.65,occ=0.90)['noi'])}, coverage {m.tower_b(opex_ratio=0.65,occ=0.90)['dscr']:.2f}x, and the Year-10 refinance still repays BCH in full with {M(m.tower_b(opex_ratio=0.65,occ=0.90)['surplus'])} to spare.</p>
+<span class="eyebrow">06 · Why BCH and the Fund back it</span>
 <ul class="c">
-<li><b>Mirrors CMHC's MLI Select retirement-home financing</b> — the same route as Heal House Listowel — with BCH's mezzanine repaid in full at Year 10.</li>
+<li><b>Mirrors CMHC's MLI Select retirement-home financing</b> — the same route as Heal House Listowel — and <b>BCH gets every dollar back at Year 10</b>.</li>
 <li><b>Seniors' housing and health care in one building</b>, with {N(b['aff'])} homes affordable for 40 years.</li>
 <li><b>Modern construction and building technology:</b> Cube Building Systems, with construction management by V1 — Mike McGrath, formerly of Tucker HiRise.</li>
 <li><b>A pension partner alongside:</b> LiUNA, through Nesting Ground's guarantee pool.</li>
 </ul>
-<span class="eyebrow">06 · Stated openly</span>
+<span class="eyebrow">07 · Stated openly</span>
 <ul class="c">
 <li><b>Licensed retirement home</b> under Ontario's Retirement Homes Act, like Heal House Listowel; an experienced operator or management contract until Heal House has a track record.</li>
 <li><b>Rents of $6,000 / $7,800 all-in need a Markham market study.</b> Earlier Listowel/Barrie figures (~$14,000/room) are well above market and are not used.</li>
-<li>The Fund's {P(A['bof_pref'])} return and Year-10 exit are placeholders; CMHC's retirement-home route to be confirmed.</li>
+<li>BCH modelled interest-free to Year 10; at 4.5% it is still repaid with {M(b['room45'])} to spare. The Fund's {P(A['bof_pref'])} return and terms are placeholders.</li>
 </ul>
 </div></div></div>
 {foot('Expert care, tailored to you — in a tranquil, nurturing space where healing can flourish.', 'Sources: '+m.SRC['ret']+' · '+m.SRC['bof']+' · '+m.SRC['suites']+'. Illustrative scenario for discussion.')}
@@ -150,10 +157,10 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 <ul class="c">
 <li><b>Tower C is not approved.</b> Markham staff raised concerns about the 49/44/24-storey version; rezoning takes 12–24 months.</li>
 <li><b>GTA condo presales are weak;</b> lenders want 60–70% presold. Below ~$900/sf the tower is better held as rental.</li>
-<li>Tower A's stack includes a {M(a['grant'])} BCH contribution against {N(a['aff'])} affordable homes, earned over Years 1–10.</li>
+<li>BCH's {M(a['bch'])} on Tower A is repaid in full at Year 10 — with {M(a['room45'])} to spare even if BCH charges 4.5%.</li>
 <li>Development charges are estimates; tower floor areas are split by storeys pending stamped drawings.</li>
 </ul>
 </div></div></div>
 {foot('Heal the whole person.', 'Sources: '+m.SRC['cost']+' · '+m.SRC['rents']+' · '+m.SRC['cmhc']+' · '+m.SRC['condo']+' · '+m.SRC['dc']+'. Illustrative scenario for discussion — not a valuation, offer, or financial advice.')}
 </div></body></html>"""
-open('Zonix_Site_Package.html','w').write(html); print('ok', M(total))
+open('HealHouse_YongeSteeles_Package.html','w').write(html); print('ok', M(total))
