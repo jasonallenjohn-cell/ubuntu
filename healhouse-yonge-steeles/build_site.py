@@ -7,7 +7,7 @@ svg=lambda k: open(B+f'healhouse-logo-{k}.svg').read().replace('<svg ',"<svg rol
 css=open('page.css').read()
 M=lambda x:(f"(${-x/1e6:,.1f}M)" if x<0 else f"${x/1e6:,.1f}M"); N=lambda x:f"{x:,.0f}"; P=lambda x,k=0:f"{x*100:.{k}f}%"; K=lambda x:(f"${x/1e3:,.1f}K" if x<1e5 else f"${x/1e3:,.0f}K")
 total=s['tdc_rent']+s['sunray']+c['cost']+c['land']
-def hdr(pg): return f"<header class='mh'><div style='width:150px'>{svg('gold')}</div><span class='stamp'>Draft for discussion · HH-MODEL-0005 · {pg}</span></header>"
+def hdr(pg): return f"<header class='mh'><div style='width:150px'>{svg('gold')}</div><span class='stamp'>Draft for discussion · HH-MODEL-0007 · {pg}</span></header>"
 def foot(tag,src): return f"<footer><div style='width:110px;flex:none'>{svg('cream')}</div><div><div class='tag'>{tag}</div><div class='src'>{src}</div></div></footer>"
 def stack_tbl(t,bof_label=True):
     rows=[("CMHC MLI Select — 4.25%, 50-yr",t['mli']),("Building Ontario Fund — 4% a year, repaid at Year 20",t['bof']) if t['bof'] else None,
@@ -163,5 +163,46 @@ html=f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
 </ul>
 </div></div></div>
 {foot('Heal the whole person.', 'Sources: '+m.SRC['cost']+' · '+m.SRC['rents']+' · '+m.SRC['cmhc']+' · '+m.SRC['condo']+' · '+m.SRC['dc']+'. Illustrative scenario for discussion — not a valuation, offer, or financial advice.')}
+<div class="pb"></div>
+{hdr('page 4 · Site, team, next steps')}
+<div class="in">
+<span class="eyebrow" style="margin-top:12px">The site · the team · what happens next</span>
+<h1>Ready to <em>move</em></h1>
+<p class="sub">One block from Yonge on the Steeles corridor, approved by the Ontario Land Tribunal, with a team that covers the guarantee, the labour, the operator, the hospitality piece and the builder.</p>
+<div class="grid"><div>
+<span class="eyebrow">01 · Location</span>
+<img src="aerial.png" alt="Aerial of the site at Steeles Ave E and Dudley Ave" style="width:100%;height:190px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block">
+<p style="font-size:7.5px;color:var(--ink-faint);margin:3px 0 8px">The site, outlined in red: Steeles Ave E to Highland Park Blvd at Dudley Ave, one block east of Yonge. Map: City of Markham.</p>
+<span class="eyebrow">02 · Approved site plan</span>
+<img src="siteplan.jpg" alt="Approved site plan" style="width:100%;height:170px;object-fit:contain;background:#fff;border-radius:10px;border:1px solid var(--line);display:block">
+<p style="font-size:7.5px;color:var(--ink-faint);margin:3px 0 8px">Tower A (44 storeys) west, Tower B (40) east, six-storey podium, 1,829 m² strata park, 450 m² POPS. OLT final order May 7, 2024 · 1,060 units · 74,467 m² · 510 parking.</p>
+</div><div>
+<span class="eyebrow">03 · The team</span>
+<div class="scroll"><table><tbody>
+<tr><td><b>Heal House</b></td><td>Sponsor, owner and operator · wellness, clinic and retirement programs</td></tr>
+<tr><td><b>LiUNA</b></td><td>Pension capital behind the land guarantee · union construction labour</td></tr>
+<tr><td><b>Nesting Ground</b></td><td>Affordable Housing Guarantee Pool · non-profit housing partner</td></tr>
+<tr><td><b>Sunray Group</b></td><td>Hospitality partner · funds the {b['keys']} wellness-stay suites</td></tr>
+<tr><td><b>Cube Building Systems</b></td><td>Modern construction and building technology</td></tr>
+<tr><td><b>V1</b></td><td>Construction management · Mike McGrath, formerly of Tucker HiRise</td></tr>
+</tbody></table></div>
+<div class="callout"><span class="eyebrow">04 · Next steps</span>
+<ol>
+<li>Register with the receiver; confirm whether the existing conditional offer is still alive (its financing condition lapsed Oct 9).</li>
+<li>LiUNA and Nesting Ground: guarantee terms and cap.</li>
+<li>Building Ontario Fund meeting, through Ryan Adam.</li>
+<li>BCH and CMHC pre-application meetings.</li>
+<li>Offer to the receiver at about {M(A['price'])}, firm and fast.</li>
+</ol></div>
+<span class="eyebrow">05 · To confirm</span>
+<ul class="c">
+<li>Stamped drawings, unit mix and the Tower A / B floor-area split.</li>
+<li>Zoning is residential only: the clinic podium needs an amendment, after a hold removal, minor variance and consent.</li>
+<li>Parking: 510 approved spaces, none for outside clients.</li>
+<li>Retirement rents by market study; development charges by municipal quote.</li>
+</ul>
+</div></div></div>
+{foot('Heal the whole person.', 'Sources: OLT Interim Decision (Oct 17 2023) and final order (May 7 2024); City of Markham pre-consultation checklist (Aug 1 2025); court records of the receivership (Oct 2026). Partner roles as proposed; agreements to be finalized. Illustrative scenario for discussion — not a valuation, offer, or financial advice.')}
+
 </div></body></html>"""
 open('HealHouse_YongeSteeles_Package.html','w').write(html); print('ok', M(total))
